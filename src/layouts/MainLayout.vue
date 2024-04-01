@@ -14,13 +14,13 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Matemáticas </q-toolbar-title>
+        <q-toolbar-title> {{ $t("appTitle") }} </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Matemáticas </q-item-label>
+        <q-item-label header> {{ $t("appTitle") }} </q-item-label>
 
         <EssentialLink
           v-for="link in essentialLinks"

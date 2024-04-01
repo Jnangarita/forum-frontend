@@ -1,6 +1,6 @@
 <template>
   <div class="main-container q-pa-md">
-    <p class="main-title">Categorías</p>
+    <p class="main-title">{{ $t('categories') }}</p>
   </div>
 </template>
 
