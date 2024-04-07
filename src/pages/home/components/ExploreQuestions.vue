@@ -5,7 +5,7 @@
       <q-btn :label="$t('makeQuestion')" color="primary"></q-btn>
     </div>
     <div
-      v-for="question in questions"
+      v-for="question in questionList"
       :key="question.questionId"
       class="question-container"
     >
@@ -30,7 +30,7 @@
         <div class="col-4 q-pa-md" style="align-content: center">
           <p>
             <q-avatar rounded size="20px">
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png" :alt="$t('userImage')">
+              <img src="https://cdn.quasar.dev/img/boy-avatar.png" :alt="$t('userImg')">
             </q-avatar>
             {{ question.user + " " + question.time }}
           </p>
@@ -41,49 +41,33 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-
-const questions = [
-  {
-    answers: 5,
-    category: "Calculo",
-    questionId: 1,
-    questionTitle: "¿Cómo puedo aprender Vue.js?",
-    time: "Hace 2 días",
-    user: "John",
-    views: 100,
-    votes: 10,
-  },
-  {
-    answers: 3,
-    category: "Algebra",
-    questionId: 2,
-    questionTitle:
-      "¿Cuál es la mejor manera de organizar componentes en Vue.js?",
-    time: "Hace 1 semana",
-    user: "Starling",
-    views: 80,
-    votes: 15,
-  },
-  {
-    answers: 2,
-    category: "Teoria de conjuntos",
-    questionId: 3,
-    questionTitle:
-      "¿Cómo puedo implementar la autenticación con Firebase en Vue.js?",
-    time: "Hace 3 semanas",
-    user: "Maria",
-    views: 50,
-    votes: 8,
-  }
-];
+import { defineComponent, onMounted, ref } from "vue";
+import { questions } from "src/pages/home/api/question"
+import messages from "src/i18n/es/index"
 
 export default defineComponent({
-  name: "ExploreQuestionsComponent",
+  name: "ExploreQuestions",
 
   setup() {
+    const questionList = ref([]);
+
+    function getQuestion(){
+      questions
+        .getQuestionList()
+        .then((response) => {
+          questionList.value = response.data;
+        })
+        .catch((response) => {
+          console.error(messages.errorGettingQuestions, response);
+        })
+    }
+
+    onMounted(() => {
+      getQuestion();
+    })
+
     return {
-      questions,
+      questionList,
     };
   },
 });

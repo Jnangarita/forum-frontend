@@ -5,7 +5,10 @@ export default {
   votes: 'Votos',
   answers: 'Respuestas',
   views: 'Vistas',
-  userImage: 'Imagen de usuario',
+  userImg: 'Imagen de usuario',
   makeQuestion: 'Hacer pregunta ',
-  categories: 'Categorías'
+  categories: 'Categorías',
+
+  // ERRORES
+  errorGettingQuestions: 'Error al obtener las preguntas'
 }
