@@ -1,6 +1,6 @@
 export default {
   // Títulos, mensajes, nombres, etc.
-  appTitle: 'Matemáticas',
+  appTitle: 'Title',
   exploreQuestions: 'Explora nuestras preguntas',
   votes: 'Votos',
   answers: 'Respuestas',
@@ -8,7 +8,10 @@ export default {
   userImg: 'Imagen de usuario',
   makeQuestion: 'Hacer pregunta ',
   categories: 'Categorías',
+  home: 'Inicio',
+  question: 'Preguntas',
+  searchMoreQuestions: 'Buscar más preguntas',
 
   // ERRORES
-  errorGettingQuestions: 'Error al obtener las preguntas'
+  errorGettingData: 'Error al obtener los datos'
 }

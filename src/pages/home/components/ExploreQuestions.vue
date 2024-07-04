@@ -5,19 +5,24 @@
       <q-btn :label="$t('makeQuestion')" color="primary"></q-btn>
     </div>
     <div
-      v-for="question in questionList"
+      v-for="question in data"
       :key="question.questionId"
       class="question-container"
     >
-    <q-separator></q-separator>
+      <q-separator></q-separator>
       <div class="row">
         <div class="col-3 q-pa-md">
-          <p style="text-align: end">{{ question.votes + " " + $t("votes") }}</p>
-          <p style="text-align: end">{{ question.answers + " " + $t("answers") }}</p>
-          <p style="text-align: end">{{ question.views + " " + $t("views") }}</p>
+          <p class="text-align-end">{{ question.votes + " " + $t("votes") }}</p>
+          <p class="text-align-end">
+            {{ question.answers + " " + $t("answers") }}
+          </p>
+          <p class="text-align-end">{{ question.views + " " + $t("views") }}</p>
         </div>
         <div class="col-5 q-pa-md">
-          <router-link :to="'/question/' + question.questionId" class="question-link">
+          <router-link
+            :to="'/question/' + question.questionId"
+            class="question-link"
+          >
             <p class="question-title">{{ question.questionTitle }}</p>
           </router-link>
           <q-btn
@@ -27,49 +32,33 @@
             text-color="dark"
           />
         </div>
-        <div class="col-4 q-pa-md" style="align-content: center">
+        <div class="col-4 q-pa-md align-content-center">
           <p>
             <q-avatar rounded size="20px">
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png" :alt="$t('userImg')">
+              <img
+                src="https://cdn.quasar.dev/img/boy-avatar.png"
+                :alt="$t('userImg')"
+              />
             </q-avatar>
             {{ question.user + " " + question.time }}
           </p>
         </div>
       </div>
     </div>
+    <div class="more-questions">
+      <q-btn :label="$t('searchMoreQuestions')" color="primary"></q-btn>
+    </div>
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, ref } from "vue";
-import { questions } from "src/pages/home/api/question"
-import messages from "src/i18n/es/index"
+<script setup>
+import { onMounted } from "vue";
+import { useGetData } from "src/composables/useGetData";
 
-export default defineComponent({
-  name: "ExploreQuestions",
+const { data, getData } = useGetData();
 
-  setup() {
-    const questionList = ref([]);
-
-    function getQuestion(){
-      questions
-        .getQuestionList()
-        .then((response) => {
-          questionList.value = response.data;
-        })
-        .catch((response) => {
-          console.error(messages.errorGettingQuestions, response);
-        })
-    }
-
-    onMounted(() => {
-      getQuestion();
-    })
-
-    return {
-      questionList,
-    };
-  },
+onMounted(() => {
+  getData("/home/question.json");
 });
 </script>
 <style scope>
@@ -88,6 +77,12 @@ export default defineComponent({
 }
 
 .question-link:hover {
-  color: #66B3FF;
+  color: #66b3ff;
+}
+
+.more-questions {
+  display: flex;
+  justify-content: end;
+  padding: 0px 15px 15px 0px;
 }
 </style>
