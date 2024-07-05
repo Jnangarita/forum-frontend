@@ -1,11 +1,30 @@
 <template>
   <div class="main-container">
     <div class="row justify-between title-container">
-      <p class="main-title">{{ $t("exploreQuestions") }}</p>
-      <q-btn :label="$t('makeQuestion')" color="primary"></q-btn>
+      <div class="col-7">
+        <p class="main-title">{{ $t("exploreQuestions") }}</p>
+        <router-link :to="'/question/category'">
+          <q-btn
+            v-for="category in data.categories"
+            :key="category.id"
+            :label="category.category"
+            :unelevated="true"
+            class="btn-category"
+            color="blue-3"
+            dense
+            text-color="dark"
+          />
+        </router-link>
+        <router-link :to="'/question/category'">
+          <p class="display-contents">{{ $t("moreCategories") }}</p>
+        </router-link>
+      </div>
+      <div class="col-4 flex-end" style="height: 2rem">
+        <q-btn :label="$t('makeQuestion')" color="primary"></q-btn>
+      </div>
     </div>
     <div
-      v-for="question in data"
+      v-for="question in data.questions"
       :key="question.questionId"
       class="question-container"
     >
@@ -18,7 +37,7 @@
           </p>
           <p class="text-align-end">{{ question.views + " " + $t("views") }}</p>
         </div>
-        <div class="col-5 q-pa-md">
+        <div class="col-9 q-pa-md">
           <router-link
             :to="'/question/' + question.questionId"
             class="question-link"
@@ -27,13 +46,11 @@
           </router-link>
           <q-btn
             :label="question.category"
-            dense
             color="blue-3"
+            dense
             text-color="dark"
           />
-        </div>
-        <div class="col-4 q-pa-md align-content-center">
-          <p>
+          <p class="flex-end">
             <q-avatar rounded size="20px">
               <img
                 src="https://cdn.quasar.dev/img/boy-avatar.png"
@@ -55,10 +72,13 @@
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
 
+const API_GET_QUESTIONS = "/home/question.json";
+const API_GET_CATEGORIES = "/home/category.json";
 const { data, getData } = useGetData();
 
 onMounted(() => {
-  getData("/home/question.json");
+  getData(API_GET_QUESTIONS, "questions");
+  getData(API_GET_CATEGORIES, "categories");
 });
 </script>
 <style scope>
@@ -84,5 +104,17 @@ onMounted(() => {
   display: flex;
   justify-content: end;
   padding: 0px 15px 15px 0px;
+}
+
+.btn-category {
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+.btn-make-question {
+  display: flex;
+  height: 2rem;
+  justify-content: end;
 }
 </style>
