@@ -19,7 +19,9 @@
 
 .btn-category {
   font-size: 0.8rem;
+  font-weight: bold;
   margin: 0 0.3rem 0.3rem 0;
+  padding: 0rem 0.4rem;
 }
 
 .btn-make-question {
@@ -29,6 +31,7 @@
 }
 
 .question-title {
+  display: inline-block;
   font-size: 1.06rem;
   font-weight: bold;
 }
@@ -48,10 +51,6 @@
   padding: 0 0.93rem 0.93rem 0;
 }
 
-.text-align-end {
-  text-align: end;
-}
-
 .align-content-center {
   align-content: center;
 }
@@ -63,4 +62,26 @@
 .flex-end {
   display: flex;
   justify-content: end;
+}
+
+.display-block {
+  display: block;
+}
+
+.badge-response {
+  font-size: 0.8rem;
+  padding: 0.3rem;
+}
+
+.response-info {
+  text-align: end;
+  margin-bottom: 0.4rem;
+}
+
+.margin-left-3 {
+  margin-left: 0.3rem;
+}
+
+.margin-top-5 {
+  margin-top: 0.5rem;
 }

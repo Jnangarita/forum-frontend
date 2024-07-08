@@ -8,6 +8,7 @@
             v-for="category in data.categories"
             :key="category.id"
             :label="category.category"
+            :no-caps="true"
             :unelevated="true"
             class="btn-category"
             color="blue-3"
@@ -20,7 +21,11 @@
         </router-link>
       </div>
       <div class="col-4 flex-end" style="height: 2rem">
-        <q-btn :label="$t('makeQuestion')" color="primary"></q-btn>
+        <q-btn
+          :label="$t('makeQuestion')"
+          :no-caps="true"
+          color="primary"
+        ></q-btn>
       </div>
     </div>
     <div
@@ -31,11 +36,20 @@
       <q-separator></q-separator>
       <div class="row">
         <div class="col-3 q-pa-md">
-          <p class="text-align-end">{{ question.votes + " " + $t("votes") }}</p>
-          <p class="text-align-end">
-            {{ question.answers + " " + $t("answers") }}
+          <p class="response-info">{{ question.votes + " " + $t("votes") }}</p>
+          <p class="response-info">
+            <q-badge
+              v-if="question.answers !== 0"
+              :label="question.answers + ' ' + $t('answers')"
+              class="badge-response"
+              color="positive"
+              outline
+            />
+            <span v-else>
+              {{ question.answers + " " + $t("answers") }}
+            </span>
           </p>
-          <p class="text-align-end">{{ question.views + " " + $t("views") }}</p>
+          <p class="response-info">{{ question.views + " " + $t("views") }}</p>
         </div>
         <div class="col-9 q-pa-md">
           <router-link
@@ -44,26 +58,39 @@
           >
             <p class="question-title">{{ question.questionTitle }}</p>
           </router-link>
-          <q-btn
-            :label="question.category"
-            color="blue-3"
-            dense
-            text-color="dark"
-          />
-          <p class="flex-end">
+          <div class="display-block">
+            <q-btn
+              v-for="category in question.categories"
+              :key="category.id"
+              :label="category.name"
+              :no-caps="true"
+              :unelevated="true"
+              class="btn-category"
+              color="blue-3"
+              dense
+              text-color="dark"
+            />
+          </div>
+          <div class="flex-end margin-top-5">
             <q-avatar rounded size="20px">
               <img
-                src="https://cdn.quasar.dev/img/boy-avatar.png"
                 :alt="$t('userImg')"
+                src="https://cdn.quasar.dev/img/boy-avatar.png"
               />
             </q-avatar>
-            {{ question.user + " " + question.time }}
-          </p>
+            <span class="margin-left-3">
+              {{ question.user + " " + question.time }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
     <div class="more-questions">
-      <q-btn :label="$t('searchMoreQuestions')" color="primary"></q-btn>
+      <q-btn
+        :label="$t('searchMoreQuestions')"
+        :no-caps="true"
+        color="primary"
+      ></q-btn>
     </div>
   </div>
 </template>
