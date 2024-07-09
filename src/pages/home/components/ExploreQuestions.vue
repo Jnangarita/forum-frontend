@@ -40,16 +40,25 @@
           <p class="response-info">
             <q-badge
               v-if="question.answers !== 0"
-              :label="question.answers + ' ' + $t('answers')"
+              :outline="!toggleBorder(question.questionStatus)"
               class="badge-response"
               color="positive"
-              outline
-            />
-            <span v-else>
+            >
+              <q-icon
+                class="q-ml-xs check-icon"
+                name="las la-check"
+                size="14px"
+                v-show="toggleBorder(question.questionStatus)"
+              />
+              <span>{{ question.answers + " " + $t("answers") }}</span>
+            </q-badge>
+            <span v-else class="opacity-info">
               {{ question.answers + " " + $t("answers") }}
             </span>
           </p>
-          <p class="response-info">{{ question.views + " " + $t("views") }}</p>
+          <p class="response-info opacity-info">
+            {{ question.views + " " + $t("views") }}
+          </p>
         </div>
         <div class="col-9 q-pa-md">
           <router-link
@@ -78,9 +87,10 @@
                 src="https://cdn.quasar.dev/img/boy-avatar.png"
               />
             </q-avatar>
-            <span class="margin-left-3">
-              {{ question.user + " " + question.time }}
-            </span>
+            <div>
+              <span class="margin-left-3 info-user">{{ question.user }}</span>
+              <span>{{ question.time }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -96,12 +106,20 @@
 </template>
 
 <script setup>
+import { constants } from "src/utils/constants";
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
 
 const API_GET_QUESTIONS = "/home/question.json";
 const API_GET_CATEGORIES = "/home/category.json";
 const { data, getData } = useGetData();
+
+const toggleBorder = (questionStatus) => {
+  return (
+    questionStatus !== undefined &&
+    questionStatus === constants.QUESTION_ANSWERED
+  );
+};
 
 onMounted(() => {
   getData(API_GET_QUESTIONS, "questions");

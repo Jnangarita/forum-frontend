@@ -1,5 +1,6 @@
 // app global css in SCSS form
 :root {
+  --primary-color: #1976D2;
   --white-color: #ffffff;
 }
 
@@ -34,6 +35,7 @@
   display: inline-block;
   font-size: 1.06rem;
   font-weight: bold;
+  margin-bottom: 0.2rem;
 }
 
 .question-link {
@@ -74,8 +76,8 @@
 }
 
 .response-info {
+  margin-bottom: 0.5rem;
   text-align: end;
-  margin-bottom: 0.4rem;
 }
 
 .margin-left-3 {
@@ -84,4 +86,21 @@
 
 .margin-top-5 {
   margin-top: 0.5rem;
+}
+
+.check-icon {
+  margin: 0 5px 0 0;
+}
+
+.info-user {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.info-user:hover {
+  color: #166ABD;
+}
+
+.opacity-info {
+  opacity: 0.7;
 }
