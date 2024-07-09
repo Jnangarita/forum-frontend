@@ -11,21 +11,17 @@
             :no-caps="true"
             :unelevated="true"
             class="btn-category"
-            color="blue-3"
+            color="grey-3"
             dense
             text-color="dark"
           />
         </router-link>
-        <router-link :to="'/question/category'">
+        <router-link :to="'/question/category'" class="no-underline">
           <p class="display-contents">{{ $t("moreCategories") }}</p>
         </router-link>
       </div>
       <div class="col-4 flex-end" style="height: 2rem">
-        <q-btn
-          :label="$t('makeQuestion')"
-          :no-caps="true"
-          color="primary"
-        ></q-btn>
+        <q-btn :label="$t('makeQuestion')" :no-caps="true" color="primary" />
       </div>
     </div>
     <div
@@ -75,7 +71,7 @@
               :no-caps="true"
               :unelevated="true"
               class="btn-category"
-              color="blue-3"
+              color="grey-3"
               dense
               text-color="dark"
             />
@@ -100,7 +96,7 @@
         :label="$t('searchMoreQuestions')"
         :no-caps="true"
         color="primary"
-      ></q-btn>
+      />
     </div>
   </div>
 </template>

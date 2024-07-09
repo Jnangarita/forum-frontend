@@ -1,30 +1,17 @@
 <template>
   <q-page>
     <div class="row q-pa-md">
-      <div style="width: 70%; margin-right: 25px">
+      <div class="container">
         <ExploreQuestions />
       </div>
       <div class="col">
-        <Categories />
+        <HotQuestions />
       </div>
     </div>
   </q-page>
 </template>
 
-<script>
-import { defineComponent } from "vue";
-import Categories from "../components/Categories.vue";
+<script setup>
 import ExploreQuestions from "../components/ExploreQuestions.vue";
-
-export default defineComponent({
-  name: "HomePage",
-
-  components: {
-    Categories,
-    ExploreQuestions,
-  },
-});
+import HotQuestions from "../components/HotQuestions.vue";
 </script>
-
-<style>
-</style>

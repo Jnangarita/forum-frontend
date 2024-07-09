@@ -1,16 +1,13 @@
 <template>
-  <q-layout
-    view="hHh Lpr lFf"
-    style="background-color: #edeef2; font-family: Public Sans, sans-serif"
-  >
+  <q-layout class="main-style" view="hHh Lpr lFf">
     <q-header>
       <q-toolbar>
         <q-btn
-          flat
-          dense
-          round
-          icon="menu"
           aria-label="Menu"
+          dense
+          flat
+          icon="menu"
+          round
           @click="toggleLeftDrawer"
         />
         <q-toolbar-title> {{ $t("appTitle") }} </q-toolbar-title>
@@ -18,11 +15,11 @@
     </q-header>
 
     <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      :width="215"
       :breakpoint="500"
+      :width="215"
+      bordered
+      show-if-above
+      v-model="leftDrawerOpen"
     >
       <q-scroll-area class="fit">
         <q-list>
