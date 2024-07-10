@@ -13,6 +13,7 @@ export default {
   searchMoreQuestions: 'Buscar más preguntas',
   moreCategories: 'Más categorías',
   frequentQuestions: 'Preguntas frecuentes',
+  allQuestions: 'Todas las preguntas',
 
   // ERRORES
   errorGettingData: 'Error al obtener los datos'

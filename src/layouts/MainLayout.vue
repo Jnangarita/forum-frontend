@@ -65,7 +65,7 @@ export default defineComponent({
         title: t("question"),
         caption: t("question"),
         icon: "las la-question",
-        link: "home",
+        link: "questions",
       },
     ];
 

@@ -39,17 +39,19 @@
           <p class="question-title">{{ question.questionTitle }}</p>
         </router-link>
         <div class="display-block">
-          <q-btn
-            v-for="category in question.categories"
-            :key="category.id"
-            :label="category.name"
-            :no-caps="true"
-            :unelevated="true"
-            class="btn-category"
-            color="grey-3"
-            dense
-            text-color="dark"
-          />
+          <router-link :to="'/question/category'">
+            <q-btn
+              v-for="category in question.categories"
+              :key="category.id"
+              :label="category.name"
+              :no-caps="true"
+              :unelevated="true"
+              class="btn-category"
+              color="grey-3"
+              dense
+              text-color="dark"
+            />
+          </router-link>
         </div>
         <div class="flex-end margin-top-5">
           <q-avatar rounded size="20px">
@@ -76,6 +78,7 @@ const props = defineProps({
   arrQuestions: {
     type: Array,
     required: true,
+    default: () => [],
   },
 });
 

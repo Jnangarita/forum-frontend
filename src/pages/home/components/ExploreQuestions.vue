@@ -24,7 +24,7 @@
         <q-btn :label="$t('makeQuestion')" :no-caps="true" color="primary" />
       </div>
     </div>
-    <QuestionContainer :arrQuestions="data.questions" />
+    <QuestionContainer :arrQuestions="data.questions?.questionsList" />
     <div class="more-questions">
       <q-btn
         :label="$t('searchMoreQuestions')"
