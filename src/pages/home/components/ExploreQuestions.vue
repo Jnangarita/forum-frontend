@@ -20,7 +20,7 @@
           <p class="display-contents">{{ $t("moreCategories") }}</p>
         </router-link>
       </div>
-      <div class="col-4 flex-end" style="height: 2rem">
+      <div class="col-4 flex-end question-btn">
         <q-btn :label="$t('makeQuestion')" :no-caps="true" color="primary" />
       </div>
     </div>

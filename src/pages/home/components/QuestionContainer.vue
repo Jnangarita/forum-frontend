@@ -7,7 +7,7 @@
     <q-separator></q-separator>
     <div class="row">
       <div class="col-3 q-pa-md">
-        <p class="response-info">{{ question.votes + " " + $t("votes") }}</p>
+        <p class="response-info">{{ `${question.votes} ${$t("votes")}` }}</p>
         <p class="response-info">
           <q-badge
             v-if="question.answers !== 0"
@@ -21,14 +21,14 @@
               size="14px"
               v-show="toggleBorder(question.questionStatus)"
             />
-            <span>{{ question.answers + " " + $t("answers") }}</span>
+            <span>{{ `${question.answers} ${$t("answers")}` }}</span>
           </q-badge>
           <span v-else class="opacity-info">
-            {{ question.answers + " " + $t("answers") }}
+            {{ `${question.answers} ${$t("answers")}` }}
           </span>
         </p>
         <p class="response-info opacity-info">
-          {{ question.views + " " + $t("views") }}
+          {{ `${question.views} ${$t("views")}` }}
         </p>
       </div>
       <div class="col-9 q-pa-md">
