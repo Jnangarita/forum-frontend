@@ -21,7 +21,12 @@
         </router-link>
       </div>
       <div class="col-4 flex-end question-btn">
-        <q-btn :label="$t('makeQuestion')" :no-caps="true" color="primary" />
+        <q-btn
+          :label="$t('makeQuestion')"
+          :no-caps="true"
+          class="question-btn"
+          color="primary"
+        />
       </div>
     </div>
     <QuestionContainer :arrQuestions="data.questions?.questionsList" />
@@ -38,7 +43,7 @@
 <script setup>
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
-import QuestionContainer from "src/pages/home/components/QuestionContainer.vue";
+import QuestionContainer from "src/components/QuestionContainer.vue";
 
 const API_GET_QUESTIONS = "/home/question.json";
 const API_GET_CATEGORIES = "/home/category.json";
