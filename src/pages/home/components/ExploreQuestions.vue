@@ -41,16 +41,16 @@
 </template>
 
 <script setup>
+import { constants } from "src/utils/constants";
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
 import QuestionContainer from "src/components/QuestionContainer.vue";
 
-const API_GET_QUESTIONS = "/home/question.json";
 const API_GET_CATEGORIES = "/home/category.json";
 const { data, getData } = useGetData();
 
 onMounted(() => {
-  getData(API_GET_QUESTIONS, "questions");
+  getData(constants.API_GET_QUESTIONS, "questions");
   getData(API_GET_CATEGORIES, "categories");
 });
 </script>

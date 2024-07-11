@@ -83,6 +83,6 @@ const props = defineProps({
 });
 
 const toggleBorder = (questionStatus) => {
-  return questionStatus === constants.QUESTION_ANSWERED;
+  return questionStatus === constants.STATUS_QUESTION_ANSWERED;
 };
 </script>
