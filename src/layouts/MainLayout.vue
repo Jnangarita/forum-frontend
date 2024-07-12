@@ -67,6 +67,12 @@ export default defineComponent({
         icon: "las la-question",
         link: "questions",
       },
+      {
+        title: t("categories"),
+        caption: t("categories"),
+        icon: "las la-tags",
+        link: "categories",
+      },
     ];
 
     return {

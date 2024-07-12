@@ -14,6 +14,7 @@ export default {
   moreCategories: 'Más categorías',
   frequentQuestions: 'Preguntas frecuentes',
   allQuestions: 'Todas las preguntas',
+  descriptionCategories: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus euismod felis, sit amet porta dui molestie eget. Nunc congue consequat condimentum. Praesent eget leo id purus bibendum hendrerit vitae in lectus.',
 
   // ERRORES
   errorGettingData: 'Error al obtener los datos'

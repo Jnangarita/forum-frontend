@@ -16,7 +16,7 @@
             text-color="dark"
           />
         </router-link>
-        <router-link :to="'/question/category'" class="no-underline">
+        <router-link :to="'/categories'" class="no-underline">
           <p class="display-contents">{{ $t("moreCategories") }}</p>
         </router-link>
       </div>
