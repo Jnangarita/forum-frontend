@@ -158,7 +158,7 @@
 }
 
 .category li {
-  border-radius: 6px;
+  border-radius: var(--border-radius);
   border: 1px solid #ccccce;
   height: 180px;
   list-style-type: none;
