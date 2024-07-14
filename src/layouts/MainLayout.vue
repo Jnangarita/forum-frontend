@@ -56,22 +56,19 @@ export default defineComponent({
 
     const linksList = [
       {
-        title: t("home"),
-        caption: t("home"),
         icon: "las la-home",
         link: "home",
+        title: t("home"),
       },
       {
-        title: t("question"),
-        caption: t("question"),
         icon: "las la-question",
         link: "questions",
+        title: t("question"),
       },
       {
-        title: t("categories"),
-        caption: t("categories"),
         icon: "las la-tags",
         link: "categories",
+        title: t("categories"),
       },
     ];
 

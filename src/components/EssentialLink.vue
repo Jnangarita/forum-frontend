@@ -17,12 +17,7 @@ import { useRouter } from "vue-router";
 export default defineComponent({
   name: "EssentialLink",
   props: {
-    title: {
-      type: String,
-      required: true,
-    },
-
-    caption: {
+    icon: {
       type: String,
       default: "",
     },
@@ -32,9 +27,9 @@ export default defineComponent({
       default: "#",
     },
 
-    icon: {
+    title: {
       type: String,
-      default: "",
+      required: true,
     },
   },
 

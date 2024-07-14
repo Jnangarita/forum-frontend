@@ -6,7 +6,12 @@
     </div>
     <div class="q-pa-md margin-left-5">
       <div class="q-gutter-y-md column input-size">
-        <q-input dense outlined v-model="searchCategory">
+        <q-input
+          :label="$t('categoryName')"
+          dense
+          outlined
+          v-model="searchCategory"
+        >
           <template v-slot:prepend>
             <q-icon name="search" />
           </template>
