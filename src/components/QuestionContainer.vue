@@ -33,7 +33,13 @@
       </div>
       <div class="col-9 q-pa-md">
         <router-link
-          :to="'/question/' + question.questionId"
+          :to="{
+            name: 'QuestionContainer',
+            params: {
+              id: question.questionId,
+              title: formatUrl(question.questionTitle),
+            },
+          }"
           class="question-link"
         >
           <p class="question-title">{{ question.questionTitle }}</p>
@@ -73,6 +79,7 @@
 <script setup>
 import { constants } from "src/utils/constants";
 import { defineProps } from "vue";
+import { formatUrl } from "src/utils/functions";
 
 const props = defineProps({
   arrQuestions: {

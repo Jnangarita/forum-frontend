@@ -1,4 +1,4 @@
-export function showNotify(hook, msg, backgroundColor, position) {
+export const showNotify = (hook, msg, backgroundColor, position) => {
   const $q = hook;
   const colorNotify = {
     'green-2': {
@@ -29,6 +29,10 @@ export function showNotify(hook, msg, backgroundColor, position) {
   });
 }
 
-export function formatNumber(number) {
+export const formatNumber = (number) => {
   return number.toLocaleString("en-US");
 }
+
+export const formatUrl = (title) => {
+  return encodeURIComponent(title).replace(/%20/g, "-");
+};
