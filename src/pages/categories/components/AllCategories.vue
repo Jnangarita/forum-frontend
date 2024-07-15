@@ -1,6 +1,6 @@
 <template>
   <div class="main-container q-pa-md">
-    <div class="q-pa-md category-header margin-left-5">
+    <div class="q-pa-md main-header margin-left-5">
       <p class="main-title">{{ $t("categories") }}</p>
       <p class="margin-bottom-1">{{ $t("descriptionCategories") }}</p>
     </div>
@@ -19,8 +19,12 @@
       </div>
     </div>
     <div class="row q-pa-md">
-      <ul class="category">
-        <li v-for="category in filteredCategories" :key="category.id">
+      <ul class="unordered-list">
+        <li
+          v-for="category in filteredCategories"
+          :key="category.id"
+          class="category-list"
+        >
           <div class="category-container">
             <router-link :to="'/question/category'">
               <q-btn
@@ -72,26 +76,10 @@ const filteredCategories = computed(() => {
 });
 </script>
 <style scoped>
-.category-header {
-  width: 60%;
-}
-
-.input-size {
-  max-width: 240px;
-}
-
-.category {
-  display: contents;
-  padding: 1.5rem;
-}
-
-.category li {
+.category-list {
   border-radius: var(--border-radius);
   border: 1px solid #ccccce;
   height: 180px;
-  list-style-type: none;
-  margin: 0.8% 0.8% 0.8% 0.8%;
-  width: 23.4%;
 }
 
 .category-container {

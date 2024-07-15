@@ -1,6 +1,6 @@
 <template>
   <div class="main-container q-pa-md">
-    <div class="q-pa-md category-header margin-left-5">
+    <div class="q-pa-md main-header margin-left-5">
       <p class="main-title margin-auto">{{ $t("users") }}</p>
     </div>
     <div class="q-pa-md margin-left-5">
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="row q-pa-md">
-      <ul class="users">
+      <ul class="unordered-list">
         <li v-for="user in filteredUsers" :key="user.id">
           <div style="display: flex">
             <q-avatar rounded size="65px" style="margin-top: 4px">
@@ -56,25 +56,6 @@ onMounted(() => {
 });
 </script>
 <style scoped>
-.category-header {
-  width: 60%;
-}
-
-.input-size {
-  max-width: 240px;
-}
-
-.users {
-  display: contents;
-  padding: 1.5rem;
-}
-
-.users li {
-  list-style-type: none;
-  margin: 0.8% 0.8% 0.8% 0.8%;
-  width: 23.4%;
-}
-
 .user-data {
   margin-left: 10px;
 }
@@ -86,15 +67,5 @@ onMounted(() => {
 .user-title {
   color: var(--primary-color);
   font-size: 1rem;
-}
-
-.category-container {
-  height: 100%;
-  padding: 1rem 1rem;
-}
-
-.category-footer {
-  color: #707072;
-  font-size: 0.8rem;
 }
 </style>

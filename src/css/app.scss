@@ -167,3 +167,22 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.main-header {
+  width: 60%;
+}
+
+.input-size {
+  max-width: 240px;
+}
+
+.unordered-list {
+  display: contents;
+  padding: 1.5rem;
+}
+
+.unordered-list li {
+  list-style-type: none;
+  margin: 0.8% 0.8% 0.8% 0.8%;
+  width: 23.4%;
+}
