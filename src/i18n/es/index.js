@@ -16,6 +16,8 @@ export default {
   allQuestions: 'Todas las preguntas',
   descriptionCategories: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus euismod felis, sit amet porta dui molestie eget. Nunc congue consequat condimentum. Praesent eget leo id purus bibendum hendrerit vitae in lectus.',
   categoryName: 'Nombre de la categoría',
+  users: 'Usuarios',
+  userName: 'Nombre de usuario',
 
   // ERRORES
   errorGettingData: 'Error al obtener los datos:'

@@ -70,6 +70,11 @@ export default defineComponent({
         link: "categories",
         title: t("categories"),
       },
+      {
+        icon: "las la-user-friends",
+        link: "users",
+        title: t("users"),
+      },
     ];
 
     return {

@@ -28,3 +28,7 @@ export function showNotify(hook, msg, backgroundColor, position) {
     position: position,
   });
 }
+
+export function formatNumber(number) {
+  return number.toLocaleString("en-US");
+}
