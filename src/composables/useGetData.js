@@ -4,7 +4,7 @@ import { showNotify } from 'src/utils/functions'
 import { useI18n } from 'vue-i18n'
 import { useQuasar } from 'quasar'
 
-export function useGetData() {
+const useGetData = () => {
   const { t } = useI18n();
   const $q = useQuasar();
   const data = reactive({});
@@ -30,3 +30,5 @@ export function useGetData() {
     getData,
   };
 }
+
+export { useGetData }

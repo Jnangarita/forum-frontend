@@ -18,6 +18,8 @@ export default {
   categoryName: 'Nombre de la categoría',
   users: 'Usuarios',
   userName: 'Nombre de usuario',
+  created: 'Creado',
+  modified: 'Modificado',
 
   // ERRORES
   errorGettingData: 'Error al obtener los datos:'

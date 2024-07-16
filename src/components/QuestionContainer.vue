@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-for="question in arrQuestions"
-    :key="question.questionId"
-    class="question-container"
-  >
+  <div v-for="question in arrQuestions" :key="question.questionId">
     <q-separator></q-separator>
     <div class="row">
       <div class="col-3 q-pa-md">
