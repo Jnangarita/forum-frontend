@@ -20,6 +20,7 @@ export default {
   userName: 'Nombre de usuario',
   created: 'Creado',
   modified: 'Modificado',
+  follow: 'Seguir',
 
   // ERRORES
   errorGettingData: 'Error al obtener los datos:'

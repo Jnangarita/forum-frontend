@@ -85,6 +85,29 @@
             />
           </router-link>
         </div>
+        <div>
+          <div class="row justify-between">
+            <div class="col-7 display-flex">
+              <p>{{ $t("follow") }}</p>
+            </div>
+            <div class="user-container">
+              <p class="user-text">{{ data.question?.created }}</p>
+              <div class="display-flex">
+                <q-avatar rounded size="50px">
+                  <img :alt="$t('userImg')" :src="data.question?.photo" />
+                </q-avatar>
+                <div class="margin-left-5">
+                  <p class="user-text user-title">
+                    {{ data.question?.userName }}
+                  </p>
+                  <p class="user-text font-weight-bold">
+                    {{ data.question?.reputation }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -111,5 +134,16 @@ onMounted(() => {
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
+}
+
+.user-text {
+  margin-bottom: 0;
+}
+
+.user-container {
+  background: #d3e2fa;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 0.5rem 0.7rem 0.5rem;
+  width: 200px;
 }
 </style>

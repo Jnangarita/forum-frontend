@@ -15,14 +15,14 @@
     <div class="row q-pa-md">
       <ul class="unordered-list">
         <li v-for="user in filteredUsers" :key="user.id">
-          <div style="display: flex">
+          <div class="display-flex">
             <q-avatar rounded size="65px" style="margin-top: 4px">
               <img :alt="$t('userImg')" :src="user.photo" />
             </q-avatar>
             <div class="user-data">
               <p class="user-title">{{ user.userName }}</p>
               <p class="opacity-info">{{ user.city }}</p>
-              <p class="opacity-info" style="font-weight: bold">
+              <p class="opacity-info font-weight-bold">
                 {{ formatNumber(user.reputation) }}
               </p>
               <p style="color: var(--primary-color)">{{ user.category }}</p>
@@ -62,10 +62,5 @@ onMounted(() => {
 
 .user-data p {
   margin-bottom: 0;
-}
-
-.user-title {
-  color: var(--primary-color);
-  font-size: 1rem;
 }
 </style>
