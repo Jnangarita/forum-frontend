@@ -34,5 +34,5 @@ export const formatNumber = (number) => {
 }
 
 export const formatUrl = (title) => {
-  return encodeURIComponent(title).replace(/%20/g, "-");
+  return decodeURIComponent(encodeURIComponent(title).replace(/%20/g, "-"));
 };

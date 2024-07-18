@@ -26,17 +26,7 @@
           class="category-list"
         >
           <div class="category-container">
-            <router-link :to="'/question/category'">
-              <q-btn
-                :label="category.categoryName"
-                :no-caps="true"
-                :unelevated="true"
-                class="btn-category"
-                color="grey-3"
-                dense
-                text-color="dark"
-              />
-            </router-link>
+            <BtnCategory :arrCategories="category.categoryName" />
             <p class="description">{{ category.description }}</p>
             <div class="display-flex justify-between">
               <span class="category-footer">
@@ -55,6 +45,7 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import { useGetData } from "src/composables/useGetData";
+import BtnCategory from "src/components/BtnCategory.vue";
 
 const { data, getData } = useGetData();
 const API_GET_CATEGORIES_LIST = "/home/categoryList.json";

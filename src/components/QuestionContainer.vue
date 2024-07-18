@@ -41,19 +41,7 @@
           <p class="question-title">{{ question.questionTitle }}</p>
         </router-link>
         <div class="display-block">
-          <router-link :to="'/question/category'">
-            <q-btn
-              v-for="category in question.categories"
-              :key="category.id"
-              :label="category.name"
-              :no-caps="true"
-              :unelevated="true"
-              class="btn-category"
-              color="grey-3"
-              dense
-              text-color="dark"
-            />
-          </router-link>
+          <BtnCategory :arrCategories="question.categories" />
         </div>
         <div class="flex-end margin-top-5">
           <q-avatar rounded size="20px">
@@ -76,6 +64,7 @@
 import { constants } from "src/utils/constants";
 import { defineProps } from "vue";
 import { formatUrl } from "src/utils/functions";
+import BtnCategory from "src/components/BtnCategory.vue";
 
 const props = defineProps({
   arrQuestions: {

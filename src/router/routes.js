@@ -9,7 +9,8 @@ const routes = [
       { path: 'questions', name: 'questions', component: () => import('src/pages/questions/pages/Questions.vue') },
       { path: 'categories', name: 'categories', component: () => import('src/pages/categories/pages/categories.vue') },
       { path: 'users', name: 'users', component: () => import('src/pages/user/pages/Users.vue') },
-      { path: 'questions/:id/:title', name: 'QuestionContainer', component: () => import('src/pages/questions/pages/QuestionInfo.vue') }
+      { path: 'questions/:id/:title', name: 'QuestionContainer', component: () => import('src/pages/questions/pages/QuestionInfo.vue') },
+      { path: 'questions/category/:title', name: 'CategoryPage', component: () => import('src/pages/categories/components/Category.vue') }
     ]
   },
 
