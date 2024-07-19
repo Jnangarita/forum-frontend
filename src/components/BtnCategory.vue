@@ -3,12 +3,7 @@
     <router-link
       v-for="category in categories"
       :key="category.id"
-      :to="{
-        name: 'CategoryPage',
-        params: {
-          title: formatUrl(category.name),
-        },
-      }"
+      :to="categoryRoute(category.name)"
     >
       <q-btn
         :label="category.name"
@@ -22,14 +17,7 @@
     </router-link>
   </div>
   <div v-else>
-    <router-link
-      :to="{
-        name: 'CategoryPage',
-        params: {
-          title: formatUrl(categories),
-        },
-      }"
-    >
+    <router-link :to="categoryRoute(categories)">
       <q-btn
         :label="categories"
         :no-caps="true"
@@ -44,8 +32,8 @@
 </template>
 
 <script setup>
+import { categoryRoute } from "src/utils/functions";
 import { defineProps } from "vue";
-import { formatUrl } from "src/utils/functions";
 
 const props = defineProps({
   arrCategories: {

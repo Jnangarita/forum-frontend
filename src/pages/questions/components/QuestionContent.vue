@@ -71,7 +71,21 @@
           {{ data.question?.questionContent }}
         </p>
         <div class="display-flex">
-          <BtnCategory :arrCategories="data.question?.categories" />
+          <router-link
+            v-for="category in data.question?.categories"
+            :key="category.id"
+            :to="categoryRoute(category.name)"
+          >
+            <q-btn
+              :label="category.name"
+              :no-caps="true"
+              :unelevated="true"
+              class="btn-category"
+              color="grey-3"
+              dense
+              text-color="dark"
+            />
+          </router-link>
         </div>
         <div>
           <div class="row justify-between">
@@ -102,9 +116,9 @@
 </template>
 
 <script setup>
+import { categoryRoute } from "src/utils/functions";
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
-import BtnCategory from "src/components/BtnCategory.vue";
 
 const { data, getData } = useGetData();
 const API_GET_QUESTION = "/home/questionOne.json";
