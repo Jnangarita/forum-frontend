@@ -20,7 +20,17 @@
               <img :alt="$t('userImg')" :src="user.photo" />
             </q-avatar>
             <div class="user-data">
-              <p class="user-title">{{ user.userName }}</p>
+              <router-link
+                :to="{
+                  name: 'UserView',
+                  params: {
+                    id: user.id,
+                  },
+                }"
+                class="no-underline"
+              >
+                <p class="user-title">{{ user.userName }}</p>
+              </router-link>
               <p class="opacity-info">{{ user.city }}</p>
               <p class="opacity-info font-weight-bold">
                 {{ formatNumber(user.reputation) }}
@@ -62,5 +72,9 @@ onMounted(() => {
 
 .user-data p {
   margin-bottom: 0;
+}
+
+.no-underline {
+  text-decoration: none;
 }
 </style>

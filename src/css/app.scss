@@ -2,12 +2,13 @@
 :root {
   --blue-color: #166ABD;
   --border-radius: 6px;
+  --light-grey: #edeef2;
   --primary-color: #1976D2;
   --white-color: #ffffff;
 }
 
 .main-style {
-  background-color: #edeef2;
+  background-color: var(--light-grey);
   font-family: 'Public Sans', sans-serif;
 }
 

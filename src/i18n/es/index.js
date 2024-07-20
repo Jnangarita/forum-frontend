@@ -21,6 +21,12 @@ export default {
   created: 'Creado',
   modified: 'Modificado',
   follow: 'Seguir',
+  userRole: 'Rol de usuario',
+  details: 'Detalles',
+  email: 'Correo electrónico',
+  status: 'Estado',
+  country: 'País',
+  notAvailable: 'No disponible',
 
   // ERRORES
   errorGettingData: 'Error al obtener los datos:'
