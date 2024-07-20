@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="row q-pa-md">
-      <div style="width: 30%;">
+      <div style="width: 35%">
         <UserInformation />
       </div>
     </div>

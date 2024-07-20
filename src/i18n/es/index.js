@@ -21,7 +21,7 @@ export default {
   created: 'Creado',
   modified: 'Modificado',
   follow: 'Seguir',
-  userRole: 'Rol de usuario',
+  userRole: 'Rol',
   details: 'Detalles',
   email: 'Correo electrónico',
   status: 'Estado',

@@ -19,9 +19,22 @@
       <div class="task-list">
         <div class="task-item">
           <div class="num-container">
-            <q-icon name="las la-check-square" size="2.5rem" />
+            <q-icon name="las la-question-circle" size="2rem" />
           </div>
-          <span style="text-align: left">
+          <span class="text-align-left">
+            <span class="title">{{ data.user?.numberQuestions }}</span>
+            <caption>
+              {{
+                $t("question")
+              }}
+            </caption>
+          </span>
+        </div>
+        <div class="task-item">
+          <div class="num-container">
+            <q-icon name="las la-check-square" size="2rem" />
+          </div>
+          <span class="text-align-left">
             <span class="title">{{ data.user?.numberResponses }}</span>
             <caption>
               {{
@@ -32,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div style="text-align: left">
+    <div class="text-align-left">
       <p class="title">{{ $t("details") }}</p>
       <q-separator></q-separator>
       <div style="margin: 0.5rem 0 0 0">
@@ -44,6 +57,9 @@
         </p>
         <p class="user-info">
           <span>{{ $t("status") }}: </span>{{ data.user?.status }}
+        </p>
+        <p class="user-info">
+          <span>{{ $t("userRole") }}: </span>{{ data.user?.userRole }}
         </p>
         <p class="user-info">
           <span>{{ $t("country") }}: </span>{{ data.user?.country }}
@@ -80,20 +96,19 @@ onMounted(() => {
 .task-list {
   align-items: center;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 }
 
 .task-item {
   align-items: center;
   display: flex;
-  margin: 0.5rem 0;
+  margin: 0.5rem 1rem;
 }
 
 .num-container {
   background-color: var(--light-grey);
   border-radius: var(--border-radius);
   margin-right: 0.6rem;
-  margin-top: 0.5rem;
   padding: 0.2rem 0.2rem;
 }
 
