@@ -1,7 +1,16 @@
 <template>
   <div class="main-container q-pa-md">
     <p class="main-title">{{ $t("posts") }}</p>
-    <q-table :columns="userConstants.COLUMNS" :rows="rows" row-key="name" />
+    <p>Ver todas las preguntas y respuestas</p>
+    <q-table
+      :columns="userConstants.COLUMNS"
+      :hide-pagination="true"
+      :no-data-label="$t('noDataFound')"
+      :rows="rows"
+      :table-header-style="{ color: 'var(--blue-color)' }"
+      class="q-pa-md"
+      row-key="name"
+    />
   </div>
 </template>
 

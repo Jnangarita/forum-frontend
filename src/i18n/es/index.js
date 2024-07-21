@@ -28,6 +28,7 @@ export default {
   country: 'País',
   notAvailable: 'No disponible',
   posts: 'Publicaciones',
+  noDataFound: 'No se encontraron datos',
 
   // ERRORES
   errorGettingData: 'Error al obtener los datos:'
