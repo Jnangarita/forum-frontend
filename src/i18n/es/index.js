@@ -27,6 +27,7 @@ export default {
   status: 'Estado',
   country: 'País',
   notAvailable: 'No disponible',
+  posts: 'Publicaciones',
 
   // ERRORES
   errorGettingData: 'Error al obtener los datos:'
