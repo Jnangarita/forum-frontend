@@ -74,7 +74,7 @@
           <router-link
             v-for="category in data.question?.categories"
             :key="category.id"
-            :to="categoryRoute(category.name)"
+            :to="goToAnotherScreen('CategoryPage', category.name)"
           >
             <q-btn
               :label="category.name"
@@ -116,7 +116,7 @@
 </template>
 
 <script setup>
-import { categoryRoute } from "src/utils/functions";
+import { goToAnotherScreen } from "src/utils/functions";
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
 

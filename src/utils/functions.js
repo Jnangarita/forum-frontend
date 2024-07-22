@@ -37,11 +37,6 @@ export const formatUrl = (title) => {
   return decodeURIComponent(encodeURIComponent(title).replace(/%20/g, "-"));
 };
 
-export const categoryRoute = (categoryName) => {
-  return {
-    name: 'CategoryPage',
-    params: {
-      title: formatUrl(categoryName),
-    },
-  }
-}
+export const goToAnotherScreen = (screenName, param) => {
+  return { name: screenName, params: { title: formatUrl(param) } };
+};

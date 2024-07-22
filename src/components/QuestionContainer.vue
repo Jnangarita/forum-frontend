@@ -41,7 +41,21 @@
           <p class="question-title">{{ question.questionTitle }}</p>
         </router-link>
         <div class="display-block">
-          <BtnCategory :arrCategories="question.categories" />
+          <router-link
+            v-for="category in question.categories"
+            :key="category.id"
+            :to="goToAnotherScreen('CategoryPage', category.name)"
+          >
+            <q-btn
+              :label="category.name"
+              :no-caps="true"
+              :unelevated="true"
+              class="btn-category"
+              color="grey-3"
+              dense
+              text-color="dark"
+            />
+          </router-link>
         </div>
         <div class="flex-end margin-top-5">
           <q-avatar rounded size="20px">
@@ -63,8 +77,7 @@
 <script setup>
 import { constants } from "src/utils/constants";
 import { defineProps } from "vue";
-import { formatUrl } from "src/utils/functions";
-import BtnCategory from "src/components/BtnCategory.vue";
+import { formatUrl, goToAnotherScreen } from "src/utils/functions";
 
 const props = defineProps({
   arrQuestions: {
