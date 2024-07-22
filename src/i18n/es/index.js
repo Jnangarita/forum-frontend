@@ -9,7 +9,7 @@ export default {
   makeQuestion: 'Hacer pregunta ',
   categories: 'Categorías',
   home: 'Inicio',
-  question: 'Preguntas',
+  questions: 'Preguntas',
   searchMoreQuestions: 'Buscar más preguntas',
   moreCategories: 'Más categorías',
   frequentQuestions: 'Preguntas frecuentes',
@@ -29,6 +29,12 @@ export default {
   notAvailable: 'No disponible',
   posts: 'Publicaciones',
   noDataFound: 'No se encontraron datos',
+  answered: 'Respondida',
+  unanswered: 'Sin responder',
+  seeAllQuestionsAndAnswers: 'Ver todas las preguntas y respuestas',
+  number: 'Nro',
+  question: 'Pregunta',
+  creationDate: 'Fecha de creación',
 
   // ERRORES
   errorGettingData: 'Error al obtener los datos:'

@@ -5,7 +5,7 @@
         <p class="main-title">{{ $t("allQuestions") }}</p>
         <span class="num-questions">
           {{
-            `${data.questions?.totalQuestions} ${$t("question").toLowerCase()}`
+            `${data.questions?.totalQuestions} ${$t("questions").toLowerCase()}`
           }}
         </span>
       </div>

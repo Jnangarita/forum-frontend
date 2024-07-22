@@ -43,7 +43,7 @@
             <div class="display-flex justify-between">
               <span class="category-footer">
                 {{
-                  `${category.numberQuestion} ${$t("question").toLowerCase()}`
+                  `${category.numberQuestion} ${$t("questions").toLowerCase()}`
                 }}
               </span>
               <span class="category-footer">{{ category.time }}</span>

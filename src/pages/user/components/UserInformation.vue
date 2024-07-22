@@ -25,7 +25,7 @@
             <span class="title">{{ data.user?.numberQuestions }}</span>
             <caption>
               {{
-                $t("question")
+                $t("questions")
               }}
             </caption>
           </span>
