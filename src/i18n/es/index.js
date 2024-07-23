@@ -35,7 +35,12 @@ export default {
   number: 'Nro',
   question: 'Pregunta',
   creationDate: 'Fecha de creación',
+  success: 'Éxito',
+
+  // ADVERTENCIA
+  warning: 'Advertencia',
 
   // ERRORES
+  error: 'Error',
   errorGettingData: 'Error al obtener los datos:'
 }

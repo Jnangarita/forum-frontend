@@ -18,7 +18,13 @@ const useGetData = () => {
     } catch (err) {
       error[key] = err.message || t('errorGettingData');
       console.error(t('errorGettingData'), error[key]);
-      showNotify($q, error[key], "red-2", "top-right");
+      showNotify({
+        hook: $q,
+        msg: error[key],
+        backgroundColor: 'red-2',
+        position: 'top-right',
+        language: (key) => t(key)
+      });
     } finally {
       $q.loading.hide()
     }

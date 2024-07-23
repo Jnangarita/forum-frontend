@@ -1,19 +1,19 @@
-export const showNotify = (hook, msg, backgroundColor, position) => {
+export const showNotify = ({ hook, msg, backgroundColor, position, language }) => {
   const $q = hook;
   const colorNotify = {
     'green-2': {
-      title: "Éxito",
+      title: language('success'),
       icon: 'las la-check',
       iconColor: "green-8"
     },
     'red-2': {
-      title: "Error",
+      title: language('error'),
       icon: 'las la-exclamation-circle',
       iconColor: "red-8"
     },
   };
   const defaultNotify = {
-    title: "Advertencia",
+    title: language('warning'),
     icon: "las la-exclamation-triangle",
     iconColor: "yellow-8"
   };
