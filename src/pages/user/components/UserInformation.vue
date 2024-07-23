@@ -3,7 +3,8 @@
     <q-avatar rounded size="7rem">
       <img
         :alt="$t('userImg')"
-        src="https://cdn.quasar.dev/img/boy-avatar.png"
+        :src="data.user?.photo"
+        @error="onImageError($event)"
       />
     </q-avatar>
     <div>
@@ -70,6 +71,7 @@
 </template>
 
 <script setup>
+import { onImageError } from "src/utils/functions";
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
 

@@ -17,7 +17,11 @@
         <li v-for="user in filteredUsers" :key="user.id">
           <div class="display-flex">
             <q-avatar rounded size="65px" style="margin-top: 4px">
-              <img :alt="$t('userImg')" :src="user.photo" />
+              <img
+                :alt="$t('userImg')"
+                :src="user.photo"
+                @error="onImageError($event)"
+              />
             </q-avatar>
             <div class="user-data">
               <router-link
@@ -55,6 +59,7 @@ import {
   formatNumber,
   formatUrl,
   goToAnotherScreen,
+  onImageError,
 } from "src/utils/functions";
 import { useGetData } from "src/composables/useGetData";
 

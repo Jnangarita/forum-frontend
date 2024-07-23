@@ -40,3 +40,7 @@ export const formatUrl = (title) => {
 export const goToAnotherScreen = (screenName, param) => {
   return { name: screenName, params: { title: formatUrl(param) } };
 };
+
+export const onImageError = (event) => {
+  event.target.src = 'src/assets/img/blank-profile.png';
+};

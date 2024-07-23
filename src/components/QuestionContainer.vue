@@ -61,7 +61,8 @@
           <q-avatar rounded size="20px">
             <img
               :alt="$t('userImg')"
-              src="https://cdn.quasar.dev/img/boy-avatar.png"
+              :src="question.photo"
+              @error="onImageError($event)"
             />
           </q-avatar>
           <div>
@@ -90,7 +91,11 @@
 <script setup>
 import { constants } from "src/utils/constants";
 import { defineProps } from "vue";
-import { formatUrl, goToAnotherScreen } from "src/utils/functions";
+import {
+  formatUrl,
+  goToAnotherScreen,
+  onImageError,
+} from "src/utils/functions";
 
 const props = defineProps({
   arrQuestions: {

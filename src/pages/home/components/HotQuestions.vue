@@ -7,10 +7,11 @@
       class="display-flex margin-bottom-5"
     >
       <span class="margin-right-5">
-        <q-avatar rounded size="20px">
+        <q-avatar rounded size="1.3rem">
           <img
             :alt="$t('userImg')"
-            src="https://cdn.quasar.dev/img/boy-avatar.png"
+            :src="question.photo"
+            @error="onImageError($event)"
           />
         </q-avatar>
       </span>
@@ -19,11 +20,12 @@
   </div>
 </template>
 <script setup>
-import { useGetData } from "src/composables/useGetData";
+import { onImageError } from "src/utils/functions";
 import { onMounted } from "vue";
+import { useGetData } from "src/composables/useGetData";
 
-const API_GET_HOT_QUESTIONS = "/home/hotQuestion.json";
 const { data, getData } = useGetData();
+const API_GET_HOT_QUESTIONS = "/home/hotQuestion.json";
 
 onMounted(() => {
   getData(API_GET_HOT_QUESTIONS, "question");

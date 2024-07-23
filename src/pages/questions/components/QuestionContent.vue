@@ -96,12 +96,27 @@
               <p class="user-text">{{ data.question?.created }}</p>
               <div class="display-flex">
                 <q-avatar rounded size="50px">
-                  <img :alt="$t('userImg')" :src="data.question?.photo" />
+                  <img
+                    :alt="$t('userImg')"
+                    :src="data.question?.photo"
+                    @error="onImageError($event)"
+                  />
                 </q-avatar>
                 <div class="margin-left-5">
-                  <p class="user-text user-title">
-                    {{ data.question?.userName }}
-                  </p>
+                  <router-link
+                    :to="{
+                      name: 'UserView',
+                      params: {
+                        id: data.question?.id,
+                        userName: formatUrl(data.question?.userName),
+                      },
+                    }"
+                    class="no-underline"
+                  >
+                    <p class="user-text user-title">
+                      {{ data.question?.userName }}
+                    </p>
+                  </router-link>
                   <p class="user-text font-weight-bold">
                     {{ data.question?.reputation }}
                   </p>
@@ -116,7 +131,11 @@
 </template>
 
 <script setup>
-import { goToAnotherScreen } from "src/utils/functions";
+import {
+  formatUrl,
+  goToAnotherScreen,
+  onImageError,
+} from "src/utils/functions";
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
 
