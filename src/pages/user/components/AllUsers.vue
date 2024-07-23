@@ -30,7 +30,15 @@
               <p class="opacity-info font-weight-bold">
                 {{ formatNumber(user.reputation) }}
               </p>
-              <p style="color: var(--primary-color)">{{ user.category }}</p>
+              <router-link
+                v-for="(category, index) in user.category"
+                :key="category"
+                :to="goToAnotherScreen('CategoryPage', category)"
+                class="no-underline"
+              >
+                <span>{{ category }}</span>
+                <span v-if="index < user.category.length - 1">, </span>
+              </router-link>
             </div>
           </div>
         </li>
@@ -39,8 +47,8 @@
   </div>
 </template>
 <script setup>
-import { formatNumber } from "src/utils/functions";
 import { computed, onMounted, ref } from "vue";
+import { formatNumber, goToAnotherScreen } from "src/utils/functions";
 import { useGetData } from "src/composables/useGetData";
 
 const { data, getData } = useGetData();
@@ -67,9 +75,5 @@ onMounted(() => {
 
 .user-data p {
   margin-bottom: 0;
-}
-
-.no-underline {
-  text-decoration: none;
 }
 </style>
