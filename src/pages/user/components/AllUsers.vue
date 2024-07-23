@@ -21,7 +21,10 @@
             </q-avatar>
             <div class="user-data">
               <router-link
-                :to="{ name: 'UserView', params: { id: user.id } }"
+                :to="{
+                  name: 'UserView',
+                  params: { id: user.id, userName: formatUrl(user.userName) },
+                }"
                 class="no-underline"
               >
                 <p class="user-title">{{ user.userName }}</p>
@@ -48,7 +51,11 @@
 </template>
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { formatNumber, goToAnotherScreen } from "src/utils/functions";
+import {
+  formatNumber,
+  formatUrl,
+  goToAnotherScreen,
+} from "src/utils/functions";
 import { useGetData } from "src/composables/useGetData";
 
 const { data, getData } = useGetData();

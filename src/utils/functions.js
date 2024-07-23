@@ -34,7 +34,7 @@ export const formatNumber = (number) => {
 }
 
 export const formatUrl = (title) => {
-  return decodeURIComponent(encodeURIComponent(title).replace(/%20/g, "-"));
+  return decodeURIComponent(encodeURIComponent(title).replace(/%20/g, "-")).toLowerCase();
 };
 
 export const goToAnotherScreen = (screenName, param) => {

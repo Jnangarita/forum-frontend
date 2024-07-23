@@ -66,7 +66,13 @@
           </q-avatar>
           <div>
             <router-link
-              :to="{ name: 'UserView', params: { id: question.userId } }"
+              :to="{
+                name: 'UserView',
+                params: {
+                  id: question.userId,
+                  userName: formatUrl(question.user),
+                },
+              }"
               class="no-underline"
             >
               <span class="margin-left-3">

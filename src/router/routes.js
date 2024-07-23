@@ -11,7 +11,7 @@ const routes = [
       { path: 'users', name: 'users', component: () => import('src/pages/user/pages/Users.vue') },
       { path: 'questions/:id/:title', name: 'QuestionContainer', component: () => import('src/pages/questions/pages/QuestionInfo.vue') },
       { path: 'questions/category/:title', name: 'CategoryPage', component: () => import('src/pages/categories/components/Category.vue') },
-      { path: 'user/view/:id', name: 'UserView', component: () => import('src/pages/user/pages/UserView.vue') }
+      { path: 'user/view/:id/:userName', name: 'UserView', component: () => import('src/pages/user/pages/UserView.vue') }
     ]
   },
 

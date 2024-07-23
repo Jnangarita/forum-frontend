@@ -16,7 +16,7 @@
             text-color="dark"
           />
         </router-link>
-        <router-link :to="'/categories'" class="no-underline">
+        <router-link :to="{ name: 'categories' }" class="no-underline">
           <p class="display-contents">{{ $t("moreCategories") }}</p>
         </router-link>
       </div>
@@ -31,11 +31,13 @@
     </div>
     <QuestionContainer :arrQuestions="data.questions?.questionsList" />
     <div class="more-questions">
-      <q-btn
-        :label="$t('searchMoreQuestions')"
-        :no-caps="true"
-        color="primary"
-      />
+      <router-link :to="{ name: 'questions' }">
+        <q-btn
+          :label="$t('searchMoreQuestions')"
+          :no-caps="true"
+          color="primary"
+        />
+      </router-link>
     </div>
   </div>
 </template>
