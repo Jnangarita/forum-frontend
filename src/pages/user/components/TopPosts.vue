@@ -8,7 +8,7 @@
       :no-data-label="$t('noDataFound')"
       :rows-per-page-options="[0]"
       :rows="rows"
-      :table-header-style="{ color: 'var(--blue-color)' }"
+      :table-header-style="{ color: 'var(--primary-color)' }"
       class="q-pa-md"
       row-key="index"
     >

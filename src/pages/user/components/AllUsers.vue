@@ -21,12 +21,7 @@
             </q-avatar>
             <div class="user-data">
               <router-link
-                :to="{
-                  name: 'UserView',
-                  params: {
-                    id: user.id,
-                  },
-                }"
+                :to="{ name: 'UserView', params: { id: user.id } }"
                 class="no-underline"
               >
                 <p class="user-title">{{ user.userName }}</p>

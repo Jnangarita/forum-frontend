@@ -65,8 +65,15 @@
             />
           </q-avatar>
           <div>
-            <span class="margin-left-3 info-user">{{ question.user }}</span>
-            <span>{{ question.time }}</span>
+            <router-link
+              :to="{ name: 'UserView', params: { id: question.userId } }"
+              class="no-underline"
+            >
+              <span class="margin-left-3">
+                {{ question.user }}
+              </span>
+            </router-link>
+            <span class="margin-left-3">{{ question.time }}</span>
           </div>
         </div>
       </div>
