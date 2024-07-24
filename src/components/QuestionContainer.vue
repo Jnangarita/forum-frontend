@@ -1,5 +1,9 @@
 <template>
-  <div v-for="question in arrQuestions" :key="question.questionId">
+  <div
+    v-for="question in arrQuestions"
+    :key="question.questionId"
+    class="question-container"
+  >
     <q-separator></q-separator>
     <div class="row">
       <div class="col-3 q-pa-md">
@@ -109,3 +113,9 @@ const toggleBorder = (questionStatus) => {
   return questionStatus === constants.STATUS_QUESTION_ANSWERED;
 };
 </script>
+
+<style scoped>
+.question-container {
+  padding: 0 1rem;
+}
+</style>

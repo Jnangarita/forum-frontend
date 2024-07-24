@@ -2,7 +2,9 @@
   <div class="main-container">
     <div class="row justify-between title-container">
       <div class="col-7">
-        <p class="main-title">{{ $t("allQuestions") }}</p>
+        <p class="main-title">
+          {{ $t("questionCategory") }} [{{ categoryName }}]
+        </p>
         <span class="num-questions">
           {{
             `${data.questions?.totalQuestions} ${$t("questions").toLowerCase()}`
@@ -36,12 +38,22 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useGetData } from "src/composables/useGetData";
+import { useRoute } from "vue-router";
 import QuestionContainer from "src/components/QuestionContainer.vue";
 
 const { data, getData } = useGetData();
 const current = ref(3);
+const route = useRoute();
+const categoryName = ref(route.params.title);
+
+watch(
+  () => route.params.title,
+  (newCategory) => {
+    categoryName.value = newCategory;
+  }
+);
 
 onMounted(() => {
   getData(constants.API_GET_QUESTIONS, "questions");

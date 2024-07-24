@@ -36,6 +36,7 @@ export default {
   question: 'Pregunta',
   creationDate: 'Fecha de creación',
   success: 'Éxito',
+  questionCategory: 'Categoría de la pregunta',
 
   // ADVERTENCIA
   warning: 'Advertencia',
