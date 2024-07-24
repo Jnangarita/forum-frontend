@@ -1,3 +1,8 @@
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
+
 export const showNotify = ({ hook, msg, backgroundColor, position, language }) => {
   const $q = hook;
   const colorNotify = {
@@ -43,4 +48,8 @@ export const goToAnotherScreen = (screenName, param) => {
 
 export const onImageError = (event) => {
   event.target.src = 'src/assets/img/blank-profile.png';
+};
+
+export const timeElapsed = (date) => {
+  return dayjs(date).fromNow();
 };

@@ -15,15 +15,19 @@
       <div class="display-flex">
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("created")}` }}</span>
-          <span>{{ data.question?.created }}</span>
+          <span class="margin-left-3">
+            {{ timeElapsed(data.question?.created) }}
+          </span>
         </div>
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("modified")}` }}</span>
-          <span>{{ data.question?.modified }}</span>
+          <span class="margin-left-3">
+            {{ timeElapsed(data.question?.modified) }}
+          </span>
         </div>
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("views")}` }}</span>
-          <span>{{ data.question?.views }}</span>
+          <span class="margin-left-3">{{ data.question?.views }}</span>
         </div>
       </div>
     </div>
@@ -93,7 +97,7 @@
               <p>{{ $t("follow") }}</p>
             </div>
             <div class="user-container">
-              <p class="user-text">{{ data.question?.created }}</p>
+              <p class="user-text">{{ timeElapsed(data.question?.created) }}</p>
               <div class="display-flex">
                 <q-avatar rounded size="50px">
                   <img
@@ -135,6 +139,7 @@ import {
   formatUrl,
   goToAnotherScreen,
   onImageError,
+  timeElapsed,
 } from "src/utils/functions";
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";

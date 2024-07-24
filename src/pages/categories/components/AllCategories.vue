@@ -46,7 +46,9 @@
                   `${category.numberQuestion} ${$t("questions").toLowerCase()}`
                 }}
               </span>
-              <span class="category-footer">{{ category.time }}</span>
+              <span class="category-footer">
+                {{ timeElapsed(category.time) }}
+              </span>
             </div>
           </div>
         </li>
@@ -56,7 +58,7 @@
 </template>
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { goToAnotherScreen } from "src/utils/functions";
+import { goToAnotherScreen, timeElapsed } from "src/utils/functions";
 import { useGetData } from "src/composables/useGetData";
 
 const { data, getData } = useGetData();

@@ -84,7 +84,7 @@
                 {{ question.user }}
               </span>
             </router-link>
-            <span class="margin-left-3">{{ question.time }}</span>
+            <span class="margin-left-3">{{ timeElapsed(question.time) }}</span>
           </div>
         </div>
       </div>
@@ -99,6 +99,7 @@ import {
   formatUrl,
   goToAnotherScreen,
   onImageError,
+  timeElapsed,
 } from "src/utils/functions";
 
 const props = defineProps({
