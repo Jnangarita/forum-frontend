@@ -53,3 +53,7 @@ export const onImageError = (event) => {
 export const timeElapsed = (date) => {
   return dayjs(date).fromNow();
 };
+
+export const validateQInput = (msg) => {
+  return (val) => (val && val.length > 0) || msg;
+}

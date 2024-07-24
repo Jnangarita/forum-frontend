@@ -37,9 +37,16 @@ export default {
   creationDate: 'Fecha de creación',
   success: 'Éxito',
   questionCategory: 'Categoría de la pregunta',
+  password: 'Contraseña',
+  logIn: 'Iniciar sesión',
+  welcome: 'Bienvenido',
+  forgetPassword: 'Olvido la contraseña',
+  createAccount: 'Crear cuenta',
 
   // ADVERTENCIA
   warning: 'Advertencia',
+  pleaseEnterEmail: 'Por favor ingrese correo electrónico',
+  pleaseEnterPassword: 'Por favor ingrese la contraseña',
 
   // ERRORES
   error: 'Error',
