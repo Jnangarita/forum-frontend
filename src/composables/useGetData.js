@@ -10,6 +10,12 @@ const useGetData = () => {
   const data = reactive({});
   const error = ref({});
 
+  /**
+   * Fetches data from a given URL and updates the specified key in the data object.
+   *
+   * @param {string} url - The URL to fetch data from.
+   * @param {string} key - The key in the data object where the fetched data will be stored.
+   */
   const getData = async (url, key) => {
     $q.loading.show();
     try {
