@@ -29,6 +29,9 @@
           />
         </q-form>
         <q-separator class="input-item"></q-separator>
+        <router-link :to="{ name: 'CreateAccount' }" class="no-underline">
+          <span>{{ $t("createAccount") }}</span>
+        </router-link>
         <router-link :to="{ name: 'Login' }" class="no-underline">
           <span>{{ $t("alreadyHaveAccount") }}</span>
         </router-link>

@@ -11,6 +11,11 @@ const routes = [
     component: () => import('src/pages/ForgetPassword.vue')
   },
   {
+    path: '/create-account',
+    name: 'CreateAccount',
+    component: () => import('src/pages/CreateAccount.vue')
+  },
+  {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [

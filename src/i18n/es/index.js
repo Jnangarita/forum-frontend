@@ -45,11 +45,18 @@ export default {
   passwordResetMsg: 'Ingrese su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña',
   passwordReset: 'Restablecer contraseña',
   alreadyHaveAccount: '¿Ya tiene una cuenta?',
+  firstName: 'Primer nombre',
+  lastName: 'Apellido',
+  repeatPassword: 'Repetir contraseña',
 
   // ADVERTENCIA
   warning: 'Advertencia',
   pleaseEnterEmail: 'Por favor ingrese correo electrónico',
   pleaseEnterPassword: 'Por favor ingrese la contraseña',
+  pleaseEnterName: 'Por favor ingrese el nombre',
+  pleaseEnterLastName: 'Por favor ingrese el apellido',
+  pleaseEnterRepeatPassword: 'Por favor ingrese nuevamente la contraseña',
+  passwordsDoNotMatch: 'Las contraseñas no coinciden',
 
   // ERRORES
   error: 'Error',

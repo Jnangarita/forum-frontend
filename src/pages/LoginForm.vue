@@ -48,7 +48,9 @@
         <router-link :to="{ name: 'ForgetPassword' }" class="no-underline">
           <span>{{ $t("forgetPassword") }}</span>
         </router-link>
-        <span>{{ $t("createAccount") }}</span>
+        <router-link :to="{ name: 'CreateAccount' }" class="no-underline">
+          <span>{{ $t("createAccount") }}</span>
+        </router-link>
       </div>
     </div>
   </div>
