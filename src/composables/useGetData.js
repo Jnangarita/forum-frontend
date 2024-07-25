@@ -22,7 +22,6 @@ const useGetData = () => {
         hook: $q,
         msg: error[key],
         backgroundColor: 'red-2',
-        position: 'top-right',
         language: (key) => t(key)
       });
     } finally {

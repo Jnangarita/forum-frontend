@@ -60,9 +60,6 @@
               v-model="createAccount.repeatPassword"
             />
           </div>
-          <div v-if="passwordError">
-            {{ $t("passwordsDoNotMatch") }}
-          </div>
           <q-btn
             :label="$t('createAccount')"
             class="responsive-box"
@@ -84,9 +81,12 @@
 
 <script setup>
 import { ref } from "vue";
-import { validateQInput } from "src/utils/functions";
+import { showNotify, validateQInput } from "src/utils/functions";
+import { useI18n } from "vue-i18n";
+import { useQuasar } from "quasar";
 
-const passwordError = ref(false);
+const $q = useQuasar();
+const { t } = useI18n();
 const createAccount = ref({
   firstName: "",
   lastName: "",
@@ -98,7 +98,11 @@ const createAccount = ref({
 const onSubmit = (event) => {
   event.preventDefault();
   if (createAccount.value.password !== createAccount.value.repeatPassword) {
-    passwordError.value = true;
+    showNotify({
+      hook: $q,
+      msg: t("passwordsDoNotMatch"),
+      language: (key) => t(key),
+    });
     return;
   }
   console.log(createAccount);

@@ -3,7 +3,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-export const showNotify = ({ hook, msg, backgroundColor, position, language }) => {
+export const showNotify = ({ hook, msg, backgroundColor = 'yellow-2', language }) => {
   const $q = hook;
   const colorNotify = {
     'green-2': {
@@ -30,7 +30,7 @@ export const showNotify = ({ hook, msg, backgroundColor, position, language }) =
     iconColor: iconColor,
     textColor: 'dark',
     color: backgroundColor,
-    position: position,
+    position: 'top-right',
   });
 }
 
