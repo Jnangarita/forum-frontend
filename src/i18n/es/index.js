@@ -40,8 +40,11 @@ export default {
   password: 'Contraseña',
   logIn: 'Iniciar sesión',
   welcome: 'Bienvenido',
-  forgetPassword: 'Olvido la contraseña',
+  forgetPassword: '¿Olvido la contraseña?',
   createAccount: 'Crear cuenta',
+  passwordResetMsg: 'Ingrese su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña',
+  passwordReset: 'Restablecer contraseña',
+  alreadyHaveAccount: '¿Ya tiene una cuenta?',
 
   // ADVERTENCIA
   warning: 'Advertencia',

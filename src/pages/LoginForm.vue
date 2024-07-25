@@ -45,7 +45,9 @@
           />
         </q-form>
         <q-separator class="input-item"></q-separator>
-        <span>{{ $t("forgetPassword") }}</span>
+        <router-link :to="{ name: 'ForgetPassword' }" class="no-underline">
+          <span>{{ $t("forgetPassword") }}</span>
+        </router-link>
         <span>{{ $t("createAccount") }}</span>
       </div>
     </div>
@@ -67,70 +69,3 @@ const onSubmit = (event) => {
   console.log(loginForm);
 };
 </script>
-
-<style scoped>
-.main-content {
-  background: var(--primary-color);
-  display: flex;
-  height: 100vh;
-}
-
-.login-container {
-  background: white;
-  border-radius: var(--border-radius);
-  display: flex;
-  height: 80%;
-  width: 70%;
-}
-
-.login-item {
-  height: 100%;
-  width: 50%;
-}
-
-.display-flex {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-.responsive-image {
-  border-bottom-left-radius: var(--border-radius);
-  border-top-left-radius: var(--border-radius);
-  height: 100%;
-  max-height: 100%;
-  max-width: 100%;
-  width: 100%;
-}
-
-.form-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1.25rem;
-}
-
-.form-content {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.login-title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-@media (max-width: 900px) {
-  .login-title {
-    font-size: 1.9rem;
-  }
-}
-
-.input-item {
-  margin-bottom: 1rem;
-  width: 70%;
-}
-</style>

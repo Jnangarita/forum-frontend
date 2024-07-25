@@ -5,7 +5,11 @@ const routes = [
     name: 'Login',
     component: () => import('src/pages/LoginForm.vue')
   },
-
+  {
+    path: '/forget-password',
+    name: 'ForgetPassword',
+    component: () => import('src/pages/ForgetPassword.vue')
+  },
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
