@@ -6,11 +6,10 @@ dayjs.extend(relativeTime);
 /**
  * Displays a notification using the $q object from the Quasar Framework.
  *
- * @param {Object} params - Parameters for the notification.
- * @param {Object} params.hook - The $q object from the Quasar Framework used to display notifications.
- * @param {string} params.msg - Message to be displayed in the notification.
- * @param {string} [params.backgroundColor='yellow-2'] - Background color of the notification. Possible values: 'green-2', 'red-2', etc.
- * @param {Function} params.language - Function to get the text of messages in the desired language.
+ * @param {Object} hook - The $q object from the Quasar Framework used to display notifications.
+ * @param {string} msg - Message to be displayed in the notification.
+ * @param {string} [backgroundColor='yellow-2'] - Background color of the notification. Possible values: 'green-2', 'red-2', etc.
+ * @param {Function} language - Function to get the text of messages in the desired language.
  */
 export const showNotify = ({ hook, msg, backgroundColor = 'yellow-2', language }) => {
   const $q = hook;
