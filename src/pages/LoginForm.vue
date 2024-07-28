@@ -58,16 +58,28 @@
 
 <script setup>
 import { ref } from "vue";
+import { useAuthStore } from "../stores/authStore";
+import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 import { validateQInput } from "src/utils/functions";
 
+const { t } = useI18n();
+const authStore = useAuthStore();
+const router = useRouter();
 const showPassword = ref(true);
-const loginForm = ref({
-  email: "",
-  password: "",
-});
+const loginForm = ref({ email: "", password: "" });
+
+const login = async () => {
+  try {
+    await authStore.login(loginForm.value);
+    router.push("/");
+  } catch (error) {
+    console.error(t("errorGettingToken"), error);
+  }
+};
 
 const onSubmit = (event) => {
   event.preventDefault();
-  console.log(loginForm);
+  login();
 };
 </script>

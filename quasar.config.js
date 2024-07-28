@@ -26,6 +26,7 @@ module.exports = configure(function (/* ctx */) {
       
       'axios',
       'i18n',
+      'pinia',
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css

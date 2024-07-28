@@ -60,5 +60,6 @@ export default {
 
   // ERRORES
   error: 'Error',
-  errorGettingData: 'Error al obtener los datos:'
+  errorGettingData: 'Error al obtener los datos:',
+  errorGettingToken: 'Error al obtener el token'
 }
