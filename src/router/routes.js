@@ -20,7 +20,8 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('pages/IndexPage.vue')
+        component: () => import('pages/IndexPage.vue'),
+        meta: { requiresAuth: true }
       },
       {
         path: 'home',
@@ -28,12 +29,42 @@ const routes = [
         component: () => import('src/pages/home/pages/Home.vue'),
         meta: { requiresAuth: true }
       },
-      { path: 'questions', name: 'questions', component: () => import('src/pages/questions/pages/Questions.vue') },
-      { path: 'categories', name: 'categories', component: () => import('src/pages/categories/pages/categories.vue') },
-      { path: 'users', name: 'users', component: () => import('src/pages/user/pages/Users.vue') },
-      { path: 'questions/:id/:title', name: 'QuestionContainer', component: () => import('src/pages/questions/pages/QuestionInfo.vue') },
-      { path: 'questions/category/:title', name: 'CategoryPage', component: () => import('src/pages/questions/pages/CategoryType.vue') },
-      { path: 'user/view/:id/:userName', name: 'UserView', component: () => import('src/pages/user/pages/UserView.vue') }
+      {
+        path: 'questions',
+        name: 'questions',
+        component: () => import('src/pages/questions/pages/Questions.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'categories',
+        name: 'categories',
+        component: () => import('src/pages/categories/pages/categories.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'users',
+        name: 'users',
+        component: () => import('src/pages/user/pages/Users.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'questions/:id/:title',
+        name: 'QuestionContainer',
+        component: () => import('src/pages/questions/pages/QuestionInfo.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'questions/category/:title',
+        name: 'CategoryPage',
+        component: () => import('src/pages/questions/pages/CategoryType.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'user/view/:id/:userName',
+        name: 'UserView',
+        component: () => import('src/pages/user/pages/UserView.vue'),
+        meta: { requiresAuth: true }
+      }
     ]
   },
 
