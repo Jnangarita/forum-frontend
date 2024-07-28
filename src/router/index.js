@@ -1,6 +1,7 @@
 import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
+import { jwtDecode } from "jwt-decode";
 
 /*
  * If not building with SSR mode, you can
@@ -27,9 +28,11 @@ export default route(function (/* { store, ssrContext } */) {
   })
 
   Router.beforeEach((to, from, next) => {
+    const jwtToken = localStorage.getItem('authToken');
+
     if (to.matched.some(record => record.meta.requiresAuth)) {
-      const isAuthenticated = !!localStorage.getItem('authToken');
-      if (!isAuthenticated) {
+      if (!jwtToken || isTokenExpired(jwtToken)) {
+        alert('Tu sesión ha expirado. Por favor, inicia sesión nuevamente.');
         next({ name: 'Login' });
       } else {
         next();
@@ -40,3 +43,13 @@ export default route(function (/* { store, ssrContext } */) {
   });
   return Router
 })
+
+const isTokenExpired = (token) => {
+  try {
+    const decodedToken = jwtDecode(token);
+    const currentTime = Math.floor(Date.now() / 1000);
+    return decodedToken.exp && decodedToken.exp < currentTime;
+  } catch (error) {
+    console.error(error);
+  }
+};
