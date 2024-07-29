@@ -24,7 +24,7 @@
             <span>
               <q-badge
                 :color="
-                  questionStatus(props.row.status) ? 'positive' : 'negative'
+                  questionStatus(props.row.status) ? 'positive' : 'red-5'
                 "
                 class="badge-response"
               >

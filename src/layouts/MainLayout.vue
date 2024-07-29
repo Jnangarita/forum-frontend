@@ -36,6 +36,34 @@
                   </q-item-section>
                 </q-item>
                 <q-separator></q-separator>
+                <q-item clickable class="item-content margin-5">
+                  <q-item-section>
+                    <router-link
+                      :to="{
+                        name: 'UserView',
+                        params: {
+                          id: user,
+                          userName: formatUrl(userInfo.userName),
+                        },
+                      }"
+                      class="no-underline link-color"
+                    >
+                      <p class="margin-bottom-1">
+                        <q-icon name="las la-user" size="1.5rem" />
+                        <span class="margin-left-5">{{ $t("profile") }}</span>
+                      </p>
+                    </router-link>
+                  </q-item-section>
+                </q-item>
+                <q-item clickable class="item-content margin-5">
+                  <q-item-section>
+                    <p class="margin-bottom-1">
+                      <q-icon name="las la-cog" size="1.5rem" />
+                      <span class="margin-left-5">{{ $t("settings") }}</span>
+                    </p>
+                  </q-item-section>
+                </q-item>
+                <q-separator></q-separator>
                 <q-item class="GL__menu-link">
                   <q-item-section>
                     <q-btn
@@ -83,7 +111,7 @@
 <script setup>
 import { globalApi } from "src/api/global";
 import { HttpStatusCode } from "axios";
-import { onImageError } from "src/utils/functions";
+import { formatUrl, onImageError } from "src/utils/functions";
 import { onMounted, ref } from "vue";
 import { useAuthStore } from "src/stores/authStore";
 import { useI18n } from "vue-i18n";
@@ -147,5 +175,9 @@ onMounted(() => {
 
 .margin-5 {
   margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.link-color {
+  color: black;
 }
 </style>

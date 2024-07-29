@@ -50,6 +50,8 @@ export default {
   repeatPassword: 'Repetir contraseña',
   createdUserMsg: '¡Todo listo! Tu cuenta está lista para usarse. Por favor, inicia sesión',
   logOut: 'Cerrar sesión',
+  profile: 'Perfil',
+  settings: 'Ajustes',
 
   // ADVERTENCIA
   warning: 'Advertencia',
