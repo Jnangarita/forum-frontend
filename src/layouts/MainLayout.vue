@@ -14,14 +14,37 @@
         <div class="justify-end">
           <q-btn flat>
             <q-avatar>
-              <img alt="..." src="https://cdn.quasar.dev/img/avatar1.jpg" />
+              <img :alt="$t('userImg')" src="" @error="onImageError($event)" />
             </q-avatar>
-            <q-icon name="arrow_drop_down" size="1rem" />
             <q-menu>
-              <q-list dense>
+              <q-list dense style="min-width: 240px">
+                <q-item clickable class="item-content margin-5">
+                  <q-item-section avatar>
+                    <q-avatar>
+                      <img
+                        :alt="$t('userImg')"
+                        src=""
+                        @error="onImageError($event)"
+                      />
+                    </q-avatar>
+                  </q-item-section>
+                  <q-item-section>
+                    <p class="display-contents">
+                      {{ userInfo.userName }}
+                      <span class="opacity-info">{{ userInfo.email }}</span>
+                    </p>
+                  </q-item-section>
+                </q-item>
+                <q-separator></q-separator>
                 <q-item class="GL__menu-link">
                   <q-item-section>
-                    <q-btn :no-caps="true" dense flat @click="logOut">
+                    <q-btn
+                      :no-caps="true"
+                      class="margin-5"
+                      color="red-5"
+                      dense
+                      @click="logOut"
+                    >
                       {{ $t("logOut") }}
                     </q-btn>
                   </q-item-section>
@@ -58,7 +81,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { globalApi } from "src/api/global";
+import { HttpStatusCode } from "axios";
+import { onImageError } from "src/utils/functions";
+import { onMounted, ref } from "vue";
 import { useAuthStore } from "src/stores/authStore";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
@@ -68,6 +94,8 @@ const { t } = useI18n();
 const authStore = useAuthStore();
 const leftDrawerOpen = ref(false);
 const router = useRouter();
+const user = localStorage.getItem("userId");
+const userInfo = ref({});
 
 const linksList = [
   {
@@ -100,4 +128,24 @@ const logOut = () => {
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };
+
+const getUserById = async (userId) => {
+  const response = await globalApi.getUserInfo(userId);
+  if (response.status === HttpStatusCode.Ok) {
+    userInfo.value = response.data;
+  }
+};
+
+onMounted(() => {
+  getUserById(user);
+});
 </script>
+<style scoped>
+.item-content {
+  border-radius: var(--border-radius);
+}
+
+.margin-5 {
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+</style>

@@ -1,6 +1,7 @@
 import { authLogin } from 'src/api/authentication';
 import { defineStore } from 'pinia';
 import { HttpStatusCode } from "axios";
+import { jwtDecode } from "jwt-decode";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -15,6 +16,8 @@ export const useAuthStore = defineStore('auth', {
         this.authToken = response.data.jwtToken;
         this.isAuthenticated = true;
         localStorage.setItem('authToken', this.authToken);
+        this.user = jwtDecode(this.authToken);
+        localStorage.setItem('userId', this.user.id);
       }
     },
     logout() {
