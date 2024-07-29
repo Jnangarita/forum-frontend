@@ -43,7 +43,7 @@
       <q-scroll-area class="fit">
         <q-list>
           <EssentialLink
-            v-for="link in essentialLinks"
+            v-for="link in linksList"
             :key="link.title"
             v-bind="link"
           />
@@ -57,62 +57,47 @@
   </q-layout>
 </template>
 
-<script>
-import { defineComponent, ref } from "vue";
+<script setup>
+import { ref } from "vue";
 import { useAuthStore } from "src/stores/authStore";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import EssentialLink from "components/EssentialLink.vue";
 
-export default defineComponent({
-  name: "MainLayout",
+const { t } = useI18n();
+const authStore = useAuthStore();
+const leftDrawerOpen = ref(false);
+const router = useRouter();
 
-  components: {
-    EssentialLink,
+const linksList = [
+  {
+    icon: "las la-home",
+    link: "home",
+    title: t("home"),
   },
-
-  setup() {
-    const { t } = useI18n();
-    const authStore = useAuthStore();
-    const leftDrawerOpen = ref(false);
-    const router = useRouter();
-
-    const linksList = [
-      {
-        icon: "las la-home",
-        link: "home",
-        title: t("home"),
-      },
-      {
-        icon: "las la-question",
-        link: "questions",
-        title: t("questions"),
-      },
-      {
-        icon: "las la-tags",
-        link: "categories",
-        title: t("categories"),
-      },
-      {
-        icon: "las la-user-friends",
-        link: "users",
-        title: t("users"),
-      },
-    ];
-
-    const logOut = () => {
-      authStore.logout();
-      router.push("/login");
-    };
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-      logOut,
-    };
+  {
+    icon: "las la-question",
+    link: "questions",
+    title: t("questions"),
   },
-});
+  {
+    icon: "las la-tags",
+    link: "categories",
+    title: t("categories"),
+  },
+  {
+    icon: "las la-user-friends",
+    link: "users",
+    title: t("users"),
+  },
+];
+
+const logOut = () => {
+  authStore.logout();
+  router.push("/login");
+};
+
+const toggleLeftDrawer = () => {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+};
 </script>
