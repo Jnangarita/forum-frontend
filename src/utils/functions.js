@@ -101,3 +101,11 @@ export const timeElapsed = (date) => {
 export const validateQInput = (msg) => {
   return (val) => (val && val.length > 0) || msg;
 }
+
+/**
+ * Delete information from localstorage
+ */
+export const deleteInfoLocalStorage = () => {
+  localStorage.removeItem('authToken');
+  localStorage.removeItem('userId');
+};

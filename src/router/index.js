@@ -1,7 +1,8 @@
-import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
-import routes from './routes'
+import { deleteInfoLocalStorage } from 'src/utils/functions';
 import { jwtDecode } from "jwt-decode";
+import { route } from 'quasar/wrappers'
+import routes from './routes'
 
 /*
  * If not building with SSR mode, you can
@@ -33,6 +34,7 @@ export default route(function (/* { store, ssrContext } */) {
     if (to.matched.some(record => record.meta.requiresAuth)) {
       if (!jwtToken || isTokenExpired(jwtToken)) {
         alert('Tu sesión ha expirado. Por favor, inicia sesión nuevamente.');
+        deleteInfoLocalStorage();
         next({ name: 'Login' });
       } else {
         next();

@@ -1,5 +1,6 @@
 import { authLogin } from 'src/api/authentication';
 import { defineStore } from 'pinia';
+import { deleteInfoLocalStorage } from 'src/utils/functions';
 import { HttpStatusCode } from "axios";
 import { jwtDecode } from "jwt-decode";
 
@@ -24,7 +25,7 @@ export const useAuthStore = defineStore('auth', {
       this.isAuthenticated = false;
       this.user = null;
       this.authToken = null;
-      localStorage.removeItem('authToken');
+      deleteInfoLocalStorage();
     },
   },
   getters: {
