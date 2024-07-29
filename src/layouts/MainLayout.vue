@@ -11,6 +11,25 @@
           @click="toggleLeftDrawer"
         />
         <q-toolbar-title> {{ $t("appTitle") }} </q-toolbar-title>
+        <div class="justify-end">
+          <q-btn flat>
+            <q-avatar>
+              <img alt="..." src="https://cdn.quasar.dev/img/avatar1.jpg" />
+            </q-avatar>
+            <q-icon name="arrow_drop_down" size="1rem" />
+            <q-menu>
+              <q-list dense>
+                <q-item class="GL__menu-link">
+                  <q-item-section>
+                    <q-btn :no-caps="true" dense flat @click="logOut">
+                      {{ $t("logOut") }}
+                    </q-btn>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -40,7 +59,9 @@
 
 <script>
 import { defineComponent, ref } from "vue";
+import { useAuthStore } from "src/stores/authStore";
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 import EssentialLink from "components/EssentialLink.vue";
 
 export default defineComponent({
@@ -51,8 +72,10 @@ export default defineComponent({
   },
 
   setup() {
-    const leftDrawerOpen = ref(false);
     const { t } = useI18n();
+    const authStore = useAuthStore();
+    const leftDrawerOpen = ref(false);
+    const router = useRouter();
 
     const linksList = [
       {
@@ -77,12 +100,18 @@ export default defineComponent({
       },
     ];
 
+    const logOut = () => {
+      authStore.logout();
+      router.push("/login");
+    };
+
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
+      logOut,
     };
   },
 });

@@ -48,6 +48,8 @@ export default {
   firstName: 'Primer nombre',
   lastName: 'Apellido',
   repeatPassword: 'Repetir contraseña',
+  createdUserMsg: '¡Todo listo! Tu cuenta está lista para usarse. Por favor, inicia sesión',
+  logOut: 'Cerrar sesión',
 
   // ADVERTENCIA
   warning: 'Advertencia',
@@ -61,5 +63,6 @@ export default {
   // ERRORES
   error: 'Error',
   errorGettingData: 'Error al obtener los datos:',
-  errorGettingToken: 'Error al obtener el token'
+  errorGettingToken: 'Error al obtener el token',
+  errorCreatingUser: 'Error al crear el usuario',
 }

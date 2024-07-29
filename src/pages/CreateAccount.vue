@@ -19,7 +19,7 @@
               dense
               outlined
               type="text"
-              v-model="createAccount.firstName"
+              v-model="userInfo.userName"
             />
             <q-input
               :hint="$t('lastName')"
@@ -28,7 +28,7 @@
               dense
               outlined
               type="text"
-              v-model="createAccount.lastName"
+              v-model="userInfo.lastName"
             />
           </div>
           <q-input
@@ -38,7 +38,7 @@
             dense
             outlined
             type="email"
-            v-model="createAccount.email"
+            v-model="userInfo.email"
           />
           <div class="display-flex justify-between responsive-box">
             <q-input
@@ -48,7 +48,7 @@
               dense
               outlined
               type="text"
-              v-model="createAccount.password"
+              v-model="userInfo.password"
             />
             <q-input
               :hint="$t('repeatPassword')"
@@ -57,7 +57,7 @@
               dense
               outlined
               type="text"
-              v-model="createAccount.repeatPassword"
+              v-model="userInfo.repeatPassword"
             />
           </div>
           <q-btn
@@ -80,32 +80,53 @@
 </template>
 
 <script setup>
+import { HttpStatusCode } from "axios";
 import { ref } from "vue";
 import { showNotify, validateQInput } from "src/utils/functions";
 import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
+import { userApi } from "./user/api/user";
+import { useRouter } from "vue-router";
 
-const $q = useQuasar();
 const { t } = useI18n();
-const createAccount = ref({
-  firstName: "",
+const $q = useQuasar();
+const router = useRouter();
+const userInfo = ref({
+  userName: "",
   lastName: "",
   email: "",
   password: "",
   repeatPassword: "",
 });
 
+const createAccount = async (userForm) => {
+  try {
+    const response = await userApi.createUser(userForm);
+    if (response.status === HttpStatusCode.Created) {
+      showNotify({
+        hook: $q,
+        msg: t("createdUserMsg"),
+        backgroundColor: "green-2",
+        language: (key) => t(key),
+      });
+      router.push("/login");
+    }
+  } catch (error) {
+    console.error(t("errorCreatingUser"), error);
+  }
+};
+
 const onSubmit = (event) => {
   event.preventDefault();
-  if (createAccount.value.password !== createAccount.value.repeatPassword) {
+  if (userInfo.value.password !== userInfo.value.repeatPassword) {
     showNotify({
       hook: $q,
       msg: t("passwordsDoNotMatch"),
       language: (key) => t(key),
     });
-    return;
+  } else {
+    createAccount(userInfo.value);
   }
-  console.log(createAccount);
 };
 </script>
 
