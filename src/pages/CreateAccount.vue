@@ -19,7 +19,7 @@
               dense
               outlined
               type="text"
-              v-model="userInfo.userName"
+              v-model="userInfo.firstName"
             />
             <q-input
               :hint="$t('lastName')"
@@ -80,6 +80,7 @@
 </template>
 
 <script setup>
+import { constants } from "src/utils/constants";
 import { HttpStatusCode } from "axios";
 import { ref } from "vue";
 import { showNotify, validateQInput } from "src/utils/functions";
@@ -92,11 +93,12 @@ const { t } = useI18n();
 const $q = useQuasar();
 const router = useRouter();
 const userInfo = ref({
-  userName: "",
+  firstName: "",
   lastName: "",
   email: "",
   password: "",
   repeatPassword: "",
+  role: constants.ROLE_GENERAL_USER,
 });
 
 const createAccount = async (userForm) => {

@@ -4,6 +4,9 @@ const constants = {
 
   // ENDPOINT
   API_GET_QUESTIONS: "/home/question.json",
+
+  // ROLE
+  ROLE_GENERAL_USER: 3
 };
 
 export { constants };

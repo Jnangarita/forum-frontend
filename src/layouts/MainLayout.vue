@@ -30,8 +30,10 @@
                   </q-item-section>
                   <q-item-section>
                     <p class="display-contents">
-                      {{ userInfo.userName }}
-                      <span class="opacity-info">{{ userInfo.email }}</span>
+                      {{ data.userById.userName }}
+                      <span class="opacity-info">
+                        {{ data.userById.email }}
+                      </span>
                     </p>
                   </q-item-section>
                 </q-item>
@@ -42,8 +44,8 @@
                       :to="{
                         name: 'UserView',
                         params: {
-                          id: user,
-                          userName: formatUrl(userInfo.userName),
+                          id: userId,
+                          userName: formatUrl(data.userById.userName),
                         },
                       }"
                       class="no-underline link-color"
@@ -109,21 +111,21 @@
 </template>
 
 <script setup>
-import { globalApi } from "src/api/global";
-import { HttpStatusCode } from "axios";
 import { formatUrl, onImageError } from "src/utils/functions";
 import { onMounted, ref } from "vue";
 import { useAuthStore } from "src/stores/authStore";
+import { useGetData } from "src/composables/useGetData";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import EssentialLink from "components/EssentialLink.vue";
 
+const { data, getData } = useGetData();
 const { t } = useI18n();
 const authStore = useAuthStore();
 const leftDrawerOpen = ref(false);
 const router = useRouter();
-const user = localStorage.getItem("userId");
-const userInfo = ref({});
+const userId = localStorage.getItem("userId");
+const PATH_GET_USER_INFO = `/v1/users/${userId}`;
 
 const linksList = [
   {
@@ -157,15 +159,8 @@ const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };
 
-const getUserById = async (userId) => {
-  const response = await globalApi.getUserInfo(userId);
-  if (response.status === HttpStatusCode.Ok) {
-    userInfo.value = response.data;
-  }
-};
-
 onMounted(() => {
-  getUserById(user);
+  getData(PATH_GET_USER_INFO, "userById");
 });
 </script>
 <style scoped>

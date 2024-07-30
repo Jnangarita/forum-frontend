@@ -1,4 +1,4 @@
-import { api } from 'boot/axios'
+import { forum } from 'boot/axios'
 import { reactive, ref } from 'vue';
 import { showNotify } from 'src/utils/functions'
 import { useI18n } from 'vue-i18n'
@@ -19,7 +19,7 @@ const useGetData = () => {
   const getData = async (url, key) => {
     $q.loading.show();
     try {
-      const response = await api.get(url);
+      const response = await forum.get(url);
       data[key] = response.data;
     } catch (err) {
       error[key] = err.message || t('errorGettingData');
