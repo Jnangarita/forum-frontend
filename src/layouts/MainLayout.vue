@@ -112,6 +112,7 @@
 
 <script setup>
 import { formatUrl, onImageError } from "src/utils/functions";
+import { LocalStorage } from "quasar";
 import { onMounted, ref } from "vue";
 import { useAuthStore } from "src/stores/authStore";
 import { useGetData } from "src/composables/useGetData";
@@ -159,8 +160,11 @@ const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };
 
-onMounted(() => {
-  getData(PATH_GET_USER_INFO, "userById");
+onMounted(async () => {
+  await getData(PATH_GET_USER_INFO, "userById");
+  if (data.userById) {
+    LocalStorage.set("userInfo", data.userById);
+  }
 });
 </script>
 <style scoped>

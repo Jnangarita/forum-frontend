@@ -108,4 +108,5 @@ export const validateQInput = (msg) => {
 export const deleteInfoLocalStorage = () => {
   localStorage.removeItem('authToken');
   localStorage.removeItem('userId');
+  localStorage.removeItem('userInfo');
 };

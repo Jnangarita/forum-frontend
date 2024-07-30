@@ -3,19 +3,19 @@
     <q-avatar rounded size="7rem">
       <img
         :alt="$t('userImg')"
-        :src="data.user?.photo"
+        :src="userInfo?.photo"
         @error="onImageError($event)"
       />
     </q-avatar>
     <div>
-      <p class="title">{{ data.user?.userName }}</p>
+      <p class="title">{{ userInfo?.userName }}</p>
       <q-badge
         class="badge-response font-weight-bold"
         color="grey-3"
         text-color="dark"
         style="margin: 0.5rem 0"
       >
-        {{ data.user?.userRole }}
+        {{ userInfo?.userRole }}
       </q-badge>
       <div class="task-list">
         <div class="task-item">
@@ -23,7 +23,7 @@
             <q-icon name="las la-question-circle" size="2rem" />
           </div>
           <span class="text-align-left">
-            <span class="title">{{ data.user?.numberQuestions }}</span>
+            <span class="title">{{ userInfo?.numberQuestions }}</span>
             <caption>
               {{
                 $t("questions")
@@ -36,7 +36,7 @@
             <q-icon name="las la-check-square" size="2rem" />
           </div>
           <span class="text-align-left">
-            <span class="title">{{ data.user?.numberResponses }}</span>
+            <span class="title">{{ userInfo?.numberResponses }}</span>
             <caption>
               {{
                 $t("answers")
@@ -51,19 +51,24 @@
       <q-separator></q-separator>
       <div style="margin: 0.5rem 0 0 0">
         <p class="user-info">
-          <span>{{ $t("userName") }}: </span>{{ data.user?.userName }}
+          <span>{{ $t("userName") }}: </span>{{ userInfo?.userName }}
         </p>
         <p class="user-info">
-          <span>{{ $t("email") }}: </span>{{ data.user?.email }}
+          <span>{{ $t("email") }}: </span>{{ userInfo?.email }}
         </p>
         <p class="user-info">
-          <span>{{ $t("status") }}: </span>{{ data.user?.status }}
+          <span>{{ $t("status") }}: </span>
+          {{
+            !userInfo?.status
+              ? constants.ACTIVE_USER_STATUS
+              : constants.DELETED_USER_STATUS
+          }}
         </p>
         <p class="user-info">
-          <span>{{ $t("userRole") }}: </span>{{ data.user?.userRole }}
+          <span>{{ $t("userRole") }}: </span>{{ userInfo?.userRole }}
         </p>
         <p class="user-info">
-          <span>{{ $t("country") }}: </span>{{ data.user?.country }}
+          <span>{{ $t("country") }}: </span>{{ userInfo?.country }}
         </p>
       </div>
     </div>
@@ -71,16 +76,11 @@
 </template>
 
 <script setup>
+import { constants } from "src/utils/constants";
+import { LocalStorage } from "quasar";
 import { onImageError } from "src/utils/functions";
-import { onMounted } from "vue";
-import { useGetData } from "src/composables/useGetData";
 
-const { data, getData } = useGetData();
-const API_GET_USER = "/home/userInfo.json";
-
-onMounted(() => {
-  getData(API_GET_USER, "user");
-});
+const userInfo = LocalStorage.getItem("userInfo");
 </script>
 
 <style scoped>
