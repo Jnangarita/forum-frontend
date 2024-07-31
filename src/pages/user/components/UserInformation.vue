@@ -15,7 +15,7 @@
         text-color="dark"
         style="margin: 0.5rem 0"
       >
-        {{ userInfo?.userRole }}
+        {{ userInfo?.userRole.roleName }}
       </q-badge>
       <div class="task-list">
         <div class="task-item">
@@ -58,14 +58,19 @@
         </p>
         <p class="user-info">
           <span>{{ $t("status") }}: </span>
-          {{
-            !userInfo?.status
-              ? constants.ACTIVE_USER_STATUS
-              : constants.DELETED_USER_STATUS
-          }}
+          <q-badge
+            :color="!userInfo?.deleted ? 'positive' : 'red-5'"
+            class="badge-response"
+          >
+            {{
+              !userInfo?.deleted
+                ? constants.ACTIVE_USER_STATUS
+                : constants.DELETED_USER_STATUS
+            }}
+          </q-badge>
         </p>
         <p class="user-info">
-          <span>{{ $t("userRole") }}: </span>{{ userInfo?.userRole }}
+          <span>{{ $t("userRole") }}: </span>{{ userInfo?.userRole.roleName }}
         </p>
         <p class="user-info">
           <span>{{ $t("country") }}: </span>{{ userInfo?.country }}

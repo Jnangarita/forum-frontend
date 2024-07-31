@@ -14,7 +14,11 @@
         <div class="justify-end">
           <q-btn flat>
             <q-avatar>
-              <img :alt="$t('userImg')" src="" @error="onImageError($event)" />
+              <img
+                :alt="$t('userImg')"
+                :src="data.userById?.photo"
+                @error="onImageError($event)"
+              />
             </q-avatar>
             <q-menu>
               <q-list dense style="min-width: 240px">
@@ -23,7 +27,7 @@
                     <q-avatar>
                       <img
                         :alt="$t('userImg')"
-                        src=""
+                        :src="data.userById?.photo"
                         @error="onImageError($event)"
                       />
                     </q-avatar>
