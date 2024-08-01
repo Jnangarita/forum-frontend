@@ -110,3 +110,14 @@ export const deleteInfoLocalStorage = () => {
   localStorage.removeItem('userId');
   localStorage.removeItem('userInfo');
 };
+
+/**
+ * Converts a full date into a string formatted as 'YYYY-MM-DD'.
+ *
+ * @param {string | number | Date} fullDate - The date to be formatted.
+ * @returns {string} - The formatted date in the 'YYYY-MM-DD' style.
+ */
+export const formatDate = (fullDate) => {
+  const date = new Date(fullDate);
+  return date.toLocaleDateString('en-CA');
+};

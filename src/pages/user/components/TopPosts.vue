@@ -17,15 +17,16 @@
           <q-td key="index" :props="props">
             <span>{{ props.row.index }}</span>
           </q-td>
-          <q-td key="question" :props="props">
-            <span>{{ props.row.question }}</span>
+          <q-td key="post" :props="props">
+            <span>{{ props.row.post }}</span>
+          </q-td>
+          <q-td key="postType" :props="props">
+            <span>{{ props.row.postType }}</span>
           </q-td>
           <q-td key="status" :props="props">
             <span>
               <q-badge
-                :color="
-                  questionStatus(props.row.status) ? 'positive' : 'red-5'
-                "
+                :color="questionStatus(props.row.status) ? 'positive' : 'red-5'"
                 class="badge-response"
               >
                 {{
@@ -37,7 +38,7 @@
             </span>
           </q-td>
           <q-td key="creationDate" :props="props">
-            <span>{{ props.row.creationDate }}</span>
+            <span>{{ formatDate(props.row.creationDate) }}</span>
           </q-td>
         </q-tr>
       </template>
@@ -47,14 +48,18 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
+import { formatDate } from "src/utils/functions";
 import { onMounted, ref } from "vue";
 import { useGetData } from "src/composables/useGetData";
 import { useI18n } from "vue-i18n";
+import { useRoute } from "vue-router";
 
 const { data, getData } = useGetData();
-const API_GET_QUESTION_LIST = "/home/questionList.json";
-const rows = ref([]);
 const { t } = useI18n();
+const route = useRoute();
+const rows = ref([]);
+const userId = route.params.id;
+const API_GET_QUESTION_LIST = `/v1/posts?id=${userId}`;
 
 const columns = [
   {
@@ -67,10 +72,18 @@ const columns = [
   },
   {
     align: "left",
-    field: "question",
+    field: "post",
     headerStyle: "font-weight: bold",
-    label: t("question"),
-    name: "question",
+    label: t("posts"),
+    name: "post",
+  },
+  {
+    align: "center",
+    field: "postType",
+    headerStyle: "font-weight: bold",
+    label: t("postType"),
+    name: "postType",
+    sortable: true,
   },
   {
     align: "center",

@@ -52,6 +52,7 @@ export default {
   logOut: 'Cerrar sesión',
   profile: 'Perfil',
   settings: 'Ajustes',
+  postType: 'Tipo de publicación',
 
   // ADVERTENCIA
   warning: 'Advertencia',
