@@ -43,7 +43,7 @@
                 :to="goToAnotherScreen('CategoryPage', category)"
                 class="no-underline"
               >
-                <span>{{ category }}</span>
+                <span>{{ category.value }}</span>
                 <span v-if="index < user.category.length - 1">, </span>
               </router-link>
             </div>
@@ -64,7 +64,7 @@ import {
 import { useGetData } from "src/composables/useGetData";
 
 const { data, getData } = useGetData();
-const API_GET_USERS_LIST = "/home/user.json";
+const API_GET_USERS_LIST = "/v1/users";
 const searchUsers = ref("");
 
 const filteredUsers = computed(() => {

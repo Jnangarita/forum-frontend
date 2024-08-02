@@ -31,4 +31,11 @@ forum.interceptors.request.use((config) => {
   return config;
 });
 
+forum.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('Interceptor de errores', error)
+  }
+)
+
 export { api, forum }
