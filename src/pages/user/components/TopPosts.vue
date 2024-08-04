@@ -58,8 +58,7 @@ const { data, getData } = useGetData();
 const { t } = useI18n();
 const route = useRoute();
 const rows = ref([]);
-const userId = route.params.id;
-const API_GET_QUESTION_LIST = `/v1/posts?id=${userId}`;
+const API_GET_QUESTION_LIST = `/v1/posts?id=${route.params.id}`;
 
 const columns = [
   {

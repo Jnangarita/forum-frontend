@@ -23,7 +23,7 @@
             <q-icon name="las la-question-circle" size="2rem" />
           </div>
           <span class="text-align-left">
-            <span class="title">{{ userInfo?.numberQuestions }}</span>
+            <span class="title">{{ userInfo?.numberQuestions || 0 }}</span>
             <caption>
               {{
                 $t("questions")
@@ -36,7 +36,7 @@
             <q-icon name="las la-check-square" size="2rem" />
           </div>
           <span class="text-align-left">
-            <span class="title">{{ userInfo?.numberResponses }}</span>
+            <span class="title">{{ userInfo?.numberResponses || 0 }}</span>
             <caption>
               {{
                 $t("answers")
@@ -82,10 +82,22 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
-import { LocalStorage } from "quasar";
 import { onImageError } from "src/utils/functions";
+import { onMounted, ref } from "vue";
+import { useGetData } from "src/composables/useGetData";
+import { useRoute } from "vue-router";
 
-const userInfo = LocalStorage.getItem("userInfo");
+const { data, getData } = useGetData();
+const route = useRoute();
+const PATH_GET_USER_INFO = `/v1/users/${route.params.id}`;
+const userInfo = ref(null);
+
+onMounted(async () => {
+  await getData(PATH_GET_USER_INFO, "userById");
+  if (data.userById) {
+    userInfo.value = data.userById;
+  }
+});
 </script>
 
 <style scoped>
