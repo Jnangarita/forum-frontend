@@ -1,3 +1,4 @@
+import { constants } from "./constants";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -79,7 +80,7 @@ export const goToAnotherScreen = (screenName, param) => {
  * @param {Event} event - Image load error event.
  */
 export const onImageError = (event) => {
-  event.target.src = 'src/assets/img/blank-profile.png';
+  event.target.src = constants.BLANK_IMG;
 };
 
 /**

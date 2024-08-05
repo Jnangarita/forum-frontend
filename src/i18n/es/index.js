@@ -28,7 +28,7 @@ export default {
   country: 'País',
   notAvailable: 'No disponible',
   posts: 'Publicaciones',
-  noDataFound: 'No se encontraron datos',
+  noDataFound: 'No ha hecho ninguna publicación',
   answered: 'Respondida',
   unanswered: 'Sin responder',
   seeAllQuestionsAndAnswers: 'Ver todas las preguntas y respuestas',

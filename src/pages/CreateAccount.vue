@@ -93,10 +93,11 @@ const { t } = useI18n();
 const $q = useQuasar();
 const router = useRouter();
 const userInfo = ref({
+  email: "",
   firstName: "",
   lastName: "",
-  email: "",
   password: "",
+  photo: constants.BLANK_IMG,
   repeatPassword: "",
   role: constants.ROLE_GENERAL_USER,
 });
