@@ -7,7 +7,7 @@
           <q-btn
             v-for="category in data.categories"
             :key="category.id"
-            :label="category.category"
+            :label="category.value"
             :no-caps="true"
             :unelevated="true"
             class="btn-category"
@@ -48,7 +48,7 @@ import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
 import QuestionContainer from "src/components/QuestionContainer.vue";
 
-const API_GET_CATEGORIES = "/home/category.json";
+const API_GET_CATEGORIES = "/v1/categories/list";
 const { data, getData } = useGetData();
 
 onMounted(() => {
