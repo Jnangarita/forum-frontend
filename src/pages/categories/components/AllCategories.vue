@@ -62,7 +62,7 @@ import { goToAnotherScreen, timeElapsed } from "src/utils/functions";
 import { useGetData } from "src/composables/useGetData";
 
 const { data, getData } = useGetData();
-const API_GET_CATEGORIES_LIST = "/home/categoryList.json";
+const API_GET_CATEGORIES_LIST = "/v1/categories";
 const searchCategory = ref("");
 
 onMounted(() => {
