@@ -48,10 +48,10 @@
           <router-link
             v-for="category in question.categories"
             :key="category.id"
-            :to="goToAnotherScreen('CategoryPage', category.name)"
+            :to="goToAnotherScreen('CategoryPage', category.value)"
           >
             <q-btn
-              :label="category.name"
+              :label="category.value"
               :no-caps="true"
               :unelevated="true"
               class="btn-category"

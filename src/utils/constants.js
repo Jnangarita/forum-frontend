@@ -5,7 +5,7 @@ const constants = {
   DELETED_USER_STATUS: 'ELIMINADO',
 
   // ENDPOINT
-  API_GET_QUESTIONS: '/home/question.json',
+  API_GET_QUESTIONS: '/v1/topics',
 
   // ROLE
   ROLE_GENERAL_USER: 3,
