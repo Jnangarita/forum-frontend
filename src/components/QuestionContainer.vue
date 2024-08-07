@@ -94,7 +94,6 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
-import { defineProps } from "vue";
 import {
   formatUrl,
   goToAnotherScreen,

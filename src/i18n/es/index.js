@@ -12,7 +12,7 @@ export default {
   questions: 'Preguntas',
   searchMoreQuestions: 'Buscar más preguntas',
   moreCategories: 'Más categorías',
-  frequentQuestions: 'Preguntas frecuentes',
+  popularQuestions: 'Preguntas más populares',
   allQuestions: 'Todas las preguntas',
   descriptionCategories: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus euismod felis, sit amet porta dui molestie eget. Nunc congue consequat condimentum. Praesent eget leo id purus bibendum hendrerit vitae in lectus.',
   categoryName: 'Nombre de la categoría',

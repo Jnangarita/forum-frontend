@@ -1,6 +1,6 @@
 <template>
   <div class="main-container q-pa-md">
-    <p class="main-title">{{ $t("frequentQuestions") }}</p>
+    <p class="main-title">{{ $t("popularQuestions") }}</p>
     <div
       v-for="question in data.question"
       :key="question.id"
@@ -13,9 +13,10 @@
             :src="question.photo"
             @error="onImageError($event)"
           />
+          <q-tooltip>{{ question.userName }}</q-tooltip>
         </q-avatar>
       </span>
-      <span>{{ question.question }}</span>
+      <span>{{ question.questionTitle }}</span>
     </div>
   </div>
 </template>
@@ -25,9 +26,9 @@ import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
 
 const { data, getData } = useGetData();
-const API_GET_HOT_QUESTIONS = "/home/hotQuestion.json";
+const API_GET_POPULAR_QUESTIONS = "/v1/topics/popular";
 
 onMounted(() => {
-  getData(API_GET_HOT_QUESTIONS, "question");
+  getData(API_GET_POPULAR_QUESTIONS, "question");
 });
 </script>
