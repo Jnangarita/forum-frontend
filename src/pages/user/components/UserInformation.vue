@@ -77,6 +77,16 @@
         </p>
       </div>
     </div>
+    <q-btn
+      :label="$t('edit')"
+      :no-caps="true"
+      :unelevated="true"
+      class="edit-btn"
+      color="primary"
+      dense
+      @click="openConfirmPopup"
+    />
+    <PopupUserInfo v-model:popupStatus="showPopup" />
   </div>
 </template>
 
@@ -86,11 +96,17 @@ import { onImageError } from "src/utils/functions";
 import { onMounted, ref } from "vue";
 import { useGetData } from "src/composables/useGetData";
 import { useRoute } from "vue-router";
+import PopupUserInfo from "./PopupUserInfo.vue";
 
 const { data, getData } = useGetData();
+const showPopup = ref(false);
 const route = useRoute();
 const PATH_GET_USER_INFO = `/v1/users/${route.params.id}`;
 const userInfo = ref(null);
+
+function openConfirmPopup() {
+  showPopup.value = true;
+}
 
 onMounted(async () => {
   await getData(PATH_GET_USER_INFO, "userById");
@@ -141,5 +157,10 @@ onMounted(async () => {
 
 .user-info span {
   font-weight: bold;
+}
+
+.edit-btn {
+  margin-top: 0.5rem;
+  padding: 0.4rem 1rem;
 }
 </style>

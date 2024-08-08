@@ -18,7 +18,7 @@
         />
       </div>
     </div>
-    <QuestionContainer :arrQuestions="data.questions?.questionsList" />
+    <QuestionContainer :arrQuestions="data.questions?.questionList" />
     <div class="q-gutter-md pagination">
       <q-pagination
         active-color="primary"

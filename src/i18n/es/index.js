@@ -53,6 +53,11 @@ export default {
   profile: 'Perfil',
   settings: 'Ajustes',
   postType: 'Tipo de publicación',
+  edit: 'Editar',
+  editUserInformation: 'Editar la información del usuario',
+  save: 'Guardar',
+  cancel: 'Cancelar',
+  city: 'Ciudad',
 
   // ADVERTENCIA
   warning: 'Advertencia',
