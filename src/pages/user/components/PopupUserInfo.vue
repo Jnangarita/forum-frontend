@@ -5,7 +5,7 @@
         <q-toolbar-title class="popup-title">
           <span>{{ $t("editUserInformation") }}</span>
         </q-toolbar-title>
-        <q-btn flat round dense icon="close" v-close-popup />
+        <q-btn dense flat icon="close" round v-close-popup />
       </q-toolbar>
       <q-card-section class="justify-center" style="padding: 0rem 3.5rem">
         <div class="justify-between input-txt display-flex">
@@ -15,13 +15,15 @@
             dense
             outlined
             type="text"
+            v-model="userData.firstName"
           />
           <q-input
             :label="$t('lastName')"
+            class="txt"
             dense
             outlined
             type="text"
-            class="txt"
+            v-model="userData.lastName"
           />
         </div>
         <q-input
@@ -30,6 +32,7 @@
           dense
           outlined
           type="text"
+          v-model="userData.userName"
         />
         <div class="justify-between display-flex">
           <q-input
@@ -38,29 +41,40 @@
             dense
             outlined
             type="text"
+            v-model="userData.email"
           />
           <q-input
             :label="$t('userRole')"
             class="txt"
             dense
+            disable
             outlined
             type="text"
+            v-model="userData.userRole.roleName"
           />
         </div>
         <div class="justify-between input-txt display-flex">
           <q-select
             :label="$t('country')"
+            :options="country"
             class="txt"
             dense
+            option-label="value"
+            option-value="id"
             outlined
             type="text"
+            v-model="userData.country"
           />
           <q-select
             :label="$t('city')"
+            :options="country"
             class="txt"
             dense
+            option-label="value"
+            option-value="id"
             outlined
             type="text"
+            v-model="userData.city"
           />
         </div>
         <div class="justify-center display-flex" style="margin: 2rem">
@@ -79,6 +93,7 @@
             class="action-btn"
             color="secondary"
             dense
+            @click="showPopup = false"
           />
         </div>
       </q-card-section>
@@ -89,9 +104,31 @@
 <script setup>
 import { ref, watch } from "vue";
 
-const props = defineProps({ popupStatus: Boolean });
+const props = defineProps({
+  popupStatus: Boolean,
+  userData: {
+    type: Object,
+    required: true,
+    default: () => [],
+  },
+});
 const emit = defineEmits(["update:popupStatus"]);
 const showPopup = ref(props.popupStatus);
+
+const country = ref([
+  {
+    id: 1,
+    value: "Colombia",
+  },
+  {
+    id: 2,
+    value: "España",
+  },
+  {
+    id: 3,
+    value: "Chile",
+  },
+]);
 
 watch(
   () => props.popupStatus,

@@ -3,19 +3,19 @@
     <q-avatar rounded size="7rem">
       <img
         :alt="$t('userImg')"
-        :src="userInfo?.photo"
+        :src="data.userById?.photo"
         @error="onImageError($event)"
       />
     </q-avatar>
     <div>
-      <p class="title">{{ userInfo?.userName }}</p>
+      <p class="title">{{ data.userById?.userName }}</p>
       <q-badge
         class="badge-response font-weight-bold"
         color="grey-3"
         text-color="dark"
         style="margin: 0.5rem 0"
       >
-        {{ userInfo?.userRole.roleName }}
+        {{ data.userById?.userRole.roleName }}
       </q-badge>
       <div class="task-list">
         <div class="task-item">
@@ -23,7 +23,7 @@
             <q-icon name="las la-question-circle" size="2rem" />
           </div>
           <span class="text-align-left">
-            <span class="title">{{ userInfo?.numberQuestions || 0 }}</span>
+            <span class="title">{{ data.userById?.numberQuestions || 0 }}</span>
             <caption>
               {{
                 $t("questions")
@@ -36,7 +36,7 @@
             <q-icon name="las la-check-square" size="2rem" />
           </div>
           <span class="text-align-left">
-            <span class="title">{{ userInfo?.numberResponses || 0 }}</span>
+            <span class="title">{{ data.userById?.numberResponses || 0 }}</span>
             <caption>
               {{
                 $t("answers")
@@ -51,29 +51,30 @@
       <q-separator></q-separator>
       <div style="margin: 0.5rem 0 0 0">
         <p class="user-info">
-          <span>{{ $t("userName") }}: </span>{{ userInfo?.userName }}
+          <span>{{ $t("userName") }}: </span>{{ data.userById?.userName }}
         </p>
         <p class="user-info">
-          <span>{{ $t("email") }}: </span>{{ userInfo?.email }}
+          <span>{{ $t("email") }}: </span>{{ data.userById?.email }}
         </p>
         <p class="user-info">
           <span>{{ $t("status") }}: </span>
           <q-badge
-            :color="!userInfo?.deleted ? 'positive' : 'red-5'"
+            :color="!data.userById?.deleted ? 'positive' : 'red-5'"
             class="badge-response"
           >
             {{
-              !userInfo?.deleted
+              !data.userById?.deleted
                 ? constants.ACTIVE_USER_STATUS
                 : constants.DELETED_USER_STATUS
             }}
           </q-badge>
         </p>
         <p class="user-info">
-          <span>{{ $t("userRole") }}: </span>{{ userInfo?.userRole.roleName }}
+          <span>{{ $t("userRole") }}: </span
+          >{{ data.userById?.userRole.roleName }}
         </p>
         <p class="user-info">
-          <span>{{ $t("country") }}: </span>{{ userInfo?.country }}
+          <span>{{ $t("country") }}: </span>{{ data.userById?.country }}
         </p>
       </div>
     </div>
@@ -86,7 +87,7 @@
       dense
       @click="openConfirmPopup"
     />
-    <PopupUserInfo v-model:popupStatus="showPopup" />
+    <PopupUserInfo :userData="data.userById" v-model:popupStatus="showPopup" />
   </div>
 </template>
 
@@ -102,7 +103,6 @@ const { data, getData } = useGetData();
 const showPopup = ref(false);
 const route = useRoute();
 const PATH_GET_USER_INFO = `/v1/users/${route.params.id}`;
-const userInfo = ref(null);
 
 function openConfirmPopup() {
   showPopup.value = true;
@@ -110,9 +110,6 @@ function openConfirmPopup() {
 
 onMounted(async () => {
   await getData(PATH_GET_USER_INFO, "userById");
-  if (data.userById) {
-    userInfo.value = data.userById;
-  }
 });
 </script>
 
