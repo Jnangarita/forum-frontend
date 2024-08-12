@@ -58,6 +58,7 @@ export default {
   save: 'Guardar',
   cancel: 'Cancelar',
   city: 'Ciudad',
+  infoHasBeenUpdated: 'La información se ha actualizado correctamente',
 
   // ADVERTENCIA
   warning: 'Advertencia',
@@ -73,4 +74,5 @@ export default {
   errorGettingData: 'Error al obtener los datos:',
   errorGettingToken: 'Error al obtener el token',
   errorCreatingUser: 'Error al crear el usuario',
+  errorUpdatingUserInfo: 'Error al actualizar la información del usuario'
 }

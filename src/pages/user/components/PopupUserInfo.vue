@@ -85,6 +85,7 @@
             class="margin-right-7 action-btn"
             color="primary"
             dense
+            @click="updateUserInfo(userData)"
           />
           <q-btn
             :label="$t('cancel')"
@@ -102,7 +103,12 @@
 </template>
 
 <script setup>
+import { HttpStatusCode } from "axios";
 import { ref, watch } from "vue";
+import { showNotify } from "src/utils/functions";
+import { useQuasar } from "quasar";
+import { userApi } from "../api/user";
+import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   popupStatus: Boolean,
@@ -112,6 +118,9 @@ const props = defineProps({
     default: () => [],
   },
 });
+
+const { t } = useI18n();
+const $q = useQuasar();
 const emit = defineEmits(["update:popupStatus"]);
 const showPopup = ref(props.popupStatus);
 
@@ -129,6 +138,23 @@ const country = ref([
     value: "Chile",
   },
 ]);
+
+const updateUserInfo = async (userInfo) => {
+  try {
+    const response = await userApi.updateUser(userInfo.id, userInfo);
+    if (response.status === HttpStatusCode.Ok) {
+      showNotify({
+        hook: $q,
+        msg: t("infoHasBeenUpdated"),
+        backgroundColor: "green-2",
+        language: (key) => t(key),
+      });
+      showPopup.value = false;
+    }
+  } catch (error) {
+    console.error(t("errorUpdatingUserInfo"), error);
+  }
+};
 
 watch(
   () => props.popupStatus,

@@ -8,5 +8,11 @@ const userApi = {
    * @returns
    */
   createUser: (data) => forum.post(`${PATH}`, data),
+
+  /**
+   * This api updates the user
+   * @returns
+   */
+  updateUser: (userId, data) => forum.put(`${PATH}/${userId}`, data),
 }
 export { userApi };

@@ -104,9 +104,9 @@ const showPopup = ref(false);
 const route = useRoute();
 const PATH_GET_USER_INFO = `/v1/users/${route.params.id}`;
 
-function openConfirmPopup() {
+const openConfirmPopup = () => {
   showPopup.value = true;
-}
+};
 
 onMounted(async () => {
   await getData(PATH_GET_USER_INFO, "userById");
