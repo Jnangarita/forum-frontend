@@ -68,6 +68,9 @@ export default {
   pleaseEnterLastName: 'Por favor ingrese el apellido',
   pleaseEnterRepeatPassword: 'Por favor ingrese nuevamente la contraseña',
   passwordsDoNotMatch: 'Las contraseñas no coinciden',
+  pleaseEnterUserName: 'Por favor ingrese el nombre de usuario',
+  pleaseEnterCountry: 'Por favor seleccione un país',
+  pleaseEnterCity: 'Por favor seleccione una ciudad',
 
   // ERRORES
   error: 'Error',

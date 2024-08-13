@@ -8,95 +8,103 @@
         <q-btn dense flat icon="close" round v-close-popup />
       </q-toolbar>
       <q-card-section class="justify-center" style="padding: 0rem 3.5rem">
-        <div class="justify-between input-txt display-flex">
+        <q-form @submit="onSubmit">
+          <div class="justify-between input-txt display-flex">
+            <q-input
+              :label="$t('firstName')"
+              :rules="[validateQInput($t('pleaseEnterName'))]"
+              class="txt"
+              dense
+              outlined
+              type="text"
+              v-model="userData.firstName"
+            />
+            <q-input
+              :label="$t('lastName')"
+              :rules="[validateQInput($t('pleaseEnterLastName'))]"
+              class="txt"
+              dense
+              outlined
+              type="text"
+              v-model="userData.lastName"
+            />
+          </div>
           <q-input
-            :label="$t('firstName')"
-            class="txt"
+            :label="$t('userName')"
+            :rules="[validateQInput($t('pleaseEnterUserName'))]"
+            class="input-txt"
             dense
             outlined
             type="text"
-            v-model="userData.firstName"
+            v-model="userData.userName"
           />
-          <q-input
-            :label="$t('lastName')"
-            class="txt"
-            dense
-            outlined
-            type="text"
-            v-model="userData.lastName"
-          />
-        </div>
-        <q-input
-          :label="$t('userName')"
-          class="input-txt"
-          dense
-          outlined
-          type="text"
-          v-model="userData.userName"
-        />
-        <div class="justify-between display-flex">
-          <q-input
-            :label="$t('email')"
-            class="input-txt txt"
-            dense
-            outlined
-            type="text"
-            v-model="userData.email"
-          />
-          <q-input
-            :label="$t('userRole')"
-            class="txt"
-            dense
-            disable
-            outlined
-            type="text"
-            v-model="userData.userRole.roleName"
-          />
-        </div>
-        <div class="justify-between input-txt display-flex">
-          <q-select
-            :label="$t('country')"
-            :options="country"
-            class="txt"
-            dense
-            option-label="value"
-            option-value="id"
-            outlined
-            type="text"
-            v-model="userData.country"
-          />
-          <q-select
-            :label="$t('city')"
-            :options="country"
-            class="txt"
-            dense
-            option-label="value"
-            option-value="id"
-            outlined
-            type="text"
-            v-model="userData.city"
-          />
-        </div>
-        <div class="justify-center display-flex" style="margin: 2rem">
-          <q-btn
-            :label="$t('save')"
-            :no-caps="true"
-            :unelevated="true"
-            class="margin-right-7 action-btn"
-            color="primary"
-            dense
-            @click="updateUserInfo(userData)"
-          />
-          <q-btn
-            :label="$t('cancel')"
-            :no-caps="true"
-            :unelevated="true"
-            class="action-btn"
-            color="secondary"
-            dense
-            @click="showPopup = false"
-          />
-        </div>
+          <div class="justify-between display-flex">
+            <q-input
+              :label="$t('email')"
+              :rules="[validateQInput($t('pleaseEnterEmail'))]"
+              class="input-txt txt"
+              dense
+              outlined
+              type="text"
+              v-model="userData.email"
+            />
+            <q-input
+              :label="$t('userRole')"
+              class="txt"
+              dense
+              disable
+              outlined
+              type="text"
+              v-model="userData.userRole.roleName"
+            />
+          </div>
+          <div class="justify-between input-txt display-flex">
+            <q-select
+              :label="$t('country')"
+              :options="country"
+              :rules="[validateQInput($t('pleaseEnterCountry'))]"
+              class="txt"
+              dense
+              option-label="value"
+              option-value="id"
+              outlined
+              type="text"
+              v-model="userData.country"
+            />
+            <q-select
+              :label="$t('city')"
+              :options="country"
+              :rules="[validateQInput($t('pleaseEnterCity'))]"
+              class="txt"
+              dense
+              option-label="value"
+              option-value="id"
+              outlined
+              type="text"
+              v-model="userData.city"
+            />
+          </div>
+          <div class="justify-center display-flex" style="margin: 2rem">
+            <q-btn
+              :label="$t('save')"
+              :no-caps="true"
+              :unelevated="true"
+              class="margin-right-7 action-btn"
+              color="primary"
+              dense
+              type="submit"
+            />
+            <q-btn
+              :label="$t('cancel')"
+              :no-caps="true"
+              :unelevated="true"
+              class="action-btn"
+              color="secondary"
+              dense
+              @click="showPopup = false"
+            />
+          </div>
+        </q-form>
       </q-card-section>
     </q-card>
   </q-dialog>
@@ -105,10 +113,10 @@
 <script setup>
 import { HttpStatusCode } from "axios";
 import { ref, watch } from "vue";
-import { showNotify } from "src/utils/functions";
+import { showNotify, validateQInput } from "src/utils/functions";
+import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
 import { userApi } from "../api/user";
-import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   popupStatus: Boolean,
@@ -138,6 +146,11 @@ const country = ref([
     value: "Chile",
   },
 ]);
+
+const onSubmit = (event) => {
+  event.preventDefault();
+  updateUserInfo(props.userData);
+};
 
 const updateUserInfo = async (userInfo) => {
   try {
@@ -179,7 +192,7 @@ watch(showPopup, (newValue) => {
 }
 
 .input-txt {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .txt {
