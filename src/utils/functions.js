@@ -104,6 +104,16 @@ export const validateQInput = (msg) => {
 }
 
 /**
+ * Validates that a selected value exists and is non-empty.
+ *
+ * @param {string} msg - The error message to be returned if the validation fails.
+ * @returns {function} Function that validates the select value
+ */
+export const validateQselect = (msg) => {
+  return (val) => (val && val.value.length > 0) || msg;
+}
+
+/**
  * Delete information from localStorage
  */
 export const deleteInfoLocalStorage = () => {

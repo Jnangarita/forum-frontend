@@ -62,9 +62,10 @@
             <q-select
               :label="$t('country')"
               :options="country"
-              :rules="[validateQInput($t('pleaseEnterCountry'))]"
+              :rules="[validateQselect($t('pleaseEnterCountry'))]"
               class="txt"
               dense
+              lazy-rules
               option-label="value"
               option-value="id"
               outlined
@@ -74,9 +75,10 @@
             <q-select
               :label="$t('city')"
               :options="country"
-              :rules="[validateQInput($t('pleaseEnterCity'))]"
+              :rules="[validateQselect($t('pleaseEnterCity'))]"
               class="txt"
               dense
+              lazy-rules
               option-label="value"
               option-value="id"
               outlined
@@ -99,8 +101,9 @@
               :no-caps="true"
               :unelevated="true"
               class="action-btn"
-              color="secondary"
-              dense
+              color="negative"
+              flat
+              outline 
               @click="showPopup = false"
             />
           </div>
@@ -113,7 +116,11 @@
 <script setup>
 import { HttpStatusCode } from "axios";
 import { ref, watch } from "vue";
-import { showNotify, validateQInput } from "src/utils/functions";
+import {
+  showNotify,
+  validateQInput,
+  validateQselect,
+} from "src/utils/functions";
 import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
 import { userApi } from "../api/user";

@@ -70,11 +70,11 @@
           </q-badge>
         </p>
         <p class="user-info">
-          <span>{{ $t("userRole") }}: </span
-          >{{ data.userById?.userRole.roleName }}
+          <span>{{ $t("userRole") }}: </span>
+          {{ data.userById?.userRole.roleName }}
         </p>
         <p class="user-info">
-          <span>{{ $t("country") }}: </span>{{ data.userById?.country }}
+          <span>{{ $t("country") }}: </span>{{ data.userById?.country.value }}
         </p>
       </div>
     </div>
