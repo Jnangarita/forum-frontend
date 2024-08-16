@@ -61,7 +61,7 @@
           <div class="justify-between input-txt display-flex">
             <q-select
               :label="$t('country')"
-              :options="country"
+              :options="data.countries"
               :rules="[validateQselect($t('pleaseEnterCountry'))]"
               class="txt"
               dense
@@ -101,9 +101,9 @@
               :no-caps="true"
               :unelevated="true"
               class="action-btn"
-              color="negative"
+              color="red-5"
               flat
-              outline 
+              outline
               @click="showPopup = false"
             />
           </div>
@@ -115,12 +115,13 @@
 
 <script setup>
 import { HttpStatusCode } from "axios";
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import {
   showNotify,
   validateQInput,
   validateQselect,
 } from "src/utils/functions";
+import { useGetData } from "src/composables/useGetData";
 import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
 import { userApi } from "../api/user";
@@ -134,25 +135,12 @@ const props = defineProps({
   },
 });
 
+const { data, getData } = useGetData();
 const { t } = useI18n();
 const $q = useQuasar();
 const emit = defineEmits(["update:popupStatus"]);
 const showPopup = ref(props.popupStatus);
-
-const country = ref([
-  {
-    id: 1,
-    value: "Colombia",
-  },
-  {
-    id: 2,
-    value: "España",
-  },
-  {
-    id: 3,
-    value: "Chile",
-  },
-]);
+const PATH_GET_COUNTRIES = `/v1/locations/countries`;
 
 const onSubmit = (event) => {
   event.preventDefault();
@@ -185,6 +173,10 @@ watch(
 
 watch(showPopup, (newValue) => {
   emit("update:popupStatus", newValue);
+});
+
+onMounted(async () => {
+  await getData(PATH_GET_COUNTRIES, "countries");
 });
 </script>
 
