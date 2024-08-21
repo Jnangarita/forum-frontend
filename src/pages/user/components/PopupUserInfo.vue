@@ -74,7 +74,7 @@
             />
             <q-select
               :label="$t('city')"
-              :options="country"
+              :options="data.cities"
               :rules="[validateQselect($t('pleaseEnterCity'))]"
               class="txt"
               dense
@@ -163,6 +163,18 @@ const updateUserInfo = async (userInfo) => {
     console.error(t("errorUpdatingUserInfo"), error);
   }
 };
+
+watch(
+  () => props.userData.country,
+  async (newCountry, lastCountry) => {
+    console.log(newCountry, " y ", lastCountry);
+    const PATH_GET_CITIES = `/v1/locations/${newCountry?.id ?? 0}/cities`;
+    await getData(PATH_GET_CITIES, "cities");
+    if (lastCountry) {
+      props.userData.city = "";
+    }
+  }
+);
 
 watch(
   () => props.popupStatus,
