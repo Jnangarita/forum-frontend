@@ -82,10 +82,20 @@
       :label="$t('edit')"
       :no-caps="true"
       :unelevated="true"
-      class="edit-btn"
+      class="margin-right-7 btn"
       color="primary"
       dense
       @click="openConfirmPopup"
+    />
+    <q-btn
+      :label="$t('cancel')"
+      :no-caps="true"
+      :unelevated="true"
+      class="btn"
+      color="red-5"
+      flat
+      outline
+      @click="goToPreviousScreen(router)"
     />
     <PopupUserInfo :userData="data.userById" v-model:popupStatus="showPopup" />
   </div>
@@ -93,15 +103,16 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
-import { onImageError } from "src/utils/functions";
+import { goToPreviousScreen, onImageError } from "src/utils/functions";
 import { onMounted, ref } from "vue";
 import { useGetData } from "src/composables/useGetData";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import PopupUserInfo from "./PopupUserInfo.vue";
 
 const { data, getData } = useGetData();
 const showPopup = ref(false);
 const route = useRoute();
+const router = useRouter();
 const PATH_GET_USER_INFO = `/v1/users/${route.params.id}`;
 
 const openConfirmPopup = () => {
@@ -156,7 +167,8 @@ onMounted(async () => {
   font-weight: bold;
 }
 
-.edit-btn {
+.btn {
+  font-weight: bold;
   margin-top: 0.5rem;
   padding: 0.4rem 1rem;
 }

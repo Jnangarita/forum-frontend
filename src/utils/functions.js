@@ -5,11 +5,11 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 /**
- * Displays a notification using the $q object from the Quasar Framework.
+ * Displays a notification using the `$q` object from the Quasar Framework.
  *
  * @param {Object} hook - The $q object from the Quasar Framework used to display notifications.
  * @param {string} msg - Message to be displayed in the notification.
- * @param {string} [backgroundColor='yellow-2'] - Background color of the notification. Possible values: 'green-2', 'red-2', etc.
+ * @param {string} [backgroundColor='yellow-2'] - Background color of the notification. Possible values: `green-2`, `red-2`, etc.
  * @param {Function} language - Function to get the text of messages in the desired language.
  */
 export const showNotify = ({ hook, msg, backgroundColor = 'yellow-2', language }) => {
@@ -64,7 +64,7 @@ export const formatUrl = (title) => {
 };
 
 /**
- * Generates a route object to navigate to another screen in a Vue.js application.
+ * Generates a route object to navigate to another screen in a `Vue.js` application.
  *
  * @param {string} screenName - Name of the screen to navigate to.
  * @param {string} param - Parameter to include in the route.
@@ -123,12 +123,21 @@ export const deleteInfoLocalStorage = () => {
 };
 
 /**
- * Converts a full date into a string formatted as 'YYYY-MM-DD'.
+ * Converts a full date into a string formatted as `YYYY-MM-DD`.
  *
  * @param {string | number | Date} fullDate - The date to be formatted.
- * @returns {string} - The formatted date in the 'YYYY-MM-DD' style.
+ * @returns {string} - The formatted date in the `YYYY-MM-DD` style.
  */
 export const formatDate = (fullDate) => {
   const date = new Date(fullDate);
   return date.toLocaleDateString('en-CA');
 };
+
+/**
+ * Navigates to the previous screen in the navigation history.
+ *
+ * @param {Object} router - The instance of `vue-router`. This should be obtained using `useRouter()` within a `Vue.js` component.
+ */
+export const goToPreviousScreen = (router) => {
+  router.back();
+}
