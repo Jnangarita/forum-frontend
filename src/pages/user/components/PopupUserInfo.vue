@@ -73,7 +73,7 @@
               v-model="userData.country"
             />
             <q-select
-              :disable="enableSelectCity"
+              :disable="!userData.country.value?.length > 0"
               :label="$t('city')"
               :options="data.cities"
               :rules="[validateQselect($t('pleaseEnterCity'))]"
@@ -173,7 +173,6 @@ watch(
     await getData(PATH_GET_CITIES, "cities");
     if (lastCountry) {
       props.userData.city = "";
-      enableSelectCity.value = false;
     }
   }
 );
