@@ -73,6 +73,7 @@
               v-model="userData.country"
             />
             <q-select
+              :disable="enableSelectCity"
               :label="$t('city')"
               :options="data.cities"
               :rules="[validateQselect($t('pleaseEnterCity'))]"
@@ -141,6 +142,7 @@ const $q = useQuasar();
 const emit = defineEmits(["update:popupStatus"]);
 const showPopup = ref(props.popupStatus);
 const PATH_GET_COUNTRIES = `/v1/locations/countries`;
+const enableSelectCity = ref(true);
 
 const onSubmit = (event) => {
   event.preventDefault();
@@ -171,6 +173,7 @@ watch(
     await getData(PATH_GET_CITIES, "cities");
     if (lastCountry) {
       props.userData.city = "";
+      enableSelectCity.value = false;
     }
   }
 );

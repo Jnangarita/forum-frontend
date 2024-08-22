@@ -110,7 +110,7 @@ export const validateQInput = (msg) => {
  * @returns {function} Function that validates the select value
  */
 export const validateQselect = (msg) => {
-  return (val) => (val && val.value.length > 0) || msg;
+  return (val) => (val && val.value?.length > 0) || msg;
 }
 
 /**
