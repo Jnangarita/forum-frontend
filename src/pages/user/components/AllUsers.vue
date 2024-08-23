@@ -43,7 +43,9 @@
               <router-link
                 v-for="(category, index) in user.category"
                 :key="category"
-                :to="goToAnotherScreen('CategoryPage', category)"
+                :to="
+                  util.navigation.goToAnotherScreen('CategoryPage', category)
+                "
                 class="no-underline"
               >
                 <span>{{ category.value }}</span>
@@ -59,7 +61,7 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import { useGetData } from "src/composables/useGetData";
-import { util, goToAnotherScreen, onImageError } from "src/utils/functions";
+import { util, onImageError } from "src/utils/functions";
 
 const { data, getData } = useGetData();
 const API_GET_USERS_LIST = "/v1/users";

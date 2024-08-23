@@ -107,19 +107,30 @@ const util = {
       const date = new Date(fullDate);
       return date.toLocaleDateString('en-CA');
     }
+  },
+
+  navigation: {
+    /**
+     * Generates a route object to navigate to another screen in a `Vue.js` application.
+     *
+     * @param {string} screenName - Name of the screen to navigate to.
+     * @param {string} param - Parameter to include in the route.
+     * @returns {Object} - Route object with screen name and parameters.
+     */
+    goToAnotherScreen: (screenName, param) => {
+      return { name: screenName, params: { title: util.formatting.formatUrl(param) } };
+    },
+
+    /**
+     * Navigates to the previous screen in the navigation history.
+     *
+     * @param {Object} router - The instance of `vue-router`. This should be obtained using `useRouter()` within a `Vue.js` component.
+     */
+    goToPreviousScreen: (router) => {
+      router.back();
+    }
   }
 }
-
-/**
- * Generates a route object to navigate to another screen in a `Vue.js` application.
- *
- * @param {string} screenName - Name of the screen to navigate to.
- * @param {string} param - Parameter to include in the route.
- * @returns {Object} - Route object with screen name and parameters.
- */
-export const goToAnotherScreen = (screenName, param) => {
-  return { name: screenName, params: { title: util.formatting.formatUrl(param) } };
-};
 
 /**
  * Handles image load error and sets a default profile image.
@@ -138,14 +149,5 @@ export const deleteInfoLocalStorage = () => {
   localStorage.removeItem('userId');
   localStorage.removeItem('userInfo');
 };
-
-/**
- * Navigates to the previous screen in the navigation history.
- *
- * @param {Object} router - The instance of `vue-router`. This should be obtained using `useRouter()` within a `Vue.js` component.
- */
-export const goToPreviousScreen = (router) => {
-  router.back();
-}
 
 export { util }

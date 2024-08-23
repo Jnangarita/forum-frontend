@@ -78,7 +78,9 @@
           <router-link
             v-for="category in data.question?.categories"
             :key="category.id"
-            :to="goToAnotherScreen('CategoryPage', category.name)"
+            :to="
+              util.navigation.goToAnotherScreen('CategoryPage', category.name)
+            "
           >
             <q-btn
               :label="category.name"
@@ -141,7 +143,7 @@
 <script setup>
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
-import { util, goToAnotherScreen, onImageError } from "src/utils/functions";
+import { util, onImageError } from "src/utils/functions";
 
 const { data, getData } = useGetData();
 const API_GET_QUESTION = "/home/questionOne.json";

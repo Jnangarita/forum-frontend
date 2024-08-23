@@ -95,7 +95,7 @@
       color="red-5"
       flat
       outline
-      @click="goToPreviousScreen(router)"
+      @click="util.navigation.goToPreviousScreen(router)"
     />
     <PopupUserInfo :userData="data.userById" v-model:popupStatus="showPopup" />
   </div>
@@ -103,10 +103,10 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
-import { goToPreviousScreen, onImageError } from "src/utils/functions";
 import { onMounted, ref } from "vue";
 import { useGetData } from "src/composables/useGetData";
 import { useRoute, useRouter } from "vue-router";
+import { util, onImageError } from "src/utils/functions";
 import PopupUserInfo from "./PopupUserInfo.vue";
 
 const { data, getData } = useGetData();

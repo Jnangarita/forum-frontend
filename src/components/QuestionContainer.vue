@@ -48,7 +48,9 @@
           <router-link
             v-for="category in question.categories"
             :key="category.id"
-            :to="goToAnotherScreen('CategoryPage', category.value)"
+            :to="
+              util.navigation.goToAnotherScreen('CategoryPage', category.value)
+            "
           >
             <q-btn
               :label="category.value"
@@ -96,7 +98,7 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
-import { util, goToAnotherScreen, onImageError } from "src/utils/functions";
+import { util, onImageError } from "src/utils/functions";
 
 const props = defineProps({
   arrQuestions: {

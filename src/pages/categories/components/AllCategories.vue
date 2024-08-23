@@ -27,7 +27,12 @@
         >
           <div class="category-container">
             <router-link
-              :to="goToAnotherScreen('CategoryPage', category.categoryName)"
+              :to="
+                util.navigation.goToAnotherScreen(
+                  'CategoryPage',
+                  category.categoryName
+                )
+              "
             >
               <q-btn
                 :label="category.categoryName"
@@ -58,8 +63,8 @@
 </template>
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { goToAnotherScreen, util } from "src/utils/functions";
 import { useGetData } from "src/composables/useGetData";
+import { util } from "src/utils/functions";
 
 const { data, getData } = useGetData();
 const API_GET_CATEGORIES_LIST = "/v1/categories";
