@@ -68,7 +68,7 @@
             <img
               :alt="$t('userImg')"
               :src="question.photo"
-              @error="onImageError($event)"
+              @error="util.imageHandling.onImageError($event)"
             />
           </q-avatar>
           <div>
@@ -98,7 +98,7 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
-import { util, onImageError } from "src/utils/functions";
+import { util } from "src/utils/functions";
 
 const props = defineProps({
   arrQuestions: {

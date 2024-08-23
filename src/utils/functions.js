@@ -129,17 +129,19 @@ const util = {
     goToPreviousScreen: (router) => {
       router.back();
     }
+  },
+
+  imageHandling: {
+    /**
+     * Handles image load error and sets a default profile image.
+     *
+     * @param {Event} event - Image load error event.
+     */
+    onImageError: (event) => {
+      event.target.src = constants.BLANK_IMG;
+    }
   }
 }
-
-/**
- * Handles image load error and sets a default profile image.
- *
- * @param {Event} event - Image load error event.
- */
-export const onImageError = (event) => {
-  event.target.src = constants.BLANK_IMG;
-};
 
 /**
  * Delete information from localStorage

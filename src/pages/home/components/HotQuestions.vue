@@ -11,7 +11,7 @@
           <img
             :alt="$t('userImg')"
             :src="question.photo"
-            @error="onImageError($event)"
+            @error="util.imageHandling.onImageError($event)"
           />
           <q-tooltip>{{ question.userName }}</q-tooltip>
         </q-avatar>
@@ -21,9 +21,9 @@
   </div>
 </template>
 <script setup>
-import { onImageError } from "src/utils/functions";
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
+import { util } from "src/utils/functions";
 
 const { data, getData } = useGetData();
 const API_GET_POPULAR_QUESTIONS = "/v1/topics/popular";

@@ -17,7 +17,7 @@
               <img
                 :alt="$t('userImg')"
                 :src="data.userById?.photo"
-                @error="onImageError($event)"
+                @error="util.imageHandling.onImageError($event)"
               />
             </q-avatar>
             <q-menu>
@@ -28,7 +28,7 @@
                       <img
                         :alt="$t('userImg')"
                         :src="data.userById?.photo"
-                        @error="onImageError($event)"
+                        @error="util.imageHandling.onImageError($event)"
                       />
                     </q-avatar>
                   </q-item-section>
@@ -123,7 +123,7 @@ import { useAuthStore } from "src/stores/authStore";
 import { useGetData } from "src/composables/useGetData";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
-import { util, onImageError } from "src/utils/functions";
+import { util } from "src/utils/functions";
 import EssentialLink from "components/EssentialLink.vue";
 
 const { data, getData } = useGetData();

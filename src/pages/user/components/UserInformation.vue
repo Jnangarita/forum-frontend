@@ -4,7 +4,7 @@
       <img
         :alt="$t('userImg')"
         :src="data.userById?.photo"
-        @error="onImageError($event)"
+        @error="util.imageHandling.onImageError($event)"
       />
     </q-avatar>
     <div>
@@ -106,7 +106,7 @@ import { constants } from "src/utils/constants";
 import { onMounted, ref } from "vue";
 import { useGetData } from "src/composables/useGetData";
 import { useRoute, useRouter } from "vue-router";
-import { util, onImageError } from "src/utils/functions";
+import { util } from "src/utils/functions";
 import PopupUserInfo from "./PopupUserInfo.vue";
 
 const { data, getData } = useGetData();

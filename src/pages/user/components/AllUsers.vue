@@ -20,7 +20,7 @@
               <img
                 :alt="$t('userImg')"
                 :src="user.photo"
-                @error="onImageError($event)"
+                @error="util.imageHandling.onImageError($event)"
               />
             </q-avatar>
             <div class="user-data">
@@ -61,7 +61,7 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import { useGetData } from "src/composables/useGetData";
-import { util, onImageError } from "src/utils/functions";
+import { util } from "src/utils/functions";
 
 const { data, getData } = useGetData();
 const API_GET_USERS_LIST = "/v1/users";
