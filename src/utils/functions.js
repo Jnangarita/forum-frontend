@@ -64,28 +64,51 @@ const util = {
     validateQselect: (msg) => {
       return (val) => (val && val.value?.length > 0) || msg;
     }
+  },
+
+  formatting: {
+    /**
+     * Formats a number with thousands separators.
+     *
+     * @param {number} number - Number to format.
+     * @returns {string} - Formatted number as a string with thousands separators.
+     */
+    formatNumber: (number) => {
+      return number.toLocaleString("en-US");
+    },
+
+    /**
+     * Converts a title into a URL-friendly.
+     *
+     * @param {string} title - Title to convert.
+     * @returns {string} - URL-friendly string in lowercase with hyphens instead of spaces.
+     */
+    formatUrl: (title) => {
+      return decodeURIComponent(encodeURIComponent(title).replace(/%20/g, "-")).toLowerCase();
+    },
+
+    /**
+     * Calculates the time elapsed from a given date to the current moment.
+     *
+     * @param {string|Date} date - Date from which to calculate the elapsed time.
+     * @returns {string} - Elapsed time in a relative format (e.g., "5 minutes ago").
+     */
+    timeElapsed: (date) => {
+      return dayjs(date).fromNow();
+    },
+
+    /**
+     * Converts a full date into a string formatted as `YYYY-MM-DD`.
+     *
+     * @param {string | number | Date} fullDate - The date to be formatted.
+     * @returns {string} - The formatted date in the `YYYY-MM-DD` style.
+     */
+    formatDate: (fullDate) => {
+      const date = new Date(fullDate);
+      return date.toLocaleDateString('en-CA');
+    }
   }
 }
-
-/**
- * Formats a number with thousands separators.
- *
- * @param {number} number - Number to format.
- * @returns {string} - Formatted number as a string with thousands separators.
- */
-export const formatNumber = (number) => {
-  return number.toLocaleString("en-US");
-}
-
-/**
- * Converts a title into a URL-friendly.
- *
- * @param {string} title - Title to convert.
- * @returns {string} - URL-friendly string in lowercase with hyphens instead of spaces.
- */
-export const formatUrl = (title) => {
-  return decodeURIComponent(encodeURIComponent(title).replace(/%20/g, "-")).toLowerCase();
-};
 
 /**
  * Generates a route object to navigate to another screen in a `Vue.js` application.
@@ -95,7 +118,7 @@ export const formatUrl = (title) => {
  * @returns {Object} - Route object with screen name and parameters.
  */
 export const goToAnotherScreen = (screenName, param) => {
-  return { name: screenName, params: { title: formatUrl(param) } };
+  return { name: screenName, params: { title: util.formatting.formatUrl(param) } };
 };
 
 /**
@@ -108,33 +131,12 @@ export const onImageError = (event) => {
 };
 
 /**
- * Calculates the time elapsed from a given date to the current moment.
- *
- * @param {string|Date} date - Date from which to calculate the elapsed time.
- * @returns {string} - Elapsed time in a relative format (e.g., "5 minutes ago").
- */
-export const timeElapsed = (date) => {
-  return dayjs(date).fromNow();
-};
-
-/**
  * Delete information from localStorage
  */
 export const deleteInfoLocalStorage = () => {
   localStorage.removeItem('authToken');
   localStorage.removeItem('userId');
   localStorage.removeItem('userInfo');
-};
-
-/**
- * Converts a full date into a string formatted as `YYYY-MM-DD`.
- *
- * @param {string | number | Date} fullDate - The date to be formatted.
- * @returns {string} - The formatted date in the `YYYY-MM-DD` style.
- */
-export const formatDate = (fullDate) => {
-  const date = new Date(fullDate);
-  return date.toLocaleDateString('en-CA');
 };
 
 /**

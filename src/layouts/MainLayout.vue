@@ -49,7 +49,9 @@
                         name: 'UserView',
                         params: {
                           id: userId,
-                          userName: formatUrl(data.userById.userName),
+                          userName: util.formatting.formatUrl(
+                            data.userById.userName
+                          ),
                         },
                       }"
                       class="no-underline link-color"
@@ -115,13 +117,13 @@
 </template>
 
 <script setup>
-import { formatUrl, onImageError } from "src/utils/functions";
 import { LocalStorage } from "quasar";
 import { onMounted, ref } from "vue";
 import { useAuthStore } from "src/stores/authStore";
 import { useGetData } from "src/composables/useGetData";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
+import { util, onImageError } from "src/utils/functions";
 import EssentialLink from "components/EssentialLink.vue";
 
 const { data, getData } = useGetData();

@@ -16,13 +16,13 @@
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("created")}` }}</span>
           <span class="margin-left-3">
-            {{ timeElapsed(data.question?.created) }}
+            {{ util.formatting.timeElapsed(data.question?.created) }}
           </span>
         </div>
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("modified")}` }}</span>
           <span class="margin-left-3">
-            {{ timeElapsed(data.question?.modified) }}
+            {{ util.formatting.timeElapsed(data.question?.modified) }}
           </span>
         </div>
         <div class="margin-left-5">
@@ -97,7 +97,9 @@
               <p>{{ $t("follow") }}</p>
             </div>
             <div class="user-container">
-              <p class="user-text">{{ timeElapsed(data.question?.created) }}</p>
+              <p class="user-text">
+                {{ util.formatting.timeElapsed(data.question?.created) }}
+              </p>
               <div class="display-flex">
                 <q-avatar rounded size="50px">
                   <img
@@ -112,7 +114,9 @@
                       name: 'UserView',
                       params: {
                         id: data.question?.id,
-                        userName: formatUrl(data.question?.userName),
+                        userName: util.formatting.formatUrl(
+                          data.question?.userName
+                        ),
                       },
                     }"
                     class="no-underline"
@@ -135,14 +139,9 @@
 </template>
 
 <script setup>
-import {
-  formatUrl,
-  goToAnotherScreen,
-  onImageError,
-  timeElapsed,
-} from "src/utils/functions";
 import { onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
+import { util, goToAnotherScreen, onImageError } from "src/utils/functions";
 
 const { data, getData } = useGetData();
 const API_GET_QUESTION = "/home/questionOne.json";

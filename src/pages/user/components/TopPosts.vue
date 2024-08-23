@@ -38,7 +38,9 @@
             </span>
           </q-td>
           <q-td key="creationDate" :props="props">
-            <span>{{ formatDate(props.row.creationDate) }}</span>
+            <span>
+              {{ util.formatting.formatDate(props.row.creationDate) }}
+            </span>
           </q-td>
         </q-tr>
       </template>
@@ -48,11 +50,11 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
-import { formatDate } from "src/utils/functions";
 import { onMounted, ref } from "vue";
 import { useGetData } from "src/composables/useGetData";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
+import { util } from "src/utils/functions";
 
 const { data, getData } = useGetData();
 const { t } = useI18n();

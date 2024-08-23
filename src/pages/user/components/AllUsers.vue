@@ -27,7 +27,10 @@
               <router-link
                 :to="{
                   name: 'UserView',
-                  params: { id: user.id, userName: formatUrl(user.userName) },
+                  params: {
+                    id: user.id,
+                    userName: util.formatting.formatUrl(user.userName),
+                  },
                 }"
                 class="no-underline"
               >
@@ -35,7 +38,7 @@
               </router-link>
               <p class="opacity-info">{{ user.city }}</p>
               <p class="opacity-info font-weight-bold">
-                {{ formatNumber(user.reputation) }}
+                {{ util.formatting.formatNumber(user.reputation) }}
               </p>
               <router-link
                 v-for="(category, index) in user.category"
@@ -55,13 +58,8 @@
 </template>
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import {
-  formatNumber,
-  formatUrl,
-  goToAnotherScreen,
-  onImageError,
-} from "src/utils/functions";
 import { useGetData } from "src/composables/useGetData";
+import { util, goToAnotherScreen, onImageError } from "src/utils/functions";
 
 const { data, getData } = useGetData();
 const API_GET_USERS_LIST = "/v1/users";

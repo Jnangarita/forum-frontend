@@ -37,7 +37,7 @@
             name: 'QuestionContainer',
             params: {
               id: question.questionId,
-              title: formatUrl(question.questionTitle),
+              title: util.formatting.formatUrl(question.questionTitle),
             },
           }"
           class="question-link"
@@ -75,7 +75,7 @@
                 name: 'UserView',
                 params: {
                   id: question.userId,
-                  userName: formatUrl(question.user),
+                  userName: util.formatting.formatUrl(question.user),
                 },
               }"
               class="no-underline"
@@ -84,7 +84,9 @@
                 {{ question.user }}
               </span>
             </router-link>
-            <span class="margin-left-3">{{ timeElapsed(question.time) }}</span>
+            <span class="margin-left-3">
+              {{ util.formatting.timeElapsed(question.time) }}
+            </span>
           </div>
         </div>
       </div>
@@ -94,12 +96,7 @@
 
 <script setup>
 import { constants } from "src/utils/constants";
-import {
-  formatUrl,
-  goToAnotherScreen,
-  onImageError,
-  timeElapsed,
-} from "src/utils/functions";
+import { util, goToAnotherScreen, onImageError } from "src/utils/functions";
 
 const props = defineProps({
   arrQuestions: {

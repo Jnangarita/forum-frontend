@@ -47,7 +47,7 @@
                 }}
               </span>
               <span class="category-footer">
-                {{ timeElapsed(category.time) }}
+                {{ util.formatting.timeElapsed(category.time) }}
               </span>
             </div>
           </div>
@@ -58,7 +58,7 @@
 </template>
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { goToAnotherScreen, timeElapsed } from "src/utils/functions";
+import { goToAnotherScreen, util } from "src/utils/functions";
 import { useGetData } from "src/composables/useGetData";
 
 const { data, getData } = useGetData();
