@@ -140,16 +140,18 @@ const util = {
     onImageError: (event) => {
       event.target.src = constants.BLANK_IMG;
     }
+  },
+
+  storage: {
+    /**
+     * Delete information from localStorage
+     */
+    deleteInfoLocalStorage: () => {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userInfo');
+    }
   }
 }
-
-/**
- * Delete information from localStorage
- */
-export const deleteInfoLocalStorage = () => {
-  localStorage.removeItem('authToken');
-  localStorage.removeItem('userId');
-  localStorage.removeItem('userInfo');
-};
 
 export { util }

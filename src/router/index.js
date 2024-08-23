@@ -1,7 +1,7 @@
-import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
-import { deleteInfoLocalStorage } from 'src/utils/functions';
+import { createMemoryHistory, createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { jwtDecode } from "jwt-decode";
 import { route } from 'quasar/wrappers'
+import { util } from 'src/utils/functions';
 import routes from './routes'
 
 /*
@@ -34,7 +34,7 @@ export default route(function (/* { store, ssrContext } */) {
     if (to.matched.some(record => record.meta.requiresAuth)) {
       if (!jwtToken || isTokenExpired(jwtToken)) {
         alert('Tu sesión ha expirado. Por favor, inicia sesión nuevamente.');
-        deleteInfoLocalStorage();
+        util.storage.deleteInfoLocalStorage();
         next({ name: 'Login' });
       } else {
         next();
