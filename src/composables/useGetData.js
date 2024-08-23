@@ -15,6 +15,22 @@ const useGetData = () => {
    *
    * @param {string} url - The URL to fetch data from.
    * @param {string} key - The key in the data object where the fetched data will be stored.
+   *
+   * @example
+   * // Example with composition API
+   * <script setup>
+   *  import { onMounted } from "vue";
+   *  import { useGetData } from "src/composables/useGetData";
+   *
+   *  const { data, getData } = useGetData();
+   *
+   *  onMounted(async () => {
+   *    await getData('/api/example', "example");
+   *
+   *    // Access the fetched data using `data.example`
+   *    console.log(data.example);
+   *  });
+   * </script>
    */
   const getData = async (url, key) => {
     $q.loading.show();
