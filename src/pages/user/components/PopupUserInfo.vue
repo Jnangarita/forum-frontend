@@ -12,7 +12,7 @@
           <div class="justify-between input-txt display-flex">
             <q-input
               :label="$t('firstName')"
-              :rules="[validateQInput($t('pleaseEnterName'))]"
+              :rules="[util.notification.validateQInput($t('pleaseEnterName'))]"
               class="txt"
               dense
               outlined
@@ -21,7 +21,9 @@
             />
             <q-input
               :label="$t('lastName')"
-              :rules="[validateQInput($t('pleaseEnterLastName'))]"
+              :rules="[
+                util.notification.validateQInput($t('pleaseEnterLastName')),
+              ]"
               class="txt"
               dense
               outlined
@@ -31,7 +33,9 @@
           </div>
           <q-input
             :label="$t('userName')"
-            :rules="[validateQInput($t('pleaseEnterUserName'))]"
+            :rules="[
+              util.notification.validateQInput($t('pleaseEnterUserName')),
+            ]"
             class="input-txt"
             dense
             outlined
@@ -41,7 +45,9 @@
           <div class="justify-between display-flex">
             <q-input
               :label="$t('email')"
-              :rules="[validateQInput($t('pleaseEnterEmail'))]"
+              :rules="[
+                util.notification.validateQInput($t('pleaseEnterEmail')),
+              ]"
               class="input-txt txt"
               dense
               outlined
@@ -62,7 +68,9 @@
             <q-select
               :label="$t('country')"
               :options="data.countries"
-              :rules="[validateQselect($t('pleaseEnterCountry'))]"
+              :rules="[
+                util.notification.validateQselect($t('pleaseEnterCountry')),
+              ]"
               class="txt"
               dense
               lazy-rules
@@ -76,7 +84,9 @@
               :disable="!userData.country.value?.length > 0"
               :label="$t('city')"
               :options="data.cities"
-              :rules="[validateQselect($t('pleaseEnterCity'))]"
+              :rules="[
+                util.notification.validateQselect($t('pleaseEnterCity')),
+              ]"
               class="txt"
               dense
               lazy-rules
@@ -117,15 +127,11 @@
 <script setup>
 import { HttpStatusCode } from "axios";
 import { onMounted, ref, watch } from "vue";
-import {
-  showNotify,
-  validateQInput,
-  validateQselect,
-} from "src/utils/functions";
 import { useGetData } from "src/composables/useGetData";
 import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
 import { userApi } from "../api/user";
+import { util } from "src/utils/functions";
 
 const props = defineProps({
   popupStatus: Boolean,
@@ -142,7 +148,6 @@ const $q = useQuasar();
 const emit = defineEmits(["update:popupStatus"]);
 const showPopup = ref(props.popupStatus);
 const PATH_GET_COUNTRIES = `/v1/locations/countries`;
-const enableSelectCity = ref(true);
 
 const onSubmit = (event) => {
   event.preventDefault();
@@ -153,7 +158,7 @@ const updateUserInfo = async (userInfo) => {
   try {
     const response = await userApi.updateUser(userInfo.id, userInfo);
     if (response.status === HttpStatusCode.Ok) {
-      showNotify({
+      util.notification.showNotify({
         hook: $q,
         msg: t("infoHasBeenUpdated"),
         backgroundColor: "green-2",

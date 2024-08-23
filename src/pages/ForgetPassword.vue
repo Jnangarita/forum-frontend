@@ -14,7 +14,7 @@
         <q-form class="form-content" @submit="onSubmit">
           <q-input
             :hint="$t('email')"
-            :rules="[validateQInput($t('pleaseEnterEmail'))]"
+            :rules="[util.notification.validateQInput($t('pleaseEnterEmail'))]"
             class="input-item"
             dense
             outlined
@@ -42,7 +42,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { validateQInput } from "src/utils/functions";
+import { util } from "src/utils/functions";
 
 const passwordResetForm = ref({ email: "" });
 

@@ -4,43 +4,67 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-/**
- * Displays a notification using the `$q` object from the Quasar Framework.
- *
- * @param {Object} hook - The $q object from the Quasar Framework used to display notifications.
- * @param {string} msg - Message to be displayed in the notification.
- * @param {string} [backgroundColor='yellow-2'] - Background color of the notification. Possible values: `green-2`, `red-2`, etc.
- * @param {Function} language - Function to get the text of messages in the desired language.
- */
-export const showNotify = ({ hook, msg, backgroundColor = 'yellow-2', language }) => {
-  const $q = hook;
-  const colorNotify = {
-    'green-2': {
-      title: language('success'),
-      icon: 'las la-check',
-      iconColor: "green-8"
+const util = {
+  notification: {
+    /**
+     * Displays a notification using the `$q` object from the Quasar Framework.
+     *
+     * @param {Object} hook - The $q object from the Quasar Framework used to display notifications.
+     * @param {string} msg - Message to be displayed in the notification.
+     * @param {string} [backgroundColor='yellow-2'] - Background color of the notification. Possible values: `green-2`, `red-2`, etc.
+     * @param {Function} language - Function to get the text of messages in the desired language.
+     */
+    showNotify: ({ hook, msg, backgroundColor = 'yellow-2', language }) => {
+      const $q = hook;
+      const colorNotify = {
+        'green-2': {
+          title: language('success'),
+          icon: 'las la-check',
+          iconColor: "green-8"
+        },
+        'red-2': {
+          title: language('error'),
+          icon: 'las la-exclamation-circle',
+          iconColor: "red-8"
+        },
+      };
+      const defaultNotify = {
+        title: language('warning'),
+        icon: "las la-exclamation-triangle",
+        iconColor: "yellow-8"
+      };
+      const { title, icon, iconColor } = colorNotify[backgroundColor] || defaultNotify;
+      $q.notify({
+        message: title,
+        caption: msg,
+        icon: icon,
+        iconColor: iconColor,
+        textColor: 'dark',
+        color: backgroundColor,
+        position: 'top-right',
+      });
     },
-    'red-2': {
-      title: language('error'),
-      icon: 'las la-exclamation-circle',
-      iconColor: "red-8"
+
+    /**
+     * Validates if an input value meets a condition and returns a message if it does not.
+     *
+     * @param {string} msg - Error message to display if validation fails.
+     * @returns {Function} - Function that validates the input value.
+     */
+    validateQInput: (msg) => {
+      return (val) => (val && val.length > 0) || msg;
     },
-  };
-  const defaultNotify = {
-    title: language('warning'),
-    icon: "las la-exclamation-triangle",
-    iconColor: "yellow-8"
-  };
-  const { title, icon, iconColor } = colorNotify[backgroundColor] || defaultNotify;
-  $q.notify({
-    message: title,
-    caption: msg,
-    icon: icon,
-    iconColor: iconColor,
-    textColor: 'dark',
-    color: backgroundColor,
-    position: 'top-right',
-  });
+
+    /**
+     * Validates that a selected value exists and is non-empty.
+     *
+     * @param {string} msg - The error message to be returned if the validation fails.
+     * @returns {function} Function that validates the select value
+     */
+    validateQselect: (msg) => {
+      return (val) => (val && val.value?.length > 0) || msg;
+    }
+  }
 }
 
 /**
@@ -94,26 +118,6 @@ export const timeElapsed = (date) => {
 };
 
 /**
- * Validates if an input value meets a condition and returns a message if it does not.
- *
- * @param {string} msg - Error message to display if validation fails.
- * @returns {Function} - Function that validates the input value.
- */
-export const validateQInput = (msg) => {
-  return (val) => (val && val.length > 0) || msg;
-}
-
-/**
- * Validates that a selected value exists and is non-empty.
- *
- * @param {string} msg - The error message to be returned if the validation fails.
- * @returns {function} Function that validates the select value
- */
-export const validateQselect = (msg) => {
-  return (val) => (val && val.value?.length > 0) || msg;
-}
-
-/**
  * Delete information from localStorage
  */
 export const deleteInfoLocalStorage = () => {
@@ -141,3 +145,5 @@ export const formatDate = (fullDate) => {
 export const goToPreviousScreen = (router) => {
   router.back();
 }
+
+export { util }

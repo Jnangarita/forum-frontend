@@ -1,8 +1,8 @@
 import { forum } from 'boot/axios'
 import { reactive, ref } from 'vue';
-import { showNotify } from 'src/utils/functions'
 import { useI18n } from 'vue-i18n'
 import { useQuasar } from 'quasar'
+import { util } from 'src/utils/functions'
 
 const useGetData = () => {
   const { t } = useI18n();
@@ -24,7 +24,7 @@ const useGetData = () => {
     } catch (err) {
       error[key] = err.message || t('errorGettingData');
       console.error(t('errorGettingData'), error[key]);
-      showNotify({
+      util.notification.showNotify({
         hook: $q,
         msg: error[key],
         backgroundColor: 'red-2',
@@ -35,11 +35,7 @@ const useGetData = () => {
     }
   };
 
-  return {
-    data,
-    error,
-    getData,
-  };
+  return { data, error, getData };
 }
 
 export { useGetData }

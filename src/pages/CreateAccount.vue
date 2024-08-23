@@ -14,7 +14,7 @@
           <div class="display-flex justify-between responsive-box">
             <q-input
               :hint="$t('firstName')"
-              :rules="[validateQInput($t('pleaseEnterName'))]"
+              :rules="[util.notification.validateQInput($t('pleaseEnterName'))]"
               class="input"
               dense
               outlined
@@ -23,7 +23,9 @@
             />
             <q-input
               :hint="$t('lastName')"
-              :rules="[validateQInput($t('pleaseEnterLastName'))]"
+              :rules="[
+                util.notification.validateQInput($t('pleaseEnterLastName')),
+              ]"
               class="input"
               dense
               outlined
@@ -33,7 +35,7 @@
           </div>
           <q-input
             :hint="$t('email')"
-            :rules="[validateQInput($t('pleaseEnterEmail'))]"
+            :rules="[util.notification.validateQInput($t('pleaseEnterEmail'))]"
             class="input-item responsive-box"
             dense
             outlined
@@ -43,7 +45,9 @@
           <div class="display-flex justify-between responsive-box">
             <q-input
               :hint="$t('password')"
-              :rules="[validateQInput($t('pleaseEnterPassword'))]"
+              :rules="[
+                util.notification.validateQInput($t('pleaseEnterPassword')),
+              ]"
               class="input"
               dense
               outlined
@@ -52,7 +56,11 @@
             />
             <q-input
               :hint="$t('repeatPassword')"
-              :rules="[validateQInput($t('pleaseEnterRepeatPassword'))]"
+              :rules="[
+                util.notification.validateQInput(
+                  $t('pleaseEnterRepeatPassword')
+                ),
+              ]"
               class="input"
               dense
               outlined
@@ -83,11 +91,11 @@
 import { constants } from "src/utils/constants";
 import { HttpStatusCode } from "axios";
 import { ref } from "vue";
-import { showNotify, validateQInput } from "src/utils/functions";
 import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
 import { userApi } from "./user/api/user";
 import { useRouter } from "vue-router";
+import { util } from "src/utils/functions";
 
 const { t } = useI18n();
 const $q = useQuasar();
@@ -106,7 +114,7 @@ const createAccount = async (userForm) => {
   try {
     const response = await userApi.createUser(userForm);
     if (response.status === HttpStatusCode.Created) {
-      showNotify({
+      util.notification.showNotify({
         hook: $q,
         msg: t("createdUserMsg"),
         backgroundColor: "green-2",
@@ -122,7 +130,7 @@ const createAccount = async (userForm) => {
 const onSubmit = (event) => {
   event.preventDefault();
   if (userInfo.value.password !== userInfo.value.repeatPassword) {
-    showNotify({
+    util.notification.showNotify({
       hook: $q,
       msg: t("passwordsDoNotMatch"),
       language: (key) => t(key),

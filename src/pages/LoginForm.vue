@@ -13,7 +13,7 @@
         <q-form class="form-content" @submit="onSubmit">
           <q-input
             :hint="$t('email')"
-            :rules="[validateQInput($t('pleaseEnterEmail'))]"
+            :rules="[util.notification.validateQInput($t('pleaseEnterEmail'))]"
             class="input-item"
             dense
             outlined
@@ -22,7 +22,9 @@
           />
           <q-input
             :hint="$t('password')"
-            :rules="[validateQInput($t('pleaseEnterPassword'))]"
+            :rules="[
+              util.notification.validateQInput($t('pleaseEnterPassword')),
+            ]"
             :type="showPassword ? 'password' : 'text'"
             class="input-item"
             dense
@@ -61,7 +63,7 @@ import { ref } from "vue";
 import { useAuthStore } from "../stores/authStore";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
-import { validateQInput } from "src/utils/functions";
+import { util } from "src/utils/functions";
 
 const { t } = useI18n();
 const authStore = useAuthStore();
