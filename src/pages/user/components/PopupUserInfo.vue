@@ -100,6 +100,7 @@
           <div class="justify-center display-flex" style="margin: 2rem">
             <q-btn
               :label="$t('save')"
+              :loading="loadBtn"
               :no-caps="true"
               :unelevated="true"
               class="margin-right-7 action-btn"
@@ -146,8 +147,9 @@ const { data, getData } = useGetData();
 const { t } = useI18n();
 const $q = useQuasar();
 const emit = defineEmits(["update:popupStatus"]);
-const showPopup = ref(props.popupStatus);
+const loadBtn = ref(false);
 const PATH_GET_COUNTRIES = `/v1/locations/countries`;
+const showPopup = ref(props.popupStatus);
 
 const onSubmit = (event) => {
   event.preventDefault();
@@ -155,6 +157,7 @@ const onSubmit = (event) => {
 };
 
 const updateUserInfo = async (userInfo) => {
+  loadBtn.value = true;
   try {
     const response = await userApi.updateUser(userInfo.id, userInfo);
     if (response.status === HttpStatusCode.Ok) {
@@ -168,6 +171,8 @@ const updateUserInfo = async (userInfo) => {
     }
   } catch (error) {
     console.error(t("errorUpdatingUserInfo"), error);
+  } finally {
+    loadBtn.value = false;
   }
 };
 
