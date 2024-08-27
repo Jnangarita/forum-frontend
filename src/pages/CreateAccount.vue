@@ -146,10 +146,6 @@ const onSubmit = (event) => {
   width: 47.5%;
 }
 
-.margin-left {
-  margin-left: 1rem;
-}
-
 .responsive-box {
   margin-bottom: 1rem;
   width: 85%;

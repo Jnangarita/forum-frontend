@@ -4,7 +4,7 @@
       <div style="width: 35%">
         <UserInformation />
       </div>
-      <div class="col" style="margin-left: 1rem">
+      <div class="col margin-left-10">
         <TopPosts />
       </div>
     </div>

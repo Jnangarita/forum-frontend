@@ -51,13 +51,15 @@
       <q-separator></q-separator>
       <div style="margin: 0.5rem 0 0 0">
         <p class="user-info">
-          <span>{{ $t("userName") }}: </span>{{ data.userById?.userName }}
+          <span class="font-weight-bold">{{ $t("userName") }}: </span>
+          {{ data.userById?.userName }}
         </p>
         <p class="user-info">
-          <span>{{ $t("email") }}: </span>{{ data.userById?.email }}
+          <span class="font-weight-bold">{{ $t("email") }}: </span>
+          {{ data.userById?.email }}
         </p>
         <p class="user-info">
-          <span>{{ $t("status") }}: </span>
+          <span class="font-weight-bold">{{ $t("status") }}: </span>
           <q-badge
             :color="!data.userById?.deleted ? 'positive' : 'red-5'"
             class="badge-response"
@@ -70,11 +72,12 @@
           </q-badge>
         </p>
         <p class="user-info">
-          <span>{{ $t("userRole") }}: </span>
+          <span class="font-weight-bold">{{ $t("userRole") }}: </span>
           {{ data.userById?.userRole.roleName }}
         </p>
         <p class="user-info">
-          <span>{{ $t("country") }}: </span>{{ data.userById?.country.value }}
+          <span class="font-weight-bold">{{ $t("country") }}: </span>
+          {{ data.userById?.country.value }}
         </p>
       </div>
     </div>
@@ -82,7 +85,7 @@
       :label="$t('edit')"
       :no-caps="true"
       :unelevated="true"
-      class="margin-right-7 btn"
+      class="margin-right-7 btn font-weight-bold"
       color="primary"
       dense
       @click="openConfirmPopup"
@@ -91,7 +94,7 @@
       :label="$t('cancel')"
       :no-caps="true"
       :unelevated="true"
-      class="btn"
+      class="btn font-weight-bold"
       color="red-5"
       flat
       outline
@@ -163,12 +166,7 @@ onMounted(async () => {
   margin: 0.8rem 0 0 0;
 }
 
-.user-info span {
-  font-weight: bold;
-}
-
 .btn {
-  font-weight: bold;
   margin-top: 0.5rem;
   padding: 0.4rem 1rem;
 }

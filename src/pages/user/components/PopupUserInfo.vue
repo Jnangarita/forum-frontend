@@ -103,7 +103,7 @@
               :loading="loadBtn"
               :no-caps="true"
               :unelevated="true"
-              class="margin-right-7 action-btn"
+              class="margin-right-7 btn-width-7"
               color="primary"
               dense
               type="submit"
@@ -112,7 +112,7 @@
               :label="$t('cancel')"
               :no-caps="true"
               :unelevated="true"
-              class="action-btn"
+              class="btn-width-7"
               color="red-5"
               flat
               outline
@@ -219,9 +219,5 @@ onMounted(async () => {
 
 .txt {
   width: 48%;
-}
-
-.action-btn {
-  width: 7rem;
 }
 </style>

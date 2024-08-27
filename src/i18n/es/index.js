@@ -62,12 +62,14 @@ export default {
   uploadPhoto: 'Subir foto',
   deletePhoto: 'Eliminar foto',
   allowedFiles: 'Se permiten archivos JPG, GIF o PNG. Tamaño máximo de 800 K',
-  security: 'Seguridad',
   passwordRequirements: 'Requisitos de contraseña',
   minCharacters: 'Mínimo 8 caracteres',
   oneLowercaseCharacter: 'Al menos un carácter en minúscula',
   oneNumberSymbolOrWhitespaceCharacter: 'Al menos un número, símbolo o carácter de espacio en blanco',
   changePassword: 'Cambiar contraseña',
+  currentPassword: 'Contraseña actual',
+  newPassword: 'Nueva contraseña',
+  confirmNewPassword: 'Confirmar nueva contraseña',
 
   // ADVERTENCIA
   warning: 'Advertencia',
@@ -80,6 +82,8 @@ export default {
   pleaseEnterUserName: 'Por favor ingrese el nombre de usuario',
   pleaseEnterCountry: 'Por favor seleccione un país',
   pleaseEnterCity: 'Por favor seleccione una ciudad',
+  enterCurrentPassword: 'Por favor ingrese la actual contraseña',
+  enterNewPassword: 'Por favor ingrese la nueva contraseña',
 
   // ERRORES
   error: 'Error',
