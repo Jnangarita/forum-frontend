@@ -59,6 +59,15 @@ export default {
   cancel: 'Cancelar',
   city: 'Ciudad',
   infoHasBeenUpdated: 'La información se ha actualizado correctamente',
+  uploadPhoto: 'Subir foto',
+  deletePhoto: 'Eliminar foto',
+  allowedFiles: 'Se permiten archivos JPG, GIF o PNG. Tamaño máximo de 800 K',
+  security: 'Seguridad',
+  passwordRequirements: 'Requisitos de contraseña',
+  minCharacters: 'Mínimo 8 caracteres',
+  oneLowercaseCharacter: 'Al menos un carácter en minúscula',
+  oneNumberSymbolOrWhitespaceCharacter: 'Al menos un número, símbolo o carácter de espacio en blanco',
+  changePassword: 'Cambiar contraseña',
 
   // ADVERTENCIA
   warning: 'Advertencia',

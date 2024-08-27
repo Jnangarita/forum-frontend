@@ -65,10 +65,15 @@
                 </q-item>
                 <q-item clickable class="item-content margin-5">
                   <q-item-section>
-                    <p class="margin-bottom-1">
-                      <q-icon name="las la-cog" size="1.5rem" />
-                      <span class="margin-left-5">{{ $t("settings") }}</span>
-                    </p>
+                    <router-link
+                      :to="{ name: 'Settings' }"
+                      class="no-underline link-color"
+                    >
+                      <p class="margin-bottom-1">
+                        <q-icon name="las la-cog" size="1.5rem" />
+                        <span class="margin-left-5">{{ $t("settings") }}</span>
+                      </p>
+                    </router-link>
                   </q-item-section>
                 </q-item>
                 <q-separator></q-separator>

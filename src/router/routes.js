@@ -64,6 +64,12 @@ const routes = [
         name: 'UserView',
         component: () => import('src/pages/user/pages/UserView.vue'),
         meta: { requiresAuth: true }
+      },
+      {
+        path: 'account-settings/account',
+        name: 'Settings',
+        component: () => import('src/pages/user/pages/UserSettings.vue'),
+        meta: { requiresAuth: true }
       }
     ]
   },
