@@ -70,6 +70,7 @@ export default {
   currentPassword: 'Contraseña actual',
   newPassword: 'Nueva contraseña',
   confirmNewPassword: 'Confirmar nueva contraseña',
+  passwordUpdatedSuccessfully: 'La contraseña se actualizo correctamente',
 
   // ADVERTENCIA
   warning: 'Advertencia',
@@ -90,5 +91,6 @@ export default {
   errorGettingData: 'Error al obtener los datos:',
   errorGettingToken: 'Error al obtener el token',
   errorCreatingUser: 'Error al crear el usuario',
-  errorUpdatingUserInfo: 'Error al actualizar la información del usuario'
+  errorUpdatingUserInfo: 'Error al actualizar la información del usuario',
+  errorUpdatingPassword: 'Error al actualizar la contraseña'
 }

@@ -14,5 +14,13 @@ const userApi = {
    * @returns
    */
   updateUser: (userId, data) => forum.put(`${PATH}/${userId}`, data),
+
+  /**
+   * This api updates the password
+   * @param {*} userId - The ID of the user whose password is to be updated.
+   * @param {*} data - The payload required for updating the password.
+   * @returns 
+   */
+  updatePassword: (userId, data) => forum.put(`${PATH}/passwords/${userId}`, data),
 }
 export { userApi };

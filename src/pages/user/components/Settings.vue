@@ -97,6 +97,7 @@
         </div>
         <q-btn
           :label="$t('save')"
+          :loading="loadBtn"
           :no-caps="true"
           :unelevated="true"
           class="btn-width-7 font-weight-bold"
@@ -120,12 +121,20 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { HttpStatusCode } from "axios";
+import { LocalStorage, useQuasar } from "quasar";
+import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+import { userApi } from "../api/user";
 import { util } from "src/utils/functions";
 
-const currentPwd = ref(true);
-const newPwd = ref(true);
+const { t } = useI18n();
+const $q = useQuasar();
 const confirmPwd = ref(true);
+const currentPwd = ref(true);
+const loadBtn = ref(false);
+const newPwd = ref(true);
+const userId = LocalStorage.getItem("userId");
 
 const emptyFields = () => {
   return { currentPassword: "", newPassword: "", confirmPassword: "" };
@@ -135,16 +144,39 @@ const changePwdForm = ref(emptyFields());
 
 const onSubmit = (event) => {
   event.preventDefault();
-  console.log(changePwdForm.value);
+  if (changePwdForm.value.newPassword !== changePwdForm.value.confirmPassword) {
+    util.notification.showNotify({
+      hook: $q,
+      msg: t("passwordsDoNotMatch"),
+      language: (key) => t(key),
+    });
+  } else {
+    changePassword(userId, changePwdForm.value);
+  }
+};
+
+const changePassword = async (id, form) => {
+  try {
+    loadBtn.value = true;
+    const response = await userApi.updatePassword(id, form);
+    if (response.status === HttpStatusCode.Ok) {
+      util.notification.showNotify({
+        hook: $q,
+        msg: t("passwordUpdatedSuccessfully"),
+        backgroundColor: "green-2",
+        language: (key) => t(key),
+      });
+    }
+  } catch (error) {
+    console.error(t("errorUpdatingPassword"), error);
+  } finally {
+    loadBtn.value = false;
+  }
 };
 
 const resetFields = () => {
   changePwdForm.value = emptyFields();
 };
-
-onMounted(() => {
-  // TODO
-});
 </script>
 
 <style scoped>

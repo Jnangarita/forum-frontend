@@ -157,8 +157,8 @@ const onSubmit = (event) => {
 };
 
 const updateUserInfo = async (userInfo) => {
-  loadBtn.value = true;
   try {
+    loadBtn.value = true;
     const response = await userApi.updateUser(userInfo.id, userInfo);
     if (response.status === HttpStatusCode.Ok) {
       util.notification.showNotify({
