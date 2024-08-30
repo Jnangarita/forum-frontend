@@ -1,14 +1,16 @@
-import { forum } from 'boot/axios'
+import { forum } from 'boot/axios';
 import { reactive, ref } from 'vue';
-import { useI18n } from 'vue-i18n'
-import { useQuasar } from 'quasar'
-import { util } from 'src/utils/functions'
+import { useGloblaStore } from 'src/stores/globalStore';
+import { useI18n } from 'vue-i18n';
+import { useQuasar } from 'quasar';
+import { util } from 'src/utils/functions';
 
 const useGetData = () => {
   const { t } = useI18n();
   const $q = useQuasar();
   const data = reactive({});
   const error = ref({});
+  const store = useGloblaStore();
 
   /**
    * Fetches data from a given URL and updates the specified key in the data object.
@@ -33,16 +35,14 @@ const useGetData = () => {
    * </script>
    */
   const getData = async (url, key) => {
-    $q.loading.show();
     try {
+      $q.loading.show();
       const response = await forum.get(url);
       data[key] = response.data;
     } catch (err) {
-      error[key] = err.message || t('errorGettingData');
-      console.error(t('errorGettingData'), error[key]);
       util.notification.showNotify({
         hook: $q,
-        msg: error[key],
+        msg: store.message,
         backgroundColor: 'red-2',
         language: (key) => t(key)
       });
