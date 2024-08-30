@@ -122,19 +122,19 @@
 
 <script setup>
 import { HttpStatusCode } from "axios";
-import { LocalStorage, useQuasar } from "quasar";
+import { LocalStorage } from "quasar";
 import { ref } from "vue";
+import { useGloblaStore } from "src/stores/globalStore";
 import { useI18n } from "vue-i18n";
 import { userApi } from "../api/user";
 import { util } from "src/utils/functions";
 
 const { t } = useI18n();
-const $q = useQuasar();
 const confirmPwd = ref(true);
 const currentPwd = ref(true);
 const loadBtn = ref(false);
 const newPwd = ref(true);
-const userId = LocalStorage.getItem("userId");
+const store = useGloblaStore();
 
 const emptyFields = () => {
   return { currentPassword: "", newPassword: "", confirmPassword: "" };
@@ -145,13 +145,9 @@ const changePwdForm = ref(emptyFields());
 const onSubmit = (event) => {
   event.preventDefault();
   if (changePwdForm.value.newPassword !== changePwdForm.value.confirmPassword) {
-    util.notification.showNotify({
-      hook: $q,
-      msg: t("passwordsDoNotMatch"),
-      language: (key) => t(key),
-    });
+    showNotification(t("passwordsDoNotMatch"));
   } else {
-    changePassword(userId, changePwdForm.value);
+    changePassword(LocalStorage.getItem("userId"), changePwdForm.value);
   }
 };
 
@@ -160,19 +156,22 @@ const changePassword = async (id, form) => {
     loadBtn.value = true;
     const response = await userApi.updatePassword(id, form);
     if (response.status === HttpStatusCode.Ok) {
-      util.notification.showNotify({
-        hook: $q,
-        msg: t("passwordUpdatedSuccessfully"),
-        backgroundColor: "green-2",
-        language: (key) => t(key),
-      });
+      showNotification(t("passwordUpdatedSuccessfully"), "green-2");
       resetFields();
     }
   } catch (error) {
-    console.error(t("errorUpdatingPassword"), error);
+    showNotification(store.message, "red-2");
   } finally {
     loadBtn.value = false;
   }
+};
+
+const showNotification = (msg, color) => {
+  util.notification.showNotify({
+    msg: msg,
+    backgroundColor: color,
+    language: (key) => t(key),
+  });
 };
 
 const resetFields = () => {

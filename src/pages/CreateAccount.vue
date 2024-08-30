@@ -92,13 +92,11 @@ import { constants } from "src/utils/constants";
 import { HttpStatusCode } from "axios";
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { useQuasar } from "quasar";
 import { userApi } from "./user/api/user";
 import { useRouter } from "vue-router";
 import { util } from "src/utils/functions";
 
 const { t } = useI18n();
-const $q = useQuasar();
 const router = useRouter();
 const userInfo = ref({
   email: "",
@@ -115,7 +113,6 @@ const createAccount = async (userForm) => {
     const response = await userApi.createUser(userForm);
     if (response.status === HttpStatusCode.Created) {
       util.notification.showNotify({
-        hook: $q,
         msg: t("createdUserMsg"),
         backgroundColor: "green-2",
         language: (key) => t(key),
@@ -131,7 +128,6 @@ const onSubmit = (event) => {
   event.preventDefault();
   if (userInfo.value.password !== userInfo.value.repeatPassword) {
     util.notification.showNotify({
-      hook: $q,
       msg: t("passwordsDoNotMatch"),
       language: (key) => t(key),
     });

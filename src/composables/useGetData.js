@@ -41,7 +41,6 @@ const useGetData = () => {
       data[key] = response.data;
     } catch (err) {
       util.notification.showNotify({
-        hook: $q,
         msg: store.message,
         backgroundColor: 'red-2',
         language: (key) => t(key)

@@ -1,4 +1,5 @@
 import { constants } from "./constants";
+import { Notify } from 'quasar'
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -9,13 +10,11 @@ const util = {
     /**
      * Displays a notification using the `$q` object from the Quasar Framework.
      *
-     * @param {Object} hook - The $q object from the Quasar Framework used to display notifications.
      * @param {string} msg - Message to be displayed in the notification.
      * @param {string} [backgroundColor='yellow-2'] - Background color of the notification. Possible values: `green-2`, `red-2`, etc.
      * @param {Function} language - Function to get the text of messages in the desired language.
      */
     showNotify: ({ hook, msg, backgroundColor = 'yellow-2', language }) => {
-      const $q = hook;
       const colorNotify = {
         'green-2': {
           title: language('success'),
@@ -34,7 +33,7 @@ const util = {
         iconColor: "yellow-8"
       };
       const { title, icon, iconColor } = colorNotify[backgroundColor] || defaultNotify;
-      $q.notify({
+      Notify.create({
         message: title,
         caption: msg,
         icon: icon,

@@ -130,7 +130,6 @@ import { HttpStatusCode } from "axios";
 import { onMounted, ref, watch } from "vue";
 import { useGetData } from "src/composables/useGetData";
 import { useI18n } from "vue-i18n";
-import { useQuasar } from "quasar";
 import { userApi } from "../api/user";
 import { util } from "src/utils/functions";
 
@@ -145,7 +144,6 @@ const props = defineProps({
 
 const { data, getData } = useGetData();
 const { t } = useI18n();
-const $q = useQuasar();
 const emit = defineEmits(["update:popupStatus"]);
 const loadBtn = ref(false);
 const PATH_GET_COUNTRIES = `/v1/locations/countries`;
@@ -162,7 +160,6 @@ const updateUserInfo = async (userInfo) => {
     const response = await userApi.updateUser(userInfo.id, userInfo);
     if (response.status === HttpStatusCode.Ok) {
       util.notification.showNotify({
-        hook: $q,
         msg: t("infoHasBeenUpdated"),
         backgroundColor: "green-2",
         language: (key) => t(key),

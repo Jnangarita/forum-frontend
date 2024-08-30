@@ -63,12 +63,10 @@ import { ref } from "vue";
 import { useAuthStore } from "../stores/authStore";
 import { useGloblaStore } from "../stores/globalStore";
 import { useI18n } from "vue-i18n";
-import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
 import { util } from "src/utils/functions";
 
 const { t } = useI18n();
-const $q = useQuasar();
 const authStore = useAuthStore();
 const globalStore = useGloblaStore();
 const router = useRouter();
@@ -81,8 +79,8 @@ const login = async () => {
     router.push("/");
   } catch (error) {
     util.notification.showNotify({
-      hook: $q,
       msg: globalStore.message,
+      backgroundColor: "red-2",
       language: (key) => t(key),
     });
   }
