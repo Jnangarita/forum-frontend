@@ -161,8 +161,7 @@ const updateUserInfo = async (userInfo) => {
     if (response.status === HttpStatusCode.Ok) {
       util.notification.showNotify({
         msg: t("infoHasBeenUpdated"),
-        backgroundColor: "green-2",
-        language: (key) => t(key),
+        bgColor: "green-2",
       });
       showPopup.value = false;
     }

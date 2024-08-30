@@ -1,45 +1,47 @@
 import { constants } from "./constants";
+import { i18n } from 'boot/i18n';
 import { Notify } from 'quasar'
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
+const t = i18n.global.t;
+
 const util = {
   notification: {
     /**
-     * Displays a notification using the `$q` object from the Quasar Framework.
+     * Display a notification to the user.
      *
      * @param {string} msg - Message to be displayed in the notification.
-     * @param {string} [backgroundColor='yellow-2'] - Background color of the notification. Possible values: `green-2`, `red-2`, etc.
-     * @param {Function} language - Function to get the text of messages in the desired language.
+     * @param {string} [bgColor='yellow-2'] - Background color of the notification. Possible values: `green-2`, `red-2`, etc.
      */
-    showNotify: ({ hook, msg, backgroundColor = 'yellow-2', language }) => {
+    showNotify: ({ msg, bgColor = 'yellow-2' }) => {
       const colorNotify = {
         'green-2': {
-          title: language('success'),
+          title: t('success'),
           icon: 'las la-check',
           iconColor: "green-8"
         },
         'red-2': {
-          title: language('error'),
+          title: t('error'),
           icon: 'las la-exclamation-circle',
           iconColor: "red-8"
         },
       };
       const defaultNotify = {
-        title: language('warning'),
+        title: t('warning'),
         icon: "las la-exclamation-triangle",
         iconColor: "yellow-8"
       };
-      const { title, icon, iconColor } = colorNotify[backgroundColor] || defaultNotify;
+      const { title, icon, iconColor } = colorNotify[bgColor] || defaultNotify;
       Notify.create({
         message: title,
         caption: msg,
         icon: icon,
         iconColor: iconColor,
         textColor: 'dark',
-        color: backgroundColor,
+        color: bgColor,
         position: 'top-right',
       });
     },

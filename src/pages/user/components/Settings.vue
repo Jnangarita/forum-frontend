@@ -167,11 +167,7 @@ const changePassword = async (id, form) => {
 };
 
 const showNotification = (msg, color) => {
-  util.notification.showNotify({
-    msg: msg,
-    backgroundColor: color,
-    language: (key) => t(key),
-  });
+  util.notification.showNotify({ msg: msg, bgColor: color });
 };
 
 const resetFields = () => {

@@ -1,12 +1,10 @@
 import { forum } from 'boot/axios';
 import { reactive, ref } from 'vue';
 import { useGloblaStore } from 'src/stores/globalStore';
-import { useI18n } from 'vue-i18n';
 import { useQuasar } from 'quasar';
 import { util } from 'src/utils/functions';
 
 const useGetData = () => {
-  const { t } = useI18n();
   const $q = useQuasar();
   const data = reactive({});
   const error = ref({});
@@ -40,11 +38,7 @@ const useGetData = () => {
       const response = await forum.get(url);
       data[key] = response.data;
     } catch (err) {
-      util.notification.showNotify({
-        msg: store.message,
-        backgroundColor: 'red-2',
-        language: (key) => t(key)
-      });
+      util.notification.showNotify({ msg: store.message, bgColor: 'red-2' });
     } finally {
       $q.loading.hide()
     }

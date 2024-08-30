@@ -114,8 +114,7 @@ const createAccount = async (userForm) => {
     if (response.status === HttpStatusCode.Created) {
       util.notification.showNotify({
         msg: t("createdUserMsg"),
-        backgroundColor: "green-2",
-        language: (key) => t(key),
+        bgColor: "green-2",
       });
       router.push("/login");
     }
@@ -127,10 +126,7 @@ const createAccount = async (userForm) => {
 const onSubmit = (event) => {
   event.preventDefault();
   if (userInfo.value.password !== userInfo.value.repeatPassword) {
-    util.notification.showNotify({
-      msg: t("passwordsDoNotMatch"),
-      language: (key) => t(key),
-    });
+    util.notification.showNotify({ msg: t("passwordsDoNotMatch") });
   } else {
     createAccount(userInfo.value);
   }
