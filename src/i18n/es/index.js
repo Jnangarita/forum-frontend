@@ -89,7 +89,6 @@ export default {
   // ERRORES
   error: 'Error',
   errorGettingData: 'Error al obtener los datos:',
-  errorGettingToken: 'Error al obtener el token',
   errorCreatingUser: 'Error al crear el usuario',
   errorUpdatingUserInfo: 'Error al actualizar la información del usuario',
   errorUpdatingPassword: 'Error al actualizar la contraseña'

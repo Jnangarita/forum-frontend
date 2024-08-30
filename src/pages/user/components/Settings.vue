@@ -166,6 +166,7 @@ const changePassword = async (id, form) => {
         backgroundColor: "green-2",
         language: (key) => t(key),
       });
+      resetFields();
     }
   } catch (error) {
     console.error(t("errorUpdatingPassword"), error);

@@ -9,7 +9,9 @@ export const useAuthStore = defineStore('auth', {
     authToken: null,
     isAuthenticated: false,
     user: null,
+    message: ''
   }),
+
   actions: {
     async login(credentials) {
       const response = await authLogin.authUser(credentials);
@@ -21,6 +23,7 @@ export const useAuthStore = defineStore('auth', {
         localStorage.setItem('userId', this.user.id);
       }
     },
+
     logout() {
       this.isAuthenticated = false;
       this.user = null;
@@ -28,6 +31,7 @@ export const useAuthStore = defineStore('auth', {
       util.storage.deleteInfoLocalStorage();
     },
   },
+
   getters: {
     authenticatedUser: (state) => state.authToken !== null,
     userInfo: (state) => state.user,

@@ -62,10 +62,12 @@
 import { ref } from "vue";
 import { useAuthStore } from "../stores/authStore";
 import { useI18n } from "vue-i18n";
+import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
 import { util } from "src/utils/functions";
 
 const { t } = useI18n();
+const $q = useQuasar();
 const authStore = useAuthStore();
 const router = useRouter();
 const showPassword = ref(true);
@@ -76,7 +78,11 @@ const login = async () => {
     await authStore.login(loginForm.value);
     router.push("/");
   } catch (error) {
-    console.error(t("errorGettingToken"), error);
+    util.notification.showNotify({
+      hook: $q,
+      msg: authStore.message,
+      language: (key) => t(key),
+    });
   }
 };
 

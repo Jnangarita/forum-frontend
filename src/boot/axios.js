@@ -1,4 +1,5 @@
 import { boot } from 'quasar/wrappers'
+import { useAuthStore } from 'src/stores/authStore'
 import axios from 'axios'
 
 // Be careful when using SSR for cross-request state pollution
@@ -34,6 +35,8 @@ forum.interceptors.request.use((config) => {
 forum.interceptors.response.use(
   (response) => response,
   (error) => {
+    const store = useAuthStore();
+    store.message = error.response.data?.description
     console.error('Interceptor de errores', error)
   }
 )
