@@ -1,6 +1,9 @@
 import { boot } from 'quasar/wrappers'
+import { i18n } from 'boot/i18n';
 import { useGloblaStore } from 'src/stores/globalStore'
 import axios from 'axios'
+
+const t = i18n.global.t;
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
@@ -37,7 +40,7 @@ forum.interceptors.response.use(
   (error) => {
     const store = useGloblaStore();
     store.message = error.response.data?.description
-    console.error('Interceptor de errores', error)
+    console.error(t('errorIntercepted'), error)
   }
 )
 

@@ -85,10 +85,13 @@ export default {
   pleaseEnterCity: 'Por favor seleccione una ciudad',
   enterCurrentPassword: 'Por favor ingrese la actual contraseña',
   enterNewPassword: 'Por favor ingrese la nueva contraseña',
+  sessionExpired: 'Tu sesión ha expirado. Por favor, inicie sesión nuevamente.',
+  messageAvailable: 'Mensaje no disponible',
 
   // ERRORES
   error: 'Error',
   errorCreatingUser: 'Error al crear el usuario',
   errorUpdatingUserInfo: 'Error al actualizar la información del usuario',
-  errorUpdatingPassword: 'Error al actualizar la contraseña'
+  errorUpdatingPassword: 'Error al actualizar la contraseña',
+  errorIntercepted: 'Error interceptado'
 }
