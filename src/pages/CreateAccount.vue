@@ -91,6 +91,7 @@
 import { constants } from "src/utils/constants";
 import { HttpStatusCode } from "axios";
 import { ref } from "vue";
+import { useGloblaStore } from "src/stores/globalStore";
 import { useI18n } from "vue-i18n";
 import { userApi } from "./user/api/user";
 import { useRouter } from "vue-router";
@@ -98,6 +99,7 @@ import { util } from "src/utils/functions";
 
 const { t } = useI18n();
 const router = useRouter();
+const store = useGloblaStore();
 const userInfo = ref({
   email: "",
   firstName: "",
@@ -119,7 +121,7 @@ const createAccount = async (userForm) => {
       router.push("/login");
     }
   } catch (error) {
-    console.error(t("errorCreatingUser"), error);
+    util.notification.showNotify({ msg: store.message, bgColor: "red-2" });
   }
 };
 
