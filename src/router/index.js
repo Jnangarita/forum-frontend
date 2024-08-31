@@ -1,11 +1,8 @@
 import { createMemoryHistory, createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import { i18n } from 'boot/i18n';
 import { jwtDecode } from "jwt-decode";
 import { route } from 'quasar/wrappers'
 import { util } from 'src/utils/functions';
 import routes from './routes'
-
-const t = i18n.global.t;
 
 /*
  * If not building with SSR mode, you can
@@ -36,7 +33,7 @@ export default route(function (/* { store, ssrContext } */) {
 
     if (to.matched.some(record => record.meta.requiresAuth)) {
       if (!jwtToken || isTokenExpired(jwtToken)) {
-        alert(t('sessionExpired'));
+        alert(util.notification.getMessage('sessionExpired'));
         util.storage.deleteInfoLocalStorage();
         next({ name: 'Login' });
       } else {

@@ -145,7 +145,7 @@ const changePwdForm = ref(emptyFields());
 const onSubmit = (event) => {
   event.preventDefault();
   if (changePwdForm.value.newPassword !== changePwdForm.value.confirmPassword) {
-    showNotification(t("passwordsDoNotMatch"));
+    util.notification.showNotify({ msg: t("passwordsDoNotMatch") });
   } else {
     changePassword(LocalStorage.getItem("userId"), changePwdForm.value);
   }
@@ -156,18 +156,17 @@ const changePassword = async (id, form) => {
     loadBtn.value = true;
     const response = await userApi.updatePassword(id, form);
     if (response.status === HttpStatusCode.Ok) {
-      showNotification(t("passwordUpdatedSuccessfully"), "green-2");
+      util.notification.showNotify({
+        msg: t("passwordUpdatedSuccessfully"),
+        bgColor: "green-2",
+      });
       resetFields();
     }
   } catch (error) {
-    showNotification(store.message, "red-2");
+    util.notification.showNotify({ msg: store.message, bgColor: "red-2" });
   } finally {
     loadBtn.value = false;
   }
-};
-
-const showNotification = (msg, color) => {
-  util.notification.showNotify({ msg: msg, bgColor: color });
 };
 
 const resetFields = () => {

@@ -1,10 +1,8 @@
 import { defineStore } from 'pinia';
-import { i18n } from 'boot/i18n';
-
-const t = i18n.global.t;
+import { util } from 'src/utils/functions';
 
 export const useGloblaStore = defineStore('global', {
   state: () => ({
-    message: t('messageAvailable')
+    message: util.notification.getMessage('messageAvailable')
   }),
 });

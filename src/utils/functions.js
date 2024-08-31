@@ -6,8 +6,6 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-const t = i18n.global.t;
-
 const util = {
   notification: {
     /**
@@ -18,22 +16,10 @@ const util = {
      */
     showNotify: ({ msg, bgColor = 'yellow-2' }) => {
       const colorNotify = {
-        'green-2': {
-          title: t('success'),
-          icon: 'las la-check',
-          iconColor: "green-8"
-        },
-        'red-2': {
-          title: t('error'),
-          icon: 'las la-exclamation-circle',
-          iconColor: "red-8"
-        },
+        'green-2': util.notification.notificationStyle('success', 'las la-check', 'green-8'),
+        'red-2': util.notification.notificationStyle('error', 'las la-exclamation-circle', 'red-8'),
       };
-      const defaultNotify = {
-        title: t('warning'),
-        icon: "las la-exclamation-triangle",
-        iconColor: "yellow-8"
-      };
+      const defaultNotify = util.notification.notificationStyle('warning', 'las la-exclamation-triangle', 'yellow-8');
       const { title, icon, iconColor } = colorNotify[bgColor] || defaultNotify;
       Notify.create({
         message: title,
@@ -44,6 +30,18 @@ const util = {
         color: bgColor,
         position: 'top-right',
       });
+    },
+
+    getMessage: (key) => {
+      return i18n.global.t(key);
+    },
+
+    notificationStyle: (title, icon, color) => {
+      return {
+        title: util.notification.getMessage(title),
+        icon: icon,
+        iconColor: color
+      }
     },
 
     /**
