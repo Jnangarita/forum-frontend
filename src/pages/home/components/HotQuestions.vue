@@ -10,7 +10,7 @@
         <q-avatar rounded size="1.3rem">
           <img
             :alt="$t('userImg')"
-            :src="question.photo"
+            :src="util.imageHandling.validateImageNull(question.photo)"
             @error="util.imageHandling.onImageError($event)"
           />
           <q-tooltip>{{ question.userName }}</q-tooltip>

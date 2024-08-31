@@ -3,7 +3,7 @@
     <q-avatar rounded size="7rem">
       <img
         :alt="$t('userImg')"
-        :src="data.userById?.photo"
+        :src="util.imageHandling.validateImageNull(data.userById?.photo)"
         @error="util.imageHandling.onImageError($event)"
       />
     </q-avatar>

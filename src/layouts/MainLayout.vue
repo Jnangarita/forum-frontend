@@ -16,7 +16,9 @@
             <q-avatar>
               <img
                 :alt="$t('userImg')"
-                :src="data.userById?.photo"
+                :src="
+                  util.imageHandling.validateImageNull(data.userById?.photo)
+                "
                 @error="util.imageHandling.onImageError($event)"
               />
             </q-avatar>
@@ -27,7 +29,11 @@
                     <q-avatar>
                       <img
                         :alt="$t('userImg')"
-                        :src="data.userById?.photo"
+                        :src="
+                          util.imageHandling.validateImageNull(
+                            data.userById?.photo
+                          )
+                        "
                         @error="util.imageHandling.onImageError($event)"
                       />
                     </q-avatar>

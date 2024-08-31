@@ -138,6 +138,10 @@ const util = {
      */
     onImageError: (event) => {
       event.target.src = constants.BLANK_IMG;
+    },
+
+    validateImageNull: (imgPath) => {
+      return imgPath ?? constants.BLANK_IMG;
     }
   },
 

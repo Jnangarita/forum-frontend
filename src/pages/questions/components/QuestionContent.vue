@@ -106,7 +106,9 @@
                 <q-avatar rounded size="50px">
                   <img
                     :alt="$t('userImg')"
-                    :src="data.question?.photo"
+                    :src="
+                      util.imageHandling.validateImageNull(data.question?.photo)
+                    "
                     @error="util.imageHandling.onImageError($event)"
                   />
                 </q-avatar>

@@ -4,7 +4,7 @@
       <q-avatar rounded size="7rem" font-size="1rem">
         <img
           :alt="$t('userImg')"
-          src="photo"
+          :src="util.imageHandling.validateImageNull(localInfo.photo)"
           @error="util.imageHandling.onImageError($event)"
         />
       </q-avatar>
@@ -23,6 +23,7 @@
           class="margin-left-10 font-weight-bold"
           color="grey-3"
           text-color="dark"
+          @click="deleteUserPhoto(localInfo)"
         />
         <p>{{ $t("allowedFiles") }}</p>
       </div>
@@ -121,6 +122,7 @@
 </template>
 
 <script setup>
+import { constants } from "src/utils/constants";
 import { HttpStatusCode } from "axios";
 import { LocalStorage } from "quasar";
 import { ref } from "vue";
@@ -135,6 +137,7 @@ const currentPwd = ref(true);
 const loadBtn = ref(false);
 const newPwd = ref(true);
 const store = useGloblaStore();
+const localInfo = LocalStorage.getItem("userInfo");
 
 const emptyFields = () => {
   return { currentPassword: "", newPassword: "", confirmPassword: "" };
@@ -167,6 +170,11 @@ const changePassword = async (id, form) => {
   } finally {
     loadBtn.value = false;
   }
+};
+
+const deleteUserPhoto = (userInformation) => {
+  userInformation.photo = constants.BLANK_IMG;
+  LocalStorage.set("userInfo", userInformation);
 };
 
 const resetFields = () => {

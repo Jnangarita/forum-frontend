@@ -19,7 +19,7 @@
             <q-avatar rounded size="65px" style="margin-top: 4px">
               <img
                 :alt="$t('userImg')"
-                :src="user.photo"
+                :src="util.imageHandling.validateImageNull(user.photo)"
                 @error="util.imageHandling.onImageError($event)"
               />
             </q-avatar>
