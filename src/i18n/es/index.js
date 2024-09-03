@@ -71,6 +71,7 @@ export default {
   newPassword: 'Nueva contraseña',
   confirmNewPassword: 'Confirmar nueva contraseña',
   passwordUpdatedSuccessfully: 'La contraseña se actualizo correctamente',
+  photoDeletedSuccessfully: 'Foto eliminada correctamente',
 
   // ADVERTENCIA
   warning: 'Advertencia',

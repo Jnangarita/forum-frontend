@@ -18,6 +18,7 @@
         />
         <q-btn
           :label="$t('deletePhoto')"
+          :loading="loadDeleteBtn"
           :no-caps="true"
           :unelevated="true"
           class="margin-left-10 font-weight-bold"
@@ -122,7 +123,7 @@
 </template>
 
 <script setup>
-import { constants } from "src/utils/constants";
+import { globalApi } from "src/api/global";
 import { HttpStatusCode } from "axios";
 import { LocalStorage } from "quasar";
 import { ref } from "vue";
@@ -135,6 +136,7 @@ const { t } = useI18n();
 const confirmPwd = ref(true);
 const currentPwd = ref(true);
 const loadBtn = ref(false);
+const loadDeleteBtn = ref(false);
 const newPwd = ref(true);
 const store = useGloblaStore();
 const localInfo = LocalStorage.getItem("userInfo");
@@ -172,9 +174,21 @@ const changePassword = async (id, form) => {
   }
 };
 
-const deleteUserPhoto = (userInformation) => {
-  userInformation.photo = constants.BLANK_IMG;
-  LocalStorage.set("userInfo", userInformation);
+const deleteUserPhoto = async (info) => {
+  try {
+    loadDeleteBtn.value = true;
+    const response = await globalApi.deleteDocument(info.code, "3x4.png");
+    if (response.status === HttpStatusCode.NoContent) {
+      util.notification.showNotify({
+        msg: t("photoDeletedSuccessfully"),
+        bgColor: "green-2",
+      });
+    }
+  } catch (error) {
+    util.notification.showNotify({ msg: store.message, bgColor: "red-2" });
+  } finally {
+    loadDeleteBtn.value = false;
+  }
 };
 
 const resetFields = () => {
