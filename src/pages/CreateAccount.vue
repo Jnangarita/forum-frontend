@@ -48,12 +48,20 @@
               :rules="[
                 util.notification.validateQInput($t('pleaseEnterPassword')),
               ]"
+              :type="showPassword ? 'password' : 'text'"
               class="input"
               dense
               outlined
-              type="text"
               v-model="userInfo.password"
-            />
+            >
+              <template v-slot:append>
+                <q-icon
+                  :name="showPassword ? 'visibility_off' : 'visibility'"
+                  @click="showPassword = !showPassword"
+                  class="cursor-pointer"
+                />
+              </template>
+            </q-input>
             <q-input
               :hint="$t('repeatPassword')"
               :rules="[
@@ -61,12 +69,20 @@
                   $t('pleaseEnterRepeatPassword')
                 ),
               ]"
+              :type="showRepeatPassword ? 'password' : 'text'"
               class="input"
               dense
               outlined
-              type="text"
               v-model="userInfo.repeatPassword"
-            />
+            >
+              <template v-slot:append>
+                <q-icon
+                  :name="showRepeatPassword ? 'visibility_off' : 'visibility'"
+                  @click="showRepeatPassword = !showRepeatPassword"
+                  class="cursor-pointer"
+                />
+              </template>
+            </q-input>
           </div>
           <q-btn
             :label="$t('createAccount')"
@@ -99,6 +115,8 @@ import { util } from "src/utils/functions";
 
 const { t } = useI18n();
 const router = useRouter();
+const showPassword = ref(true);
+const showRepeatPassword = ref(true);
 const store = useGloblaStore();
 const userInfo = ref({
   email: "",
