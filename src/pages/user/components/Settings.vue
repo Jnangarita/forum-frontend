@@ -17,6 +17,7 @@
           color="primary"
         />
         <q-btn
+          :disable="enableDeleteBtn(localInfo.photo)"
           :label="$t('deletePhoto')"
           :loading="loadDeleteBtn"
           :no-caps="true"
@@ -25,7 +26,11 @@
           color="grey-3"
           text-color="dark"
           @click="deleteUserPhoto(localInfo)"
-        />
+        >
+          <q-tooltip v-if="enableDeleteBtn(localInfo.photo)">
+            {{ t("canNotDeleteImg") }}
+          </q-tooltip>
+        </q-btn>
         <p>{{ $t("allowedFiles") }}</p>
       </div>
     </div>
@@ -123,6 +128,7 @@
 </template>
 
 <script setup>
+import { constants } from "src/utils/constants";
 import { globalApi } from "src/api/global";
 import { HttpStatusCode } from "axios";
 import { LocalStorage } from "quasar";
@@ -193,6 +199,10 @@ const deleteUserPhoto = async (info) => {
 
 const resetFields = () => {
   changePwdForm.value = emptyFields();
+};
+
+const enableDeleteBtn = (photo) => {
+  return photo === constants.BLANK_IMG;
 };
 </script>
 

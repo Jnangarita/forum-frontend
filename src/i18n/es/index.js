@@ -88,6 +88,7 @@ export default {
   enterNewPassword: 'Por favor ingrese la nueva contraseña',
   sessionExpired: 'Tu sesión ha expirado. Por favor, inicie sesión nuevamente.',
   messageAvailable: 'Mensaje no disponible',
+  canNotDeleteImg: 'No puedes eliminar la foto porque aún no la has subido',
 
   // ERRORES
   error: 'Error',
