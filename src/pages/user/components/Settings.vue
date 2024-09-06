@@ -128,7 +128,6 @@
 </template>
 
 <script setup>
-import { constants } from "src/utils/constants";
 import { globalApi } from "src/api/global";
 import { HttpStatusCode } from "axios";
 import { LocalStorage } from "quasar";
@@ -183,7 +182,10 @@ const changePassword = async (id, form) => {
 const deleteUserPhoto = async (info) => {
   try {
     loadDeleteBtn.value = true;
-    const response = await globalApi.deleteDocument(info.code, "3x4.png");
+    const response = await globalApi.deleteDocument(
+      info.code,
+      getFileName(localInfo.photo)
+    );
     if (response.status === HttpStatusCode.NoContent) {
       util.notification.showNotify({
         msg: t("photoDeletedSuccessfully"),
@@ -202,7 +204,11 @@ const resetFields = () => {
 };
 
 const enableDeleteBtn = (photo) => {
-  return photo === constants.BLANK_IMG;
+  return photo == null;
+};
+
+const getFileName = (filePath) => {
+  return filePath.split("\\").pop();
 };
 </script>
 
