@@ -4,7 +4,11 @@
       <q-avatar rounded size="7rem" font-size="1rem">
         <img
           :alt="$t('userImg')"
-          :src="util.imageHandling.validateImageNull(localInfo.photo)"
+          :src="
+            localInfo.photo
+              ? localInfo.photo
+              : util.imageHandling.validateImageNull(localInfo.photo)
+          "
           @error="util.imageHandling.onImageError($event)"
         />
       </q-avatar>
@@ -15,6 +19,13 @@
           :unelevated="true"
           class="font-weight-bold"
           color="primary"
+          @click="triggerFileUpload"
+        />
+        <input
+          ref="fileInput"
+          style="display: none"
+          type="file"
+          @change="handleFileUpload"
         />
         <q-btn
           :disable="enableDeleteBtn(localInfo.photo)"
@@ -140,17 +151,33 @@ import { util } from "src/utils/functions";
 const { t } = useI18n();
 const confirmPwd = ref(true);
 const currentPwd = ref(true);
+const fileInput = ref(null);
 const loadBtn = ref(false);
 const loadDeleteBtn = ref(false);
 const newPwd = ref(true);
 const store = useGloblaStore();
-const localInfo = LocalStorage.getItem("userInfo");
+const localInfo = ref(LocalStorage.getItem("userInfo"));
 
 const emptyFields = () => {
   return { currentPassword: "", newPassword: "", confirmPassword: "" };
 };
 
 const changePwdForm = ref(emptyFields());
+
+const triggerFileUpload = () => {
+  fileInput.value.click();
+};
+
+const handleFileUpload = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      localInfo.value.photo = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+};
 
 const onSubmit = (event) => {
   event.preventDefault();
