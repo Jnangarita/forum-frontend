@@ -5,8 +5,10 @@ const PATH = "/auth/login"
 const authLogin = {
   /**
    * This api returns the JWT token
-   * @returns
+   *
+   * @returns {Promise<Object>}
    */
   authUser: (data) => forum.post(`${PATH}`, data),
 }
+
 export { authLogin };
