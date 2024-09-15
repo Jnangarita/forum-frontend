@@ -11,7 +11,7 @@ import axios from 'axios'
 // for each client)
 const api = axios.create({ baseURL: 'http://localhost:9000/public/apiFake' })
 
-const forum = axios.create({ baseURL: 'http://localhost:8080/api/forum' })
+const forum = axios.create({ baseURL: process.env.DEV_FORUM_API_URL })
 
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
