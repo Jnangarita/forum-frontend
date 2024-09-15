@@ -21,13 +21,21 @@ const userApi = {
   updateUser: (userId, data) => forum.put(`${PATH}/${userId}`, data),
 
   /**
-   * This API updates the password
+   * This API updates the password for the specified user ID.
    *
    * @param {*} userId - ID of the user whose password is to be updated.
    * @param {*} data - The payload required `(ChangePasswordDTO)` for updating the password.
    * @returns {Promise<Object>}
    */
   updatePassword: (userId, data) => forum.put(`${PATH}/passwords/${userId}`, data),
+
+  /**
+   * This API resets the user password for the given email
+   *
+   * @param {*} data - The payload required `(ResetPasswordDTO)` for reset the password.
+   * @returns {Promise<Object>}
+   */
+  resetPassword: (data) => forum.post(`${PATH}/reset-password`, data),
 }
 
 export { userApi };

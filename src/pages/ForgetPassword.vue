@@ -23,6 +23,7 @@
           />
           <q-btn
             :label="$t('passwordReset')"
+            :loading="loadBtn"
             class="input-item"
             color="primary"
             type="submit"
@@ -41,14 +42,39 @@
 </template>
 
 <script setup>
+import { HttpStatusCode } from "axios";
 import { ref } from "vue";
+import { useGloblaStore } from "src/stores/globalStore";
+import { userApi } from "./user/api/user";
+import { useRouter } from "vue-router";
 import { util } from "src/utils/functions";
 
+const loadBtn = ref(false);
 const passwordResetForm = ref({ email: "" });
+const router = useRouter();
+const store = useGloblaStore();
 
 const onSubmit = (event) => {
   event.preventDefault();
-  console.log(passwordResetForm);
+  resetPassword(passwordResetForm.value);
+};
+
+const resetPassword = async (form) => {
+  try {
+    loadBtn.value = true;
+    const response = await userApi.resetPassword(form);
+    if (response.status == HttpStatusCode.Ok) {
+      util.notification.showNotify({
+        msg: response.data.message,
+        bgColor: "green-2",
+      });
+      router.push("/login");
+    }
+  } catch (error) {
+    util.notification.showNotify({ msg: store.message, bgColor: "red-2" });
+  } finally {
+    loadBtn.value = false;
+  }
 };
 </script>
 
