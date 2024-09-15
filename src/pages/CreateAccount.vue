@@ -86,6 +86,7 @@
           </div>
           <q-btn
             :label="$t('createAccount')"
+            :loading="loadBtn"
             class="responsive-box"
             color="primary"
             type="submit"
@@ -114,6 +115,7 @@ import { useRouter } from "vue-router";
 import { util } from "src/utils/functions";
 
 const { t } = useI18n();
+const loadBtn = ref(false);
 const router = useRouter();
 const showPassword = ref(true);
 const showRepeatPassword = ref(true);
@@ -130,6 +132,7 @@ const userInfo = ref({
 
 const createAccount = async (userForm) => {
   try {
+    loadBtn.value = true;
     const response = await userApi.createUser(userForm);
     if (response.status === HttpStatusCode.Created) {
       util.notification.showNotify({
@@ -140,6 +143,8 @@ const createAccount = async (userForm) => {
     }
   } catch (error) {
     util.notification.showNotify({ msg: store.message, bgColor: "red-2" });
+  } finally {
+    loadBtn.value = false;
   }
 };
 

@@ -41,6 +41,7 @@
           </q-input>
           <q-btn
             :label="$t('logIn')"
+            :loading="loadBtn"
             class="input-item"
             color="primary"
             type="submit"
@@ -67,12 +68,14 @@ import { util } from "src/utils/functions";
 
 const authStore = useAuthStore();
 const globalStore = useGloblaStore();
+const loadBtn = ref(false);
 const router = useRouter();
 const showPassword = ref(true);
 const loginForm = ref({ email: "", password: "" });
 
 const login = async () => {
   try {
+    loadBtn.value = true;
     await authStore.login(loginForm.value);
     router.push("/");
   } catch (error) {
@@ -80,6 +83,8 @@ const login = async () => {
       msg: globalStore.message,
       bgColor: "red-2",
     });
+  } finally {
+    loadBtn.value = false;
   }
 };
 
