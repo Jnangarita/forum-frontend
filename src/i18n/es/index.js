@@ -14,7 +14,7 @@ export default {
   moreCategories: 'Más categorías',
   popularQuestions: 'Preguntas más populares',
   allQuestions: 'Todas las preguntas',
-  descriptionCategories: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus euismod felis, sit amet porta dui molestie eget. Nunc congue consequat condimentum. Praesent eget leo id purus bibendum hendrerit vitae in lectus.',
+  descriptionCategories: 'Aquí podrás explorar diversas áreas de las matemáticas. Cada categoría está diseñada para facilitar la discusión, el intercambio de conocimientos y la resolución de dudas específicas. Sumérgete en los diferentes temas, comparte tus preguntas y contribuye con tus conocimientos a nuestra comunidad matemática.',
   categoryName: 'Nombre de la categoría',
   users: 'Usuarios',
   userName: 'Nombre de usuario',
@@ -92,8 +92,5 @@ export default {
 
   // ERRORES
   error: 'Error',
-  errorCreatingUser: 'Error al crear el usuario',
-  errorUpdatingUserInfo: 'Error al actualizar la información del usuario',
-  errorUpdatingPassword: 'Error al actualizar la contraseña',
   errorIntercepted: 'Error interceptado'
 }

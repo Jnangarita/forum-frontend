@@ -87,7 +87,7 @@
               </span>
             </router-link>
             <span class="margin-left-3">
-              {{ util.formatting.timeElapsed(question.time) }}
+              {{ util.formatting.timeElapsed(question.creationDate) }}
             </span>
           </div>
         </div>
