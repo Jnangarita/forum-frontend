@@ -158,10 +158,6 @@ onMounted(async () => {
   padding: 0.2rem 0.2rem;
 }
 
-.task-item q-icon {
-  margin-right: 0.5rem;
-}
-
 .user-info {
   margin: 0.8rem 0 0 0;
 }

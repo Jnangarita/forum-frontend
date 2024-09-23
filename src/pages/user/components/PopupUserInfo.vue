@@ -9,7 +9,7 @@
       </q-toolbar>
       <q-card-section class="justify-center" style="padding: 0rem 3.5rem">
         <q-form @submit="onSubmit">
-          <div class="justify-between input-txt display-flex">
+          <div class="justify-between margin-bottom-10 display-flex">
             <q-input
               :label="$t('firstName')"
               :rules="[util.notification.validateQInput($t('pleaseEnterName'))]"
@@ -36,7 +36,7 @@
             :rules="[
               util.notification.validateQInput($t('pleaseEnterUserName')),
             ]"
-            class="input-txt"
+            class="margin-bottom-10"
             dense
             outlined
             type="text"
@@ -48,7 +48,7 @@
               :rules="[
                 util.notification.validateQInput($t('pleaseEnterEmail')),
               ]"
-              class="input-txt txt"
+              class="margin-bottom-10 txt"
               dense
               outlined
               type="text"
@@ -64,7 +64,7 @@
               v-model="userData.userRole.roleName"
             />
           </div>
-          <div class="justify-between input-txt display-flex">
+          <div class="justify-between margin-bottom-10 display-flex">
             <q-select
               :label="$t('country')"
               :options="data.countries"
@@ -205,14 +205,6 @@ onMounted(async () => {
 .popup-title {
   padding: 2rem 2rem;
   text-align: center;
-}
-
-.popup-container {
-  padding: 1rem;
-}
-
-.input-txt {
-  margin-bottom: 1rem;
 }
 
 .txt {

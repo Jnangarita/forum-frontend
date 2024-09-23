@@ -99,7 +99,7 @@
               <p>{{ $t("follow") }}</p>
             </div>
             <div class="user-container">
-              <p class="user-text">
+              <p class="margin-bottom-1">
                 {{ util.formatting.timeElapsed(data.question?.created) }}
               </p>
               <div class="display-flex">
@@ -125,11 +125,11 @@
                     }"
                     class="no-underline"
                   >
-                    <p class="user-text user-title">
+                    <p class="margin-bottom-1 user-title">
                       {{ data.question?.userName }}
                     </p>
                   </router-link>
-                  <p class="user-text font-weight-bold">
+                  <p class="margin-bottom-1 font-weight-bold">
                     {{ data.question?.reputation }}
                   </p>
                 </div>
@@ -164,10 +164,6 @@ onMounted(() => {
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
-}
-
-.user-text {
-  margin-bottom: 0;
 }
 
 .user-container {

@@ -34,10 +34,10 @@
                 }"
                 class="no-underline"
               >
-                <p class="user-title">{{ user.userName }}</p>
+                <p class="user-title margin-bottom-1">{{ user.userName }}</p>
               </router-link>
-              <p class="opacity-info">{{ user.city }}</p>
-              <p class="opacity-info font-weight-bold">
+              <p class="opacity-info margin-bottom-1">{{ user.city }}</p>
+              <p class="opacity-info font-weight-bold margin-bottom-1">
                 {{ util.formatting.formatNumber(user.reputation) }}
               </p>
               <router-link
@@ -83,9 +83,5 @@ onMounted(() => {
 <style scoped>
 .user-data {
   margin-left: 10px;
-}
-
-.user-data p {
-  margin-bottom: 0;
 }
 </style>
