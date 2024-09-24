@@ -60,7 +60,7 @@
 </template>
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useUserStore } from "../userStore";
+import { useUserStore } from "../store/userStore";
 import { util } from "src/utils/functions";
 
 const searchUsers = ref("");
