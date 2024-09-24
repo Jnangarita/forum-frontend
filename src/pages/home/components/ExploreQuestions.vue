@@ -29,7 +29,7 @@
         />
       </div>
     </div>
-    <QuestionContainer :arrQuestions="data.questions?.questionList" />
+    <QuestionContainer :arrQuestions="questions?.questionList" />
     <div class="more-questions">
       <router-link :to="{ name: 'questions' }">
         <q-btn
@@ -43,16 +43,18 @@
 </template>
 
 <script setup>
-import { constants } from "src/utils/constants";
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import { useGetData } from "src/composables/useGetData";
+import { useQuestionStore } from "src/pages/questions/store/questionStore";
 import QuestionContainer from "src/components/QuestionContainer.vue";
 
 const { data, getData } = useGetData();
 const API_GET_CATEGORIES = "/v1/categories/list";
+const questionStore = useQuestionStore();
+const questions = computed(() => questionStore.questionList);
 
 onMounted(() => {
-  getData(constants.API_GET_QUESTIONS, "questions");
+  questionStore.fetchQuestionList();
   getData(API_GET_CATEGORIES, "categories");
 });
 </script>

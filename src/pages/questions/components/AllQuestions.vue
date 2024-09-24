@@ -4,9 +4,7 @@
       <div class="col-7">
         <p class="main-title">{{ $t("allQuestions") }}</p>
         <span class="num-questions">
-          {{
-            `${data.questions?.totalQuestions} ${$t("questions").toLowerCase()}`
-          }}
+          {{ `${questions?.totalQuestions} ${$t("questions").toLowerCase()}` }}
         </span>
       </div>
       <div class="col-4 flex-end">
@@ -18,7 +16,7 @@
         />
       </div>
     </div>
-    <QuestionContainer :arrQuestions="data.questions?.questionList" />
+    <QuestionContainer :arrQuestions="questions?.questionList" />
     <div class="q-gutter-md pagination">
       <q-pagination
         active-color="primary"
@@ -35,15 +33,15 @@
 </template>
 
 <script setup>
-import { constants } from "src/utils/constants";
-import { onMounted, ref } from "vue";
-import { useGetData } from "src/composables/useGetData";
+import { computed, onMounted, ref } from "vue";
+import { useQuestionStore } from "../store/questionStore";
 import QuestionContainer from "src/components/QuestionContainer.vue";
 
-const { data, getData } = useGetData();
 const current = ref(3);
+const questionStore = useQuestionStore();
+const questions = computed(() => questionStore.questionList);
 
 onMounted(() => {
-  getData(constants.API_GET_QUESTIONS, "questions");
+  questionStore.fetchQuestionList();
 });
 </script>
