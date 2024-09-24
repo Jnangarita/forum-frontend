@@ -60,24 +60,24 @@
 </template>
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useGetData } from "src/composables/useGetData";
+import { useUserStore } from "../userStore";
 import { util } from "src/utils/functions";
 
-const { data, getData } = useGetData();
-const API_GET_USERS_LIST = "/v1/users";
 const searchUsers = ref("");
+const userStore = useUserStore();
+const userList = computed(() => userStore.userList);
 
 const filteredUsers = computed(() => {
   if (!searchUsers.value) {
-    return data.userList;
+    return userList.value;
   }
-  return data.userList.filter((user) =>
+  return userList.value.filter((user) =>
     user.userName.toLowerCase().includes(searchUsers.value.toLowerCase())
   );
 });
 
 onMounted(() => {
-  getData(API_GET_USERS_LIST, "userList");
+  userStore.fetchUserList();
 });
 </script>
 <style scoped>
