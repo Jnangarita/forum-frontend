@@ -63,26 +63,26 @@
 </template>
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useGetData } from "src/composables/useGetData";
+import { useCategoryStore } from "../store/categoryStore";
 import { util } from "src/utils/functions";
 
-const { data, getData } = useGetData();
-const API_GET_CATEGORIES_LIST = "/v1/categories";
 const searchCategory = ref("");
-
-onMounted(() => {
-  getData(API_GET_CATEGORIES_LIST, "categoryList");
-});
+const categoryStore = useCategoryStore();
+const categoryList = computed(() => categoryStore.categoryList);
 
 const filteredCategories = computed(() => {
   if (!searchCategory.value) {
-    return data.categoryList;
+    return categoryList.value;
   }
-  return data.categoryList.filter((category) =>
+  return categoryList.value.filter((category) =>
     category.categoryName
       .toLowerCase()
       .includes(searchCategory.value.toLowerCase())
   );
+});
+
+onMounted(() => {
+  categoryStore.fetchCategoryList();
 });
 </script>
 <style scoped>
