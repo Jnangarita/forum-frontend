@@ -62,12 +62,12 @@
 <script setup>
 import { ref } from "vue";
 import { useAuthStore } from "../stores/authStore";
-import { useGloblaStore } from "../stores/globalStore";
+import { useGlobalStore } from "../stores/globalStore";
 import { useRouter } from "vue-router";
 import { util } from "src/utils/functions";
 
 const authStore = useAuthStore();
-const globalStore = useGloblaStore();
+const globalStore = useGlobalStore();
 const loadBtn = ref(false);
 const router = useRouter();
 const showPassword = ref(true);

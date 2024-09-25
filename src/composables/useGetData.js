@@ -1,6 +1,6 @@
 import { forum } from 'boot/axios';
 import { reactive, ref } from 'vue';
-import { useGloblaStore } from 'src/stores/globalStore';
+import { useGlobalStore } from 'src/stores/globalStore';
 import { useQuasar } from 'quasar';
 import { util } from 'src/utils/functions';
 
@@ -8,7 +8,7 @@ const useGetData = () => {
   const $q = useQuasar();
   const data = reactive({});
   const error = ref({});
-  const store = useGloblaStore();
+  const store = useGlobalStore();
 
   /**
    * Fetches data from a given URL and updates the specified key in the data object.

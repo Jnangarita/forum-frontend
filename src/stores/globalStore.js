@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 import { util } from 'src/utils/functions';
 
-export const useGloblaStore = defineStore('global', {
-  state: () => ({
-    message: util.notification.getMessage('messageAvailable')
-  }),
+export const useGlobalStore = defineStore('global', () => {
+  const message = ref(util.notification.getMessage('messageAvailable'));
+
+  return { message };
 });

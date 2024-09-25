@@ -143,7 +143,7 @@ import { globalApi } from "src/api/global";
 import { HttpStatusCode } from "axios";
 import { LocalStorage } from "quasar";
 import { ref } from "vue";
-import { useGloblaStore } from "src/stores/globalStore";
+import { useGlobalStore } from "src/stores/globalStore";
 import { useI18n } from "vue-i18n";
 import { userApi } from "../api/user";
 import { util } from "src/utils/functions";
@@ -155,7 +155,7 @@ const fileInput = ref(null);
 const loadBtn = ref(false);
 const loadDeleteBtn = ref(false);
 const newPwd = ref(true);
-const store = useGloblaStore();
+const store = useGlobalStore();
 const localInfo = ref(LocalStorage.getItem("userInfo"));
 
 const emptyFields = () => {

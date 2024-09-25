@@ -108,7 +108,7 @@
 import { constants } from "src/utils/constants";
 import { HttpStatusCode } from "axios";
 import { ref } from "vue";
-import { useGloblaStore } from "src/stores/globalStore";
+import { useGlobalStore } from "src/stores/globalStore";
 import { useI18n } from "vue-i18n";
 import { userApi } from "./user/api/user";
 import { useRouter } from "vue-router";
@@ -119,7 +119,7 @@ const loadBtn = ref(false);
 const router = useRouter();
 const showPassword = ref(true);
 const showRepeatPassword = ref(true);
-const store = useGloblaStore();
+const store = useGlobalStore();
 const userInfo = ref({
   email: "",
   firstName: "",

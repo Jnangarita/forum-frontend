@@ -129,7 +129,7 @@
 import { HttpStatusCode } from "axios";
 import { onMounted, ref, watch } from "vue";
 import { useGetData } from "src/composables/useGetData";
-import { useGloblaStore } from "src/stores/globalStore";
+import { useGlobalStore } from "src/stores/globalStore";
 import { useI18n } from "vue-i18n";
 import { userApi } from "../api/user";
 import { util } from "src/utils/functions";
@@ -149,7 +149,7 @@ const emit = defineEmits(["update:popupStatus"]);
 const loadBtn = ref(false);
 const PATH_GET_COUNTRIES = `/v1/locations/countries`;
 const showPopup = ref(props.popupStatus);
-const store = useGloblaStore();
+const store = useGlobalStore();
 
 const onSubmit = (event) => {
   event.preventDefault();

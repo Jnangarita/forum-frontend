@@ -44,7 +44,7 @@
 <script setup>
 import { HttpStatusCode } from "axios";
 import { ref } from "vue";
-import { useGloblaStore } from "src/stores/globalStore";
+import { useGlobalStore } from "src/stores/globalStore";
 import { userApi } from "./user/api/user";
 import { useRouter } from "vue-router";
 import { util } from "src/utils/functions";
@@ -52,7 +52,7 @@ import { util } from "src/utils/functions";
 const loadBtn = ref(false);
 const passwordResetForm = ref({ email: "" });
 const router = useRouter();
-const store = useGloblaStore();
+const store = useGlobalStore();
 
 const onSubmit = (event) => {
   event.preventDefault();

@@ -1,5 +1,5 @@
 import { boot } from 'quasar/wrappers'
-import { useGloblaStore } from 'src/stores/globalStore'
+import { useGlobalStore } from 'src/stores/globalStore'
 import { util } from 'src/utils/functions';
 import axios from 'axios'
 
@@ -36,7 +36,7 @@ forum.interceptors.request.use((config) => {
 forum.interceptors.response.use(
   (response) => response,
   (error) => {
-    const store = useGloblaStore();
+    const store = useGlobalStore();
     store.message = error.response.data?.description
     console.error(util.notification.getMessage('errorIntercepted'), error)
   }
