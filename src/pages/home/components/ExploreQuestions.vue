@@ -44,17 +44,15 @@
 
 <script setup>
 import { computed, onMounted } from "vue";
-import { useCategoryStore } from "src/pages/categories/store/categoryStore";
-import { useQuestionStore } from "src/pages/questions/store/questionStore";
+import { useGlobalStore } from "src/stores/globalStore";
 import QuestionContainer from "src/components/QuestionContainer.vue";
 
-const questionStore = useQuestionStore();
-const categoryStore = useCategoryStore();
-const questions = computed(() => questionStore.questionList);
-const categories = computed(() => categoryStore.exploreCategories);
+const globalStore = useGlobalStore();
+const questions = computed(() => globalStore.questionList);
+const categories = computed(() => globalStore.categories);
 
 onMounted(() => {
-  questionStore.fetchQuestionList();
-  categoryStore.fetchExploreCategories();
+  globalStore.fetchQuestionList();
+  globalStore.fetchCategories();
 });
 </script>

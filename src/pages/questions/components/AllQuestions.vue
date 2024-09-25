@@ -34,14 +34,14 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useQuestionStore } from "../store/questionStore";
+import { useGlobalStore } from "src/stores/globalStore";
 import QuestionContainer from "src/components/QuestionContainer.vue";
 
 const current = ref(3);
-const questionStore = useQuestionStore();
-const questions = computed(() => questionStore.questionList);
+const globalStore = useGlobalStore();
+const questions = computed(() => globalStore.questionList);
 
 onMounted(() => {
-  questionStore.fetchQuestionList();
+  globalStore.fetchQuestionList();
 });
 </script>

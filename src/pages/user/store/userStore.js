@@ -2,14 +2,14 @@ import { defineStore } from 'pinia';
 import { ref } from "vue";
 import { useGetData } from 'src/composables/useGetData';
 
-export const useUserStore = defineStore('userStore', () => {
+export const useUserStore = defineStore('user', () => {
   const { data, getData } = useGetData();
-  const API_GET_USERS_LIST = "/v1/users";
   const userList = ref([]);
 
   const fetchUserList = async () => {
-    await getData(API_GET_USERS_LIST, "userList");
-    userList.value = data.userList;
+    const API_GET_USERS_LIST = "/v1/users";
+    await getData(API_GET_USERS_LIST, "users");
+    userList.value = data.users;
   };
 
   return { fetchUserList, userList }
