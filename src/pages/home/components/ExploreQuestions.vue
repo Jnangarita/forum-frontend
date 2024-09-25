@@ -5,7 +5,7 @@
         <p class="main-title">{{ $t("exploreQuestions") }}</p>
         <router-link :to="'/question/category'">
           <q-btn
-            v-for="category in data.categories"
+            v-for="category in categories"
             :key="category.id"
             :label="category.value"
             :no-caps="true"
@@ -44,17 +44,17 @@
 
 <script setup>
 import { computed, onMounted } from "vue";
-import { useGetData } from "src/composables/useGetData";
+import { useCategoryStore } from "src/pages/categories/store/categoryStore";
 import { useQuestionStore } from "src/pages/questions/store/questionStore";
 import QuestionContainer from "src/components/QuestionContainer.vue";
 
-const { data, getData } = useGetData();
-const API_GET_CATEGORIES = "/v1/categories/list";
 const questionStore = useQuestionStore();
+const categoryStore = useCategoryStore();
 const questions = computed(() => questionStore.questionList);
+const categories = computed(() => categoryStore.exploreCategories);
 
 onMounted(() => {
   questionStore.fetchQuestionList();
-  getData(API_GET_CATEGORIES, "categories");
+  categoryStore.fetchExploreCategories();
 });
 </script>
