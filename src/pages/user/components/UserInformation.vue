@@ -3,19 +3,19 @@
     <q-avatar rounded size="7rem">
       <img
         :alt="$t('userImg')"
-        :src="util.imageHandling.validateImageNull(data.userById?.photo)"
+        :src="util.imageHandling.validateImageNull(userById?.photo)"
         @error="util.imageHandling.onImageError($event)"
       />
     </q-avatar>
     <div>
-      <p class="title">{{ data.userById?.userName }}</p>
+      <p class="title">{{ userById?.userName }}</p>
       <q-badge
         class="badge-response font-weight-bold"
         color="grey-3"
         text-color="dark"
         style="margin: 0.5rem 0"
       >
-        {{ data.userById?.userRole.roleName }}
+        {{ userById.userRole?.roleName }}
       </q-badge>
       <div class="task-list">
         <div class="task-item">
@@ -23,7 +23,7 @@
             <q-icon name="las la-question-circle" size="2rem" />
           </div>
           <span class="text-align-left">
-            <span class="title">{{ data.userById?.numberQuestions || 0 }}</span>
+            <span class="title">{{ userById?.numberQuestions || 0 }}</span>
             <caption>
               {{
                 $t("questions")
@@ -36,7 +36,7 @@
             <q-icon name="las la-check-square" size="2rem" />
           </div>
           <span class="text-align-left">
-            <span class="title">{{ data.userById?.numberResponses || 0 }}</span>
+            <span class="title">{{ userById?.numberResponses || 0 }}</span>
             <caption>
               {{
                 $t("answers")
@@ -52,20 +52,20 @@
       <div style="margin: 0.5rem 0 0 0">
         <p class="user-info">
           <span class="font-weight-bold">{{ $t("userName") }}: </span>
-          {{ data.userById?.userName }}
+          {{ userById?.userName }}
         </p>
         <p class="user-info">
           <span class="font-weight-bold">{{ $t("email") }}: </span>
-          {{ data.userById?.email }}
+          {{ userById?.email }}
         </p>
         <p class="user-info">
           <span class="font-weight-bold">{{ $t("status") }}: </span>
           <q-badge
-            :color="!data.userById?.deleted ? 'positive' : 'red-5'"
+            :color="!userById?.deleted ? 'positive' : 'red-5'"
             class="badge-response"
           >
             {{
-              !data.userById?.deleted
+              !userById?.deleted
                 ? constants.ACTIVE_USER_STATUS
                 : constants.DELETED_USER_STATUS
             }}
@@ -73,11 +73,11 @@
         </p>
         <p class="user-info">
           <span class="font-weight-bold">{{ $t("userRole") }}: </span>
-          {{ data.userById?.userRole.roleName }}
+          {{ userById.userRole?.roleName }}
         </p>
         <p class="user-info">
           <span class="font-weight-bold">{{ $t("country") }}: </span>
-          {{ data.userById?.country.value }}
+          {{ userById.country?.value }}
         </p>
       </div>
     </div>
@@ -100,30 +100,30 @@
       outline
       @click="util.navigation.goToPreviousScreen(router)"
     />
-    <PopupUserInfo :userData="data.userById" v-model:popupStatus="showPopup" />
+    <PopupUserInfo :userData="userById" v-model:popupStatus="showPopup" />
   </div>
 </template>
 
 <script setup>
+import { computed, onMounted, ref } from "vue";
 import { constants } from "src/utils/constants";
-import { onMounted, ref } from "vue";
-import { useGetData } from "src/composables/useGetData";
 import { useRoute, useRouter } from "vue-router";
+import { useUserStore } from "../store/userStore";
 import { util } from "src/utils/functions";
 import PopupUserInfo from "./PopupUserInfo.vue";
 
-const { data, getData } = useGetData();
 const showPopup = ref(false);
 const route = useRoute();
 const router = useRouter();
-const PATH_GET_USER_INFO = `/v1/users/${route.params.id}`;
+const userStore = useUserStore();
+const userById = computed(() => userStore.userInfo);
 
 const openConfirmPopup = () => {
   showPopup.value = true;
 };
 
 onMounted(async () => {
-  await getData(PATH_GET_USER_INFO, "userById");
+  await userStore.fetchUserDataById(route.params.id);
 });
 </script>
 

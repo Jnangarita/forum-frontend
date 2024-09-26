@@ -45,14 +45,16 @@
 <script setup>
 import { computed, onMounted } from "vue";
 import { useGlobalStore } from "src/stores/globalStore";
+import { useHomeStore } from "../store/homeStore";
 import QuestionContainer from "src/components/QuestionContainer.vue";
 
 const globalStore = useGlobalStore();
+const homeStore = useHomeStore();
 const questions = computed(() => globalStore.questionList);
-const categories = computed(() => globalStore.categories);
+const categories = computed(() => homeStore.categories);
 
 onMounted(() => {
   globalStore.fetchQuestionList();
-  globalStore.fetchCategories();
+  homeStore.fetchCategories();
 });
 </script>

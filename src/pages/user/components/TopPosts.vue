@@ -7,7 +7,7 @@
       :hide-pagination="true"
       :no-data-label="$t('noDataFound')"
       :rows-per-page-options="[0]"
-      :rows="rows"
+      :rows="topPostList"
       :table-header-style="{ color: 'var(--primary-color)' }"
       class="q-pa-md"
       row-key="index"
@@ -49,18 +49,17 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from "vue";
 import { constants } from "src/utils/constants";
-import { onMounted, ref } from "vue";
-import { useGetData } from "src/composables/useGetData";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
+import { useUserStore } from "../store/userStore";
 import { util } from "src/utils/functions";
 
-const { data, getData } = useGetData();
 const { t } = useI18n();
 const route = useRoute();
-const rows = ref([]);
-const API_GET_QUESTION_LIST = `/v1/posts?id=${route.params.id}`;
+const userStore = useUserStore();
+const topPostList = computed(() => userStore.topPost);
 
 const columns = [
   {
@@ -109,12 +108,6 @@ const questionStatus = (param) => {
 };
 
 onMounted(async () => {
-  await getData(API_GET_QUESTION_LIST, "questionList");
-  if (data.questionList) {
-    rows.value = data.questionList.map((item, index) => ({
-      ...item,
-      index: index + 1,
-    }));
-  }
+  userStore.fetchTopPost(route.params.id);
 });
 </script>
