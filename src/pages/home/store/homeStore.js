@@ -5,6 +5,7 @@ import { useGetData } from 'src/composables/useGetData';
 export const useHomeStore = defineStore('home', () => {
   const { data, getData } = useGetData();
   const categories = ref([]);
+  const popularQuestions = ref([]);
 
   const fetchCategories = async () => {
     const API_GET_CATEGORIES = "/v1/categories/list";
@@ -12,8 +13,16 @@ export const useHomeStore = defineStore('home', () => {
     categories.value = data.categories;
   };
 
+  const fetchPopularQuestions = async () => {
+    const API_GET_POPULAR_QUESTIONS = "/v1/topics/popular";
+    await getData(API_GET_POPULAR_QUESTIONS, "questions");
+    popularQuestions.value = data.questions;
+  };
+
   return {
     fetchCategories,
-    categories
+    fetchPopularQuestions,
+    categories,
+    popularQuestions
   };
 });

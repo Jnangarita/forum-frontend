@@ -2,7 +2,7 @@
   <div class="main-container q-pa-md">
     <p class="main-title">{{ $t("popularQuestions") }}</p>
     <div
-      v-for="question in data.question"
+      v-for="question in questions"
       :key="question.id"
       class="display-flex margin-bottom-5"
     >
@@ -21,14 +21,14 @@
   </div>
 </template>
 <script setup>
-import { onMounted } from "vue";
-import { useGetData } from "src/composables/useGetData";
+import { computed, onMounted } from "vue";
+import { useHomeStore } from "../store/homeStore";
 import { util } from "src/utils/functions";
 
-const { data, getData } = useGetData();
-const API_GET_POPULAR_QUESTIONS = "/v1/topics/popular";
+const homeStore = useHomeStore();
+const questions = computed(() => homeStore.popularQuestions);
 
 onMounted(() => {
-  getData(API_GET_POPULAR_QUESTIONS, "question");
+  homeStore.fetchPopularQuestions();
 });
 </script>
