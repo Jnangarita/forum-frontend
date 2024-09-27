@@ -154,9 +154,8 @@ const util = {
      * Delete information from localStorage
      */
     deleteInfoLocalStorage: () => {
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('userId');
-      localStorage.removeItem('userInfo');
+      const keysToRemove = ['authToken', 'userId', 'userInfo'];
+      keysToRemove.forEach(key => localStorage.removeItem(key));
     },
 
     deleteStore: () => {
