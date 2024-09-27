@@ -1,6 +1,10 @@
 import { constants } from "./constants";
 import { i18n } from 'boot/i18n';
 import { Notify } from 'quasar'
+import { useCategoryStore } from "src/pages/categories/store/categoryStore";
+import { useGlobalStore } from "src/stores/globalStore";
+import { useHomeStore } from "src/pages/home/store/homeStore";
+import { useUserStore } from "src/pages/user/store/userStore";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -153,6 +157,11 @@ const util = {
       localStorage.removeItem('authToken');
       localStorage.removeItem('userId');
       localStorage.removeItem('userInfo');
+    },
+
+    deleteStore: () => {
+      const stores = [useCategoryStore(), useGlobalStore(), useHomeStore(), useUserStore()];
+      stores.forEach(store => store.resetStore());
     }
   }
 }

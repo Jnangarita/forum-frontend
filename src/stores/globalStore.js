@@ -14,5 +14,10 @@ export const useGlobalStore = defineStore('global', () => {
     questionList.value = data.questions;
   };
 
-  return { fetchQuestionList, message, questionList };
+  const resetStore = () => {
+    message.value = util.notification.getMessage('messageAvailable');
+    questionList.value = [];
+  };
+
+  return { fetchQuestionList, resetStore, message, questionList };
 });

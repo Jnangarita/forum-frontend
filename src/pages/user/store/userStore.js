@@ -29,10 +29,17 @@ export const useUserStore = defineStore('user', () => {
     userInfo.value = data.userById;
   };
 
+  const resetStore = () => {
+    topPost.value = [];
+    userInfo.value = {};
+    userList.value = [];
+  };
+
   return {
     fetchTopPost,
     fetchUserDataById,
     fetchUserList,
+    resetStore,
     topPost,
     userInfo,
     userList

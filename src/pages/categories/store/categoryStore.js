@@ -12,5 +12,9 @@ export const useCategoryStore = defineStore('category', () => {
     categoryList.value = data.categoryList;
   };
 
-  return { fetchCategoryList, categoryList }
+  const resetStore = () => {
+    categoryList.value = [];
+  };
+
+  return { fetchCategoryList, resetStore, categoryList }
 });

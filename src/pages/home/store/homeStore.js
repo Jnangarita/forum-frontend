@@ -19,9 +19,14 @@ export const useHomeStore = defineStore('home', () => {
     popularQuestions.value = data.questions;
   };
 
+  const resetStore = () => {
+    popularQuestions.value = [];
+  };
+
   return {
     fetchCategories,
     fetchPopularQuestions,
+    resetStore,
     categories,
     popularQuestions
   };

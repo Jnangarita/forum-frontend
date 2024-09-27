@@ -28,6 +28,7 @@ export const useAuthStore = defineStore('auth', {
       this.user = null;
       this.authToken = null;
       util.storage.deleteInfoLocalStorage();
+      util.storage.deleteStore();
     },
   },
 
