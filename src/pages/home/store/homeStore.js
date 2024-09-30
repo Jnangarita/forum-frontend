@@ -20,6 +20,7 @@ export const useHomeStore = defineStore('home', () => {
   };
 
   const resetStore = () => {
+    categories.value = [];
     popularQuestions.value = [];
   };
 

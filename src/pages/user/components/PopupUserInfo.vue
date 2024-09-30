@@ -177,10 +177,12 @@ const updateUserInfo = async (userInfo) => {
 watch(
   () => props.userData.country,
   async (newCountry, lastCountry) => {
-    const PATH_GET_CITIES = `/v1/locations/${newCountry?.id ?? 0}/cities`;
-    await getData(PATH_GET_CITIES, "cities");
-    if (lastCountry) {
-      props.userData.city = "";
+    if (newCountry?.id !== undefined) {
+      const PATH_GET_CITIES = `/v1/locations/${newCountry.id}/cities`;
+      await getData(PATH_GET_CITIES, "cities");
+      if (lastCountry) {
+        props.userData.city = "";
+      }
     }
   }
 );
