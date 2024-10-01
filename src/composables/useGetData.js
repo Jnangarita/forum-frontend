@@ -4,7 +4,7 @@ import { useGlobalStore } from 'src/stores/globalStore';
 import { useQuasar } from 'quasar';
 import { util } from 'src/utils/functions';
 
-const useGetData = () => {
+export const useGetData = () => {
   const $q = useQuasar();
   const data = reactive({});
   const error = ref({});
@@ -44,7 +44,5 @@ const useGetData = () => {
     }
   };
 
-  return { data, error, getData };
+  return { getData, data, error };
 }
-
-export { useGetData }
