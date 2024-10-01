@@ -1,5 +1,5 @@
 import { forum } from 'boot/axios';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 import { useGlobalStore } from 'src/stores/globalStore';
 import { useQuasar } from 'quasar';
 import { util } from 'src/utils/functions';
@@ -7,7 +7,6 @@ import { util } from 'src/utils/functions';
 export const useGetData = () => {
   const $q = useQuasar();
   const data = reactive({});
-  const error = ref({});
   const store = useGlobalStore();
 
   /**
@@ -44,5 +43,5 @@ export const useGetData = () => {
     }
   };
 
-  return { getData, data, error };
+  return { getData, data };
 }
