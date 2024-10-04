@@ -67,7 +67,7 @@
           <div class="justify-between margin-bottom-10 display-flex">
             <q-select
               :label="$t('country')"
-              :options="data.countries"
+              :options="countries"
               :rules="[
                 util.notification.validateQselect($t('pleaseEnterCountry')),
               ]"
@@ -126,8 +126,8 @@
 </template>
 
 <script setup>
+import { computed, onMounted, ref, watch } from "vue";
 import { HttpStatusCode } from "axios";
-import { onMounted, ref, watch } from "vue";
 import { useGetData } from "src/composables/useGetData";
 import { useGlobalStore } from "src/stores/globalStore";
 import { useI18n } from "vue-i18n";
@@ -147,9 +147,9 @@ const { data, getData } = useGetData();
 const { t } = useI18n();
 const emit = defineEmits(["update:popupStatus"]);
 const loadBtn = ref(false);
-const PATH_GET_COUNTRIES = `/v1/locations/countries`;
 const showPopup = ref(props.popupStatus);
 const store = useGlobalStore();
+const countries = computed(() => store.countriesList);
 
 const onSubmit = (event) => {
   event.preventDefault();
@@ -199,7 +199,7 @@ watch(showPopup, (newValue) => {
 });
 
 onMounted(async () => {
-  await getData(PATH_GET_COUNTRIES, "countries");
+  store.fetchCountriesList();
 });
 </script>
 

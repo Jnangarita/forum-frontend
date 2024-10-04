@@ -5,6 +5,7 @@ import { util } from 'src/utils/functions';
 
 export const useGlobalStore = defineStore('global', () => {
   const { data, getData } = useGetData();
+  const countriesList = ref([]);
   const message = ref(util.notification.getMessage('messageAvailable'));
   const questionList = ref([]);
 
@@ -14,10 +15,24 @@ export const useGlobalStore = defineStore('global', () => {
     questionList.value = data.questions;
   };
 
+  const fetchCountriesList = async () => {
+    const API_GET_COUNTRIES = `/v1/locations/countries`;
+    await getData(API_GET_COUNTRIES, "countries");
+    countriesList.value = data.countries;
+  };
+
   const resetStore = () => {
+    countriesList.value = [];
     message.value = util.notification.getMessage('messageAvailable');
     questionList.value = [];
   };
 
-  return { fetchQuestionList, resetStore, message, questionList };
+  return {
+    fetchCountriesList,
+    fetchQuestionList,
+    resetStore,
+    countriesList,
+    message,
+    questionList
+  };
 });
