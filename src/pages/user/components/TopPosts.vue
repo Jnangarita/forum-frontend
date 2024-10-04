@@ -107,7 +107,7 @@ const questionStatus = (param) => {
   return param === constants.STATUS_QUESTION_ANSWERED;
 };
 
-onMounted(async () => {
+onMounted(() => {
   userStore.fetchTopPost(route.params.id);
 });
 </script>

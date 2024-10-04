@@ -198,7 +198,7 @@ watch(showPopup, (newValue) => {
   emit("update:popupStatus", newValue);
 });
 
-onMounted(async () => {
+onMounted(() => {
   store.fetchCountriesList();
 });
 </script>
