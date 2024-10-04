@@ -2,7 +2,7 @@
   <div class="main-container q-pa-md">
     <div class="row justify-between title-container">
       <div class="col-7">
-        <p class="main-title">{{ data.question?.questionTitle }}</p>
+        <p class="main-title">{{ question?.questionTitle }}</p>
       </div>
       <div class="col-4 flex-end question-btn">
         <q-btn
@@ -16,18 +16,18 @@
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("created")}` }}</span>
           <span class="margin-left-3">
-            {{ util.formatting.timeElapsed(data.question?.created) }}
+            {{ util.formatting.timeElapsed(question?.createdAt) }}
           </span>
         </div>
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("modified")}` }}</span>
           <span class="margin-left-3">
-            {{ util.formatting.timeElapsed(data.question?.modified) }}
+            {{ util.formatting.timeElapsed(updateDate(question)) }}
           </span>
         </div>
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("views")}` }}</span>
-          <span class="margin-left-3">{{ data.question?.views }}</span>
+          <span class="margin-left-3">{{ question?.views }}</span>
         </div>
       </div>
     </div>
@@ -36,24 +36,22 @@
       <ul class="list-info">
         <li>
           <q-btn
-            :color="data.question?.like ? 'positive' : 'grey'"
-            :outline="!data.question?.like"
-            :text-color="data.question?.like ? 'white' : 'dark'"
+            :color="question?.like > 0 ? 'positive' : 'grey'"
+            :outline="!(question?.like > 0)"
+            :text-color="question?.like > 0 ? 'white' : 'dark'"
             class="margin-bottom-10"
             icon="las la-thumbs-up"
             round
           />
         </li>
         <li>
-          <p class="likes">
-            {{ data.question?.numberOfLikes }}
-          </p>
+          <p class="likes">{{ question?.like }}</p>
         </li>
         <li>
           <q-btn
-            :color="data.question?.dislike ? 'negative' : 'grey'"
-            :outline="!data.question?.dislike"
-            :text-color="data.question?.dislike ? 'white' : 'dark'"
+            :color="question?.dislike ? 'negative' : 'grey'"
+            :outline="!question?.dislike"
+            :text-color="question?.dislike ? 'white' : 'dark'"
             class="margin-bottom-10"
             icon="las la-thumbs-down"
             round
@@ -61,8 +59,8 @@
         </li>
         <li>
           <q-btn
-            :color="data.question?.saved ? 'primary' : 'white'"
-            :text-color="data.question?.saved ? 'white' : 'dark'"
+            :color="question?.saved ? 'primary' : 'white'"
+            :text-color="question?.saved ? 'white' : 'dark'"
             class="margin-bottom-10"
             icon="las la-bookmark"
             round
@@ -71,19 +69,17 @@
         </li>
       </ul>
       <div class="col q-pa-md">
-        <p class="text-align-justify">
-          {{ data.question?.questionContent }}
-        </p>
+        <p class="text-align-justify">{{ question?.questionContent }}</p>
         <div class="display-flex">
           <router-link
-            v-for="category in data.question?.categories"
+            v-for="category in question?.categories"
             :key="category.id"
             :to="
-              util.navigation.goToAnotherScreen('CategoryPage', category.name)
+              util.navigation.goToAnotherScreen('CategoryPage', category.value)
             "
           >
             <q-btn
-              :label="category.name"
+              :label="category.value"
               :no-caps="true"
               :unelevated="true"
               class="btn-category"
@@ -100,15 +96,13 @@
             </div>
             <div class="user-container">
               <p class="margin-bottom-1">
-                {{ util.formatting.timeElapsed(data.question?.created) }}
+                {{ util.formatting.timeElapsed(question?.createdAt) }}
               </p>
               <div class="display-flex">
                 <q-avatar rounded size="50px">
                   <img
                     :alt="$t('userImg')"
-                    :src="
-                      util.imageHandling.validateImageNull(data.question?.photo)
-                    "
+                    :src="util.imageHandling.validateImageNull(question?.photo)"
                     @error="util.imageHandling.onImageError($event)"
                   />
                 </q-avatar>
@@ -117,20 +111,18 @@
                     :to="{
                       name: 'UserView',
                       params: {
-                        id: data.question?.id,
-                        userName: util.formatting.formatUrl(
-                          data.question?.userName
-                        ),
+                        id: question?.id,
+                        userName: util.formatting.formatUrl(question?.userName),
                       },
                     }"
                     class="no-underline"
                   >
                     <p class="margin-bottom-1 user-title">
-                      {{ data.question?.userName }}
+                      {{ question?.userName }}
                     </p>
                   </router-link>
                   <p class="margin-bottom-1 font-weight-bold">
-                    {{ data.question?.reputation }}
+                    {{ question?.reputation }}
                   </p>
                 </div>
               </div>
@@ -143,15 +135,21 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-import { useGetData } from "src/composables/useGetData";
+import { computed, onMounted } from "vue";
+import { useQuestionStore } from "../store/questionStore";
+import { useRoute } from "vue-router";
 import { util } from "src/utils/functions";
 
-const { data, getData } = useGetData();
-const API_GET_QUESTION = "/home/questionOne.json";
+const questionStore = useQuestionStore();
+const question = computed(() => questionStore.question);
+const route = useRoute();
+
+const updateDate = (date) => {
+  return date.updatedAt == null ? date.createdAt : date.updatedAt;
+};
 
 onMounted(() => {
-  getData(API_GET_QUESTION, "question");
+  questionStore.fetchQuestionInfo(route.params.id);
 });
 </script>
 <style scoped>
