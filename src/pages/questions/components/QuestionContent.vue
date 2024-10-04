@@ -145,7 +145,7 @@ const question = computed(() => questionStore.question);
 const route = useRoute();
 
 const updateDate = (date) => {
-  return date.updatedAt == null ? date.createdAt : date.updatedAt;
+  return date.updatedAt ?? date.createdAt;
 };
 
 onMounted(() => {
