@@ -12,5 +12,9 @@ export const useQuestionStore = defineStore('question', () => {
     question.value = data.questionInfo;
   };
 
-  return { fetchQuestionInfo, question }
+  const resetStore = () => {
+    question.value = {};
+  };
+
+  return { fetchQuestionInfo, resetStore, question }
 });

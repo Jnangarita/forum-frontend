@@ -4,6 +4,7 @@ import { Notify } from 'quasar'
 import { useCategoryStore } from "src/pages/categories/store/categoryStore";
 import { useGlobalStore } from "src/stores/globalStore";
 import { useHomeStore } from "src/pages/home/store/homeStore";
+import { useQuestionStore } from "src/pages/questions/store/questionStore";
 import { useUserStore } from "src/pages/user/store/userStore";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -158,8 +159,11 @@ const util = {
       keysToRemove.forEach(key => localStorage.removeItem(key));
     },
 
+    /**
+     * Delete information saved in the store
+     */
     deleteStore: () => {
-      const stores = [useCategoryStore(), useGlobalStore(), useHomeStore(), useUserStore()];
+      const stores = [useCategoryStore(), useGlobalStore(), useHomeStore(), useQuestionStore(), useUserStore()];
       stores.forEach(store => store.resetStore());
     }
   }
