@@ -142,7 +142,6 @@ export const util = {
     return imgPath ?? constants.BLANK_IMG;
   },
 
-
   /**
    * Delete information from localStorage
    */

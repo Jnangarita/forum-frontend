@@ -189,10 +189,7 @@ const changePassword = async (id, form) => {
     loadBtn.value = true;
     const response = await userApi.updatePassword(id, form);
     if (response.status === HttpStatusCode.Ok) {
-      util.showNotify({
-        msg: t("passwordUpdatedSuccessfully"),
-        bgColor: "green-2",
-      });
+      util.showNotify({ msg: t("updatedPassword"), bgColor: "green-2" });
       resetFields();
     }
   } catch (error) {
@@ -208,10 +205,7 @@ const deleteUserPhoto = async (info) => {
     const fileName = getFileName(localInfo.photo);
     const response = await globalApi.deleteDocument(info.code, fileName);
     if (response.status === HttpStatusCode.NoContent) {
-      util.showNotify({
-        msg: t("photoDeletedSuccessfully"),
-        bgColor: "green-2",
-      });
+      util.showNotify({ msg: t("photoDeleted"), bgColor: "green-2" });
     }
   } catch (error) {
     util.showNotify({ msg: store.message, bgColor: "red-2" });

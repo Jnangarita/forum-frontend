@@ -70,8 +70,8 @@ export default {
   currentPassword: 'Contraseña actual',
   newPassword: 'Nueva contraseña',
   confirmNewPassword: 'Confirmar nueva contraseña',
-  passwordUpdatedSuccessfully: 'La contraseña se actualizo correctamente',
-  photoDeletedSuccessfully: 'Foto eliminada correctamente',
+  updatedPassword: 'La contraseña se actualizo correctamente',
+  photoDeleted: 'Foto eliminada correctamente',
 
   // ADVERTENCIA
   warning: 'Advertencia',
