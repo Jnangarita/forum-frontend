@@ -7,9 +7,9 @@
           :src="
             localInfo.photo
               ? localInfo.photo
-              : util.imageHandling.validateImageNull(localInfo.photo)
+              : util.validateImageNull(localInfo.photo)
           "
-          @error="util.imageHandling.onImageError($event)"
+          @error="util.onImageError($event)"
         />
       </q-avatar>
       <div style="margin-left: 1.5rem">
@@ -50,9 +50,7 @@
       <q-form @submit="onSubmit">
         <q-input
           :label="$t('currentPassword')"
-          :rules="[
-            util.notification.validateQInput($t('enterCurrentPassword')),
-          ]"
+          :rules="[util.validateQInput($t('enterCurrentPassword'))]"
           :type="currentPwd ? 'password' : 'text'"
           class="txt-fields"
           dense
@@ -70,7 +68,7 @@
         <div class="display-flex justify-between">
           <q-input
             :label="$t('newPassword')"
-            :rules="[util.notification.validateQInput($t('enterNewPassword'))]"
+            :rules="[util.validateQInput($t('enterNewPassword'))]"
             :type="newPwd ? 'password' : 'text'"
             class="txt-fields"
             dense
@@ -87,9 +85,7 @@
           </q-input>
           <q-input
             :label="$t('confirmNewPassword')"
-            :rules="[
-              util.notification.validateQInput($t('pleaseEnterRepeatPassword')),
-            ]"
+            :rules="[util.validateQInput($t('pleaseEnterRepeatPassword'))]"
             :type="confirmPwd ? 'password' : 'text'"
             class="txt-fields"
             dense
@@ -182,7 +178,7 @@ const handleFileUpload = (event) => {
 const onSubmit = (event) => {
   event.preventDefault();
   if (changePwdForm.value.newPassword !== changePwdForm.value.confirmPassword) {
-    util.notification.showNotify({ msg: t("passwordsDoNotMatch") });
+    util.showNotify({ msg: t("passwordsDoNotMatch") });
   } else {
     changePassword(LocalStorage.getItem("userId"), changePwdForm.value);
   }
@@ -193,14 +189,14 @@ const changePassword = async (id, form) => {
     loadBtn.value = true;
     const response = await userApi.updatePassword(id, form);
     if (response.status === HttpStatusCode.Ok) {
-      util.notification.showNotify({
+      util.showNotify({
         msg: t("passwordUpdatedSuccessfully"),
         bgColor: "green-2",
       });
       resetFields();
     }
   } catch (error) {
-    util.notification.showNotify({ msg: store.message, bgColor: "red-2" });
+    util.showNotify({ msg: store.message, bgColor: "red-2" });
   } finally {
     loadBtn.value = false;
   }
@@ -209,18 +205,16 @@ const changePassword = async (id, form) => {
 const deleteUserPhoto = async (info) => {
   try {
     loadDeleteBtn.value = true;
-    const response = await globalApi.deleteDocument(
-      info.code,
-      getFileName(localInfo.photo)
-    );
+    const fileName = getFileName(localInfo.photo);
+    const response = await globalApi.deleteDocument(info.code, fileName);
     if (response.status === HttpStatusCode.NoContent) {
-      util.notification.showNotify({
+      util.showNotify({
         msg: t("photoDeletedSuccessfully"),
         bgColor: "green-2",
       });
     }
   } catch (error) {
-    util.notification.showNotify({ msg: store.message, bgColor: "red-2" });
+    util.showNotify({ msg: store.message, bgColor: "red-2" });
   } finally {
     loadDeleteBtn.value = false;
   }

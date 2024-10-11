@@ -16,13 +16,13 @@
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("created")}` }}</span>
           <span class="margin-left-3">
-            {{ util.formatting.timeElapsed(question?.createdAt) }}
+            {{ util.timeElapsed(question?.createdAt) }}
           </span>
         </div>
         <div class="margin-left-5">
           <span class="opacity-info">{{ `${$t("modified")}` }}</span>
           <span class="margin-left-3">
-            {{ util.formatting.timeElapsed(updateDate(question)) }}
+            {{ util.timeElapsed(updateDate(question)) }}
           </span>
         </div>
         <div class="margin-left-5">
@@ -74,9 +74,7 @@
           <router-link
             v-for="category in question?.categories"
             :key="category.id"
-            :to="
-              util.navigation.goToAnotherScreen('CategoryPage', category.value)
-            "
+            :to="util.goToAnotherScreen('CategoryPage', category.value)"
           >
             <q-btn
               :label="category.value"
@@ -96,14 +94,14 @@
             </div>
             <div class="user-container">
               <p class="margin-bottom-1">
-                {{ util.formatting.timeElapsed(question?.createdAt) }}
+                {{ util.timeElapsed(question?.createdAt) }}
               </p>
               <div class="display-flex">
                 <q-avatar rounded size="50px">
                   <img
                     :alt="$t('userImg')"
-                    :src="util.imageHandling.validateImageNull(question?.photo)"
-                    @error="util.imageHandling.onImageError($event)"
+                    :src="util.validateImageNull(question?.photo)"
+                    @error="util.onImageError($event)"
                   />
                 </q-avatar>
                 <div class="margin-left-5">
@@ -112,7 +110,7 @@
                       name: 'UserView',
                       params: {
                         id: question?.id,
-                        userName: util.formatting.formatUrl(question?.userName),
+                        userName: util.formatUrl(question?.userName),
                       },
                     }"
                     class="no-underline"

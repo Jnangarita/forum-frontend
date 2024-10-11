@@ -37,7 +37,7 @@ export const useGetData = () => {
       const response = await forum.get(url);
       data[key] = response.data;
     } catch (err) {
-      util.notification.showNotify({ msg: store.message, bgColor: 'red-2' });
+      util.showNotify({ msg: store.message, bgColor: 'red-2' });
     } finally {
       $q.loading.hide()
     }

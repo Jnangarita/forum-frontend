@@ -28,10 +28,7 @@
           <div class="category-container">
             <router-link
               :to="
-                util.navigation.goToAnotherScreen(
-                  'CategoryPage',
-                  category.categoryName
-                )
+                util.goToAnotherScreen('CategoryPage', category.categoryName)
               "
             >
               <q-btn
@@ -52,7 +49,7 @@
                 }}
               </span>
               <span class="category-footer">
-                {{ util.formatting.timeElapsed(category.time) }}
+                {{ util.timeElapsed(category.time) }}
               </span>
             </div>
           </div>

@@ -3,8 +3,8 @@
     <q-avatar rounded size="7rem">
       <img
         :alt="$t('userImg')"
-        :src="util.imageHandling.validateImageNull(userById?.photo)"
-        @error="util.imageHandling.onImageError($event)"
+        :src="util.validateImageNull(userById?.photo)"
+        @error="util.onImageError($event)"
       />
     </q-avatar>
     <div>
@@ -98,7 +98,7 @@
       color="red-5"
       flat
       outline
-      @click="util.navigation.goToPreviousScreen(router)"
+      @click="util.goToPreviousScreen(router)"
     />
     <PopupUserInfo :userData="userById" v-model:popupStatus="showPopup" />
   </div>

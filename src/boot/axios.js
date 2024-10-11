@@ -38,7 +38,7 @@ forum.interceptors.response.use(
   (error) => {
     const store = useGlobalStore();
     store.message = error.response.data?.description
-    console.error(util.notification.getMessage('errorIntercepted'), error)
+    console.error(util.getMessage('errorIntercepted'), error)
   }
 )
 

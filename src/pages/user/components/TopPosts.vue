@@ -39,7 +39,7 @@
           </q-td>
           <q-td key="creationDate" :props="props">
             <span>
-              {{ util.formatting.formatDate(props.row.creationDate) }}
+              {{ util.formatDate(props.row.creationDate) }}
             </span>
           </q-td>
         </q-tr>

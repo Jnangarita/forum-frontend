@@ -33,8 +33,8 @@ export default route(function (/* { store, ssrContext } */) {
 
     if (to.matched.some(record => record.meta.requiresAuth)) {
       if (!jwtToken || isTokenExpired(jwtToken)) {
-        alert(util.notification.getMessage('sessionExpired'));
-        util.storage.deleteInfoLocalStorage();
+        alert(util.getMessage('sessionExpired'));
+        util.deleteInfoLocalStorage();
         next({ name: 'Login' });
       } else {
         next();

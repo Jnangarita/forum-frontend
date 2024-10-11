@@ -14,7 +14,7 @@
           <div class="display-flex justify-between responsive-box">
             <q-input
               :hint="$t('firstName')"
-              :rules="[util.notification.validateQInput($t('pleaseEnterName'))]"
+              :rules="[util.validateQInput($t('pleaseEnterName'))]"
               class="input"
               dense
               outlined
@@ -23,9 +23,7 @@
             />
             <q-input
               :hint="$t('lastName')"
-              :rules="[
-                util.notification.validateQInput($t('pleaseEnterLastName')),
-              ]"
+              :rules="[util.validateQInput($t('pleaseEnterLastName'))]"
               class="input"
               dense
               outlined
@@ -35,7 +33,7 @@
           </div>
           <q-input
             :hint="$t('email')"
-            :rules="[util.notification.validateQInput($t('pleaseEnterEmail'))]"
+            :rules="[util.validateQInput($t('pleaseEnterEmail'))]"
             class="input-item responsive-box"
             dense
             outlined
@@ -45,9 +43,7 @@
           <div class="display-flex justify-between responsive-box">
             <q-input
               :hint="$t('password')"
-              :rules="[
-                util.notification.validateQInput($t('pleaseEnterPassword')),
-              ]"
+              :rules="[util.validateQInput($t('pleaseEnterPassword'))]"
               :type="showPassword ? 'password' : 'text'"
               class="input"
               dense
@@ -64,11 +60,7 @@
             </q-input>
             <q-input
               :hint="$t('repeatPassword')"
-              :rules="[
-                util.notification.validateQInput(
-                  $t('pleaseEnterRepeatPassword')
-                ),
-              ]"
+              :rules="[util.validateQInput($t('pleaseEnterRepeatPassword'))]"
               :type="showRepeatPassword ? 'password' : 'text'"
               class="input"
               dense
@@ -135,14 +127,11 @@ const createAccount = async (userForm) => {
     loadBtn.value = true;
     const response = await userApi.createUser(userForm);
     if (response.status === HttpStatusCode.Created) {
-      util.notification.showNotify({
-        msg: t("createdUserMsg"),
-        bgColor: "green-2",
-      });
+      util.showNotify({ msg: t("createdUserMsg"), bgColor: "green-2" });
       router.push("/login");
     }
   } catch (error) {
-    util.notification.showNotify({ msg: store.message, bgColor: "red-2" });
+    util.showNotify({ msg: store.message, bgColor: "red-2" });
   } finally {
     loadBtn.value = false;
   }
@@ -151,7 +140,7 @@ const createAccount = async (userForm) => {
 const onSubmit = (event) => {
   event.preventDefault();
   if (userInfo.value.password !== userInfo.value.repeatPassword) {
-    util.notification.showNotify({ msg: t("passwordsDoNotMatch") });
+    util.showNotify({ msg: t("passwordsDoNotMatch") });
   } else {
     createAccount(userInfo.value);
   }

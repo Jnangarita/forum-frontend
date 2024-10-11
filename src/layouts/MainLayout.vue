@@ -16,10 +16,8 @@
             <q-avatar>
               <img
                 :alt="$t('userImg')"
-                :src="
-                  util.imageHandling.validateImageNull(data.userById?.photo)
-                "
-                @error="util.imageHandling.onImageError($event)"
+                :src="util.validateImageNull(data.userById?.photo)"
+                @error="util.onImageError($event)"
               />
             </q-avatar>
             <q-menu>
@@ -29,12 +27,8 @@
                     <q-avatar>
                       <img
                         :alt="$t('userImg')"
-                        :src="
-                          util.imageHandling.validateImageNull(
-                            data.userById?.photo
-                          )
-                        "
-                        @error="util.imageHandling.onImageError($event)"
+                        :src="util.validateImageNull(data.userById?.photo)"
+                        @error="util.onImageError($event)"
                       />
                     </q-avatar>
                   </q-item-section>
@@ -55,9 +49,7 @@
                         name: 'UserView',
                         params: {
                           id: userId,
-                          userName: util.formatting.formatUrl(
-                            data.userById.userName
-                          ),
+                          userName: util.formatUrl(data.userById.userName),
                         },
                       }"
                       class="no-underline link-color"

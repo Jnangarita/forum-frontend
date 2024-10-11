@@ -13,7 +13,7 @@
         <q-form class="form-content" @submit="onSubmit">
           <q-input
             :hint="$t('email')"
-            :rules="[util.notification.validateQInput($t('pleaseEnterEmail'))]"
+            :rules="[util.validateQInput($t('pleaseEnterEmail'))]"
             class="input-item"
             dense
             outlined
@@ -22,9 +22,7 @@
           />
           <q-input
             :hint="$t('password')"
-            :rules="[
-              util.notification.validateQInput($t('pleaseEnterPassword')),
-            ]"
+            :rules="[util.validateQInput($t('pleaseEnterPassword'))]"
             :type="showPassword ? 'password' : 'text'"
             class="input-item"
             dense
@@ -79,10 +77,7 @@ const login = async () => {
     await authStore.login(loginForm.value);
     router.push("/");
   } catch (error) {
-    util.notification.showNotify({
-      msg: globalStore.message,
-      bgColor: "red-2",
-    });
+    util.showNotify({ msg: globalStore.message, bgColor: "red-2" });
   } finally {
     loadBtn.value = false;
   }

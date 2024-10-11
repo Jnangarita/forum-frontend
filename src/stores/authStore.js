@@ -23,8 +23,8 @@ export const useAuthStore = defineStore('auth', () => {
 
   const logout = () => {
     deleteInfo();
-    util.storage.deleteInfoLocalStorage();
-    util.storage.deleteStore();
+    util.deleteInfoLocalStorage();
+    util.deleteStore();
   };
 
   const deleteInfo = () => {

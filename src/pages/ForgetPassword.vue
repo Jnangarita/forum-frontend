@@ -14,7 +14,7 @@
         <q-form class="form-content" @submit="onSubmit">
           <q-input
             :hint="$t('email')"
-            :rules="[util.notification.validateQInput($t('pleaseEnterEmail'))]"
+            :rules="[util.validateQInput($t('pleaseEnterEmail'))]"
             class="input-item"
             dense
             outlined
@@ -64,14 +64,11 @@ const resetPassword = async (form) => {
     loadBtn.value = true;
     const response = await userApi.resetPassword(form);
     if (response.status == HttpStatusCode.Ok) {
-      util.notification.showNotify({
-        msg: response.data.message,
-        bgColor: "green-2",
-      });
+      util.showNotify({ msg: response.data.message, bgColor: "green-2" });
       router.push("/login");
     }
   } catch (error) {
-    util.notification.showNotify({ msg: store.message, bgColor: "red-2" });
+    util.showNotify({ msg: store.message, bgColor: "red-2" });
   } finally {
     loadBtn.value = false;
   }

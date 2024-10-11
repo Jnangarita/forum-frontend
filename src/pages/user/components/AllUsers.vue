@@ -19,8 +19,8 @@
             <q-avatar rounded size="65px" style="margin-top: 4px">
               <img
                 :alt="$t('userImg')"
-                :src="util.imageHandling.validateImageNull(user.photo)"
-                @error="util.imageHandling.onImageError($event)"
+                :src="util.validateImageNull(user.photo)"
+                @error="util.onImageError($event)"
               />
             </q-avatar>
             <div class="user-data">
@@ -29,7 +29,7 @@
                   name: 'UserView',
                   params: {
                     id: user.id,
-                    userName: util.formatting.formatUrl(user.userName),
+                    userName: util.formatUrl(user.userName),
                   },
                 }"
                 class="no-underline"
@@ -38,14 +38,12 @@
               </router-link>
               <p class="opacity-info margin-bottom-1">{{ user.city }}</p>
               <p class="opacity-info font-weight-bold margin-bottom-1">
-                {{ util.formatting.formatNumber(user.reputation) }}
+                {{ util.formatNumber(user.reputation) }}
               </p>
               <router-link
                 v-for="(category, index) in user.category"
                 :key="category"
-                :to="
-                  util.navigation.goToAnotherScreen('CategoryPage', category)
-                "
+                :to="util.goToAnotherScreen('CategoryPage', category)"
                 class="no-underline"
               >
                 <span>{{ category.value }}</span>

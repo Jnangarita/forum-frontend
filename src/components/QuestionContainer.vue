@@ -37,7 +37,7 @@
             name: 'QuestionContainer',
             params: {
               id: question.questionId,
-              title: util.formatting.formatUrl(question.questionTitle),
+              title: util.formatUrl(question.questionTitle),
             },
           }"
           class="question-link"
@@ -48,9 +48,7 @@
           <router-link
             v-for="category in question.categories"
             :key="category.id"
-            :to="
-              util.navigation.goToAnotherScreen('CategoryPage', category.value)
-            "
+            :to="util.goToAnotherScreen('CategoryPage', category.value)"
           >
             <q-btn
               :label="category.value"
@@ -67,8 +65,8 @@
           <q-avatar rounded size="20px">
             <img
               :alt="$t('userImg')"
-              :src="util.imageHandling.validateImageNull(question.photo)"
-              @error="util.imageHandling.onImageError($event)"
+              :src="util.validateImageNull(question.photo)"
+              @error="util.onImageError($event)"
             />
           </q-avatar>
           <div>
@@ -77,7 +75,7 @@
                 name: 'UserView',
                 params: {
                   id: question.userId,
-                  userName: util.formatting.formatUrl(question.user),
+                  userName: util.formatUrl(question.user),
                 },
               }"
               class="no-underline"
@@ -87,7 +85,7 @@
               </span>
             </router-link>
             <span class="margin-left-3">
-              {{ util.formatting.timeElapsed(question.creationDate) }}
+              {{ util.timeElapsed(question.creationDate) }}
             </span>
           </div>
         </div>

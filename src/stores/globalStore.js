@@ -6,7 +6,7 @@ import { util } from 'src/utils/functions';
 export const useGlobalStore = defineStore('global', () => {
   const { data, getData } = useGetData();
   const countriesList = ref([]);
-  const message = ref(util.notification.getMessage('messageAvailable'));
+  const message = ref(util.getMessage('messageAvailable'));
   const questionList = ref([]);
 
   const fetchQuestionList = async () => {
@@ -23,7 +23,7 @@ export const useGlobalStore = defineStore('global', () => {
 
   const resetStore = () => {
     countriesList.value = [];
-    message.value = util.notification.getMessage('messageAvailable');
+    message.value = util.getMessage('messageAvailable');
     questionList.value = [];
   };
 
