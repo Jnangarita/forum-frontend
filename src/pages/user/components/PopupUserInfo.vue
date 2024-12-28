@@ -36,7 +36,7 @@
             dense
             outlined
             type="text"
-            v-model="userData.userName"
+            v-model="userData.profileName"
           />
           <div class="justify-between display-flex">
             <q-input
@@ -55,7 +55,7 @@
               disable
               outlined
               type="text"
-              v-model="userData.userRole.roleName"
+              v-model="userData.role.roleName"
             />
           </div>
           <div class="justify-between margin-bottom-10 display-flex">
@@ -66,7 +66,7 @@
               class="txt"
               dense
               lazy-rules
-              option-label="value"
+              option-label="countryName"
               option-value="id"
               outlined
               type="text"
@@ -80,7 +80,7 @@
               class="txt"
               dense
               lazy-rules
-              option-label="value"
+              option-label="cityName"
               option-value="id"
               outlined
               type="text"

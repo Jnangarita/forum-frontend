@@ -67,6 +67,7 @@ module.exports = configure(function (/* ctx */) {
       // analyze: true,
       env: {
         DEV_FORUM_API_URL: process.env.DEV_FORUM_API_URL,
+        SECRET_KEY: process.env.SECRET_KEY,
       },
       // rawDefine: {}
       // ignorePublicFolder: true,

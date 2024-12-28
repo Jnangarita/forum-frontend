@@ -74,6 +74,7 @@ const loginForm = ref({ email: "", password: "" });
 const login = async () => {
   try {
     loadBtn.value = true;
+    loginForm.value.password = encryptPassword(loginForm.value.password)
     await authStore.login(loginForm.value);
     router.push("/");
   } catch (error) {
@@ -86,5 +87,16 @@ const login = async () => {
 const onSubmit = (event) => {
   event.preventDefault();
   login();
+};
+
+const encryptPassword = (password) => {
+  const decodedKey = CryptoJS.enc.Base64.parse(process.env.SECRET_KEY);
+
+  const encrypted = CryptoJS.AES.encrypt(password, decodedKey, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7
+  });
+
+  return encrypted.toString();
 };
 </script>

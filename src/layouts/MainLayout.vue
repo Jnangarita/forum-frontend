@@ -34,7 +34,7 @@
                   </q-item-section>
                   <q-item-section>
                     <p class="display-contents">
-                      {{ data.userById.userName }}
+                      {{ data.userById.profileName }}
                       <span class="opacity-info">
                         {{ data.userById.email }}
                       </span>
@@ -49,7 +49,7 @@
                         name: 'UserView',
                         params: {
                           id: userId,
-                          userName: util.formatUrl(data.userById.userName),
+                          userName: util.formatUrl(data.userById.profileName),
                         },
                       }"
                       class="no-underline link-color"

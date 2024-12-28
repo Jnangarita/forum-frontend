@@ -8,14 +8,14 @@
       />
     </q-avatar>
     <div>
-      <p class="title">{{ userById?.userName }}</p>
+      <p class="title">{{ userById?.profileName }}</p>
       <q-badge
         class="badge-response font-weight-bold"
         color="grey-3"
         text-color="dark"
         style="margin: 0.5rem 0"
       >
-        {{ userById.userRole?.roleName }}
+        {{ userById.role?.roleName }}
       </q-badge>
       <div class="task-list">
         <div class="task-item">
@@ -52,7 +52,7 @@
       <div style="margin: 0.5rem 0 0 0">
         <p class="user-info">
           <span class="font-weight-bold">{{ $t("userName") }}: </span>
-          {{ userById?.userName }}
+          {{ userById?.profileName }}
         </p>
         <p class="user-info">
           <span class="font-weight-bold">{{ $t("email") }}: </span>
@@ -73,11 +73,11 @@
         </p>
         <p class="user-info">
           <span class="font-weight-bold">{{ $t("userRole") }}: </span>
-          {{ userById.userRole?.roleName }}
+          {{ userById.role?.roleName }}
         </p>
         <p class="user-info">
           <span class="font-weight-bold">{{ $t("country") }}: </span>
-          {{ userById.country?.value }}
+          {{ userById.country?.countryName }}
         </p>
       </div>
     </div>

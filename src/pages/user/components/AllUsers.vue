@@ -36,7 +36,7 @@
               >
                 <p class="user-title margin-bottom-1">{{ user.userName }}</p>
               </router-link>
-              <p class="opacity-info margin-bottom-1">{{ user.city }}</p>
+              <p class="opacity-info margin-bottom-1">{{ user.city?.cityName }}</p>
               <p class="opacity-info font-weight-bold margin-bottom-1">
                 {{ util.formatNumber(user.reputation) }}
               </p>
